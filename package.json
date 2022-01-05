@@ -1,12 +1,12 @@
 {
-  "name": "base.store",
+  "name": "base-cms.store",
   "private": true,
   "version": "0.222.0",
   "license": "MIT",
   "browserslist": "supports es6-module and not dead",
   "scripts": {
     "generate": "graphql-codegen",
-    "build": "gatsby build --log-pages",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "clean": "gatsby clean",
     "serve": "gatsby serve",
@@ -30,6 +30,7 @@
     "@faststore/ui": "^1.3.28",
     "@vtex/gatsby-plugin-nginx": "^1.3.22",
     "@vtex/gatsby-plugin-thumbor": "^1.3.22",
+    "@vtex/gatsby-source-cms": "0.2.2",
     "@vtex/gatsby-source-store": "^1.3.22",
     "@vtex/graphql-utils": "^1.3.22",
     "gatsby": "^3.14.3",

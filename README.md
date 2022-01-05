@@ -17,7 +17,7 @@ Kickoff your store with this boilerplate. This starter ships with the main Fasts
 
     ```shell
     # Clone this repo into your machine
-    npx degit vtex-sites/base.store awesome.store
+    npx degit vtex-sites/base-cms.store awesome.store
     ```
 
 1.  **Install dependencies**
@@ -59,6 +59,23 @@ Kickoff your store with this boilerplate. This starter ships with the main Fasts
 > Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/docs/tutorial/part-4/#use-graphiql-to-explore-the-data-layer-and-write-graphql-queries).
 
     Open the `awesome.store` directory in your code editor of choice and edit `src/pages/index.tsx`. Save your changes and the browser will update in real-time!
+
+## 🧐 CMS integration?
+To be able to add new content types to the VTEX CMS, you will need the [VTEX toolbelt](https://www.npmjs.com/package/vtex) and the [VTEX CMS plugin](https://www.npmjs.com/package/@vtex/cli-plugin-cms).
+
+After installing the toolbelt, you can install the cms plugin by:
+```sh
+vtex plugins install @vtex/cli-plugin-cms
+```
+
+After installing the plugin, open the project's root folder and
+```sh
+vtex cms sync
+```
+
+This will sync the content types and sections with the current workspace you are using. Add a `-w` in the end for toolbelt to watch for changes.
+
+> Note that if you run this command in `master`, you will be chaging production data. We strongly advise developing in a development workspace. Also, don't forget to change the workspace on `gatsby-config` for fetching data from your workspace
 
 ## 🧐 What's inside?
 
