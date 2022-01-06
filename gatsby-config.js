@@ -53,7 +53,6 @@ module.exports = {
       options: {
         tenant: config.api.storeId,
         workspace: 'master',
-        preview: !isProduction,
       },
     },
     'gatsby-plugin-sharp',
