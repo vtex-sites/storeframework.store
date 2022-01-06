@@ -1,0 +1,50 @@
+[
+  {
+    "name": "BannerText",
+    "schema": {
+      "title": "BannerText",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "actionPath": {
+          "type": "string"
+        },
+        "actionLabel": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
+    "name": "Hero",
+    "schema": {
+      "title": "Hero",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "linkText": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "imageSrc": {
+          "type": "string"
+        },
+        "imageAlt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+]
