@@ -33,7 +33,7 @@ As of Dec, 22, 2021, this starter is still far from covering most basic cases fo
 
     ```shell
     # Clone this repo into your machine
-    npx degit vtex-sites/base-cms.store awesome.store
+    npx degit vtex-sites/storeframework.store awesome.store
     ```
 
 1.  **Install dependencies**
