@@ -1,0 +1,6 @@
+package.json
+yarn.lock
+store.config.json
+gatsby-*.js
+@genarated/
+README.md
