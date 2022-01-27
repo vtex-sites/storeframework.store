@@ -2883,10 +2883,10 @@
   resolved "https://registry.yarnpkg.com/@vtex/gatsby-plugin-thumbor/-/gatsby-plugin-thumbor-1.4.14.tgz#07c1502470fc70b6973c1e49ad9f23c2cb8e31dc"
   integrity sha512-etCLYqcWuVbtufOxvaIhhGjq8blFQr+k51vICsV3GhEyqU5B49Wx+lh3OYNKX1T8YKFPzWZ93sbcnkuqQikQ6A==
 
-"@vtex/gatsby-source-cms@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@vtex/gatsby-source-cms/-/gatsby-source-cms-0.2.3.tgz#34e1748ad58adbae3a83d1c385fa6d118cf58960"
-  integrity sha512-yFvtxYdVWQHGnXHfl1tePHKpGUEEDgyfFUQyOaGV+owaBr3M+UOCFaN4k8I/6rH6APuSTYwbp9ThvZPFOjhXoA==
+"@vtex/gatsby-source-cms@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@vtex/gatsby-source-cms/-/gatsby-source-cms-0.2.4.tgz#06c60334f9e2e3e1b084e8d16cbb5d3cc7be0ec0"
+  integrity sha512-sHpR7ltVkfNGRedDV1mPJOx2Ng7H7YiCuUotC1e7YYBAPuwDlvyCOLlwpY/jI7hG2P/X64ycyIj5M2BIVsxIxw==
   dependencies:
     camelcase "^6.2.0"
     fetch-retry "^4.1.1"
