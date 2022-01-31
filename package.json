@@ -16,7 +16,7 @@
     "lint": "eslint --ext js,ts,jsx,tsx .",
     "postinstall": "is-ci || husky install",
     "updateGCfg": "fastmod -m -d gatsby-config.js 'plugins: \\[' 'plugins: [ \n {\n resolve: \"@vtex/gatsby-source-cms\",\n options: {\n tenant: config.api.storeId,\n       workspace: \"master\",\n },\n },'",
-    "sync-store-files": "yarn updateGCfg"
+    "sync-store-files": "chmod +x ./sync-store-files.sh; ./sync-store-files.sh"
   },
   "engines": {
     "node": ">=14"
