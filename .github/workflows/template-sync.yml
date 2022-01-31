@@ -1,6 +1,9 @@
 name: template-sync
 
 on:
+  push:
+    branches:
+      - chore/sync-target-repo
   # manual trigger
   workflow_dispatch:
 jobs:
