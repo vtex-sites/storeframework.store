@@ -1,5 +1,7 @@
 package.json
 yarn.lock
-gatsby-*.js
+gatsby-node.js
+gatsby-ssr.js
+gatsby-browser.js
 @generated/
 README.md
