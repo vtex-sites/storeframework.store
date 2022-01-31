@@ -14,7 +14,9 @@
     "lhci": "lhci autorun",
     "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json}\"",
     "lint": "eslint --ext js,ts,jsx,tsx .",
-    "postinstall": "is-ci || husky install"
+    "postinstall": "is-ci || husky install",
+    "updateGCfg": "fastmod -m -d gatsby-config.js 'plugins: \\[' 'plugins: [ \n {\n resolve: \"@vtex/gatsby-source-cms\",\n options: {\n tenant: config.api.storeId,\n       workspace: \"master\",\n },\n },'",
+    "sync-files": "yarn updateGCfg"
   },
   "engines": {
     "node": ">=14"
