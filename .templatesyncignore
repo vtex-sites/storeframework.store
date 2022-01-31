@@ -1,6 +1,5 @@
 package.json
 yarn.lock
-store.config.json
 gatsby-*.js
 @generated/
 README.md
