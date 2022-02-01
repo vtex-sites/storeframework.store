@@ -12,8 +12,11 @@ module.exports = {
   channel: '1',
 
   // Production URLs
-  storeUrl: 'https://www.vtex-base1.tk',
-  checkoutUrl: 'https://chk.vtex-base1.tk/checkout',
+  storeUrl: 'https://vtexfaststore.com',
+  secureSubdomain: 'https://secure.vtexfaststore.com',
+  checkoutUrl: 'https://secure.vtexfaststore.com/checkout',
+  loginUrl: 'https://secure.vtexfaststore.com/api/io/login',
+  accountUrl: 'https://secure.vtexfaststore.com/api/io/account',
 
   // Lighthouse CI
   lighthouse: {
