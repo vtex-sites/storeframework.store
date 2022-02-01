@@ -1,7 +1,7 @@
 {
-  "name": "base.store",
+  "name": "base-cms.store",
   "private": true,
-  "version": "0.221.0",
+  "version": "0.222.0",
   "license": "MIT",
   "browserslist": "supports es6-module and not dead",
   "scripts": {
@@ -33,6 +33,7 @@
     "@loadable/component": "^5.15.2",
     "@vtex/gatsby-plugin-nginx": "^1.4.15",
     "@vtex/gatsby-plugin-thumbor": "^1.4.15",
+    "@vtex/gatsby-source-cms": "^0.2.4",
     "@vtex/gatsby-source-store": "^1.4.15",
     "@vtex/graphql-utils": "^1.4.15",
     "fs-extra": "^10.0.0",
