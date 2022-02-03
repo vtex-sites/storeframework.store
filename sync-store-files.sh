@@ -6,7 +6,7 @@ fastmod -m -d gatsby-config.js 'plugins: \[' 'plugins: [  { resolve: "@vtex/gats
 
 fastmod -m -d package.json '"name": "base.store"' '"name": "base-cms.store"';
 fastmod -m -d package.json '"@vtex/gatsby-plugin-thumbor": "\^(\d*.\d*.\d*)",' '"@vtex/gatsby-plugin-thumbor": "^${1}",
-    "@vtex/gatsby-plugin-cms": "^${1}",';
+    "@vtex/gatsby-source-cms": "^0.2.4",';
 
 # Update src/pages/index.tsx file
 
@@ -30,3 +30,9 @@ fastmod -m -d src/pages/index.tsx "query\s(\w*)\s\{(.*)\}" "query \${1} {\${2}
     }
   }
 }";
+
+
+# src/pages/{StoreCollection.slug}
+
+## Component
+fastmod -d src/pages/{StoreCollection.slug}.tsx 'data: \{ (.*)(allStore.*)\}' 'data: { ${1} }';
