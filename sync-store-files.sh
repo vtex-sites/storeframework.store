@@ -13,6 +13,7 @@ fastmod -m -d package.json '"@vtex/gatsby-plugin-thumbor": "\^(\d*.\d*.\d*)",' '
 ## imports
 
 fastmod -d src/pages/index.tsx "import\s(BannerText|Hero|ProductTiles|ProductShelf|IncentivesHeader).*" "";
+
 ### https://regex101.com/r/JYjCWE/2
 fastmod -d src/pages/index.tsx "(import\sReact)(,\s\{.+\})?(.*'react')$" "\${1}\${3}
 import RenderCMS from 'src/components/RenderCMS'";
