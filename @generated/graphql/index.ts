@@ -2234,16 +2234,13 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___allExtensions'
   | 'pluginCreator___pluginOptions___appendScript'
   | 'pluginCreator___pluginOptions___background_color'
-  | 'pluginCreator___pluginOptions___base64Width'
   | 'pluginCreator___pluginOptions___baseline'
   | 'pluginCreator___pluginOptions___cache_busting_mode'
   | 'pluginCreator___pluginOptions___color'
   | 'pluginCreator___pluginOptions___compare'
   | 'pluginCreator___pluginOptions___crossOrigin'
-  | 'pluginCreator___pluginOptions___defaultQuality'
   | 'pluginCreator___pluginOptions___defer'
   | 'pluginCreator___pluginOptions___display'
-  | 'pluginCreator___pluginOptions___failOnError'
   | 'pluginCreator___pluginOptions___html'
   | 'pluginCreator___pluginOptions___httpOptions'
   | 'pluginCreator___pluginOptions___icon'
@@ -2259,7 +2256,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___pluginOptions___precachePages'
-  | 'pluginCreator___pluginOptions___preview'
   | 'pluginCreator___pluginOptions___server'
   | 'pluginCreator___pluginOptions___serverOptions'
   | 'pluginCreator___pluginOptions___short_name'
@@ -2269,7 +2265,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___src'
   | 'pluginCreator___pluginOptions___start_url'
   | 'pluginCreator___pluginOptions___stats___context'
-  | 'pluginCreator___pluginOptions___stripMetadata'
   | 'pluginCreator___pluginOptions___tenant'
   | 'pluginCreator___pluginOptions___theme_color'
   | 'pluginCreator___pluginOptions___theme_color_in_head'
@@ -2502,19 +2497,16 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___allExtensions'
   | 'pluginOptions___appendScript'
   | 'pluginOptions___background_color'
-  | 'pluginOptions___base64Width'
   | 'pluginOptions___baseline'
   | 'pluginOptions___cache_busting_mode'
   | 'pluginOptions___color'
   | 'pluginOptions___compare'
   | 'pluginOptions___crossOrigin'
-  | 'pluginOptions___defaultQuality'
   | 'pluginOptions___defer'
   | 'pluginOptions___display'
   | 'pluginOptions___env___branch_deploy___policy'
   | 'pluginOptions___env___deploy_preview___policy'
   | 'pluginOptions___env___production___policy'
-  | 'pluginOptions___failOnError'
   | 'pluginOptions___html'
   | 'pluginOptions___httpOptions'
   | 'pluginOptions___icon'
@@ -2532,7 +2524,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___path'
   | 'pluginOptions___pathCheck'
   | 'pluginOptions___precachePages'
-  | 'pluginOptions___preview'
   | 'pluginOptions___server'
   | 'pluginOptions___serverOptions'
   | 'pluginOptions___short_name'
@@ -2542,7 +2533,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___src'
   | 'pluginOptions___start_url'
   | 'pluginOptions___stats___context'
-  | 'pluginOptions___stripMetadata'
   | 'pluginOptions___tenant'
   | 'pluginOptions___theme_color'
   | 'pluginOptions___theme_color_in_head'
@@ -2675,17 +2665,14 @@ export type SitePluginPluginOptions = {
   allExtensions: Maybe<Scalars['Boolean']>
   appendScript: Maybe<Scalars['String']>
   background_color: Maybe<Scalars['String']>
-  base64Width: Maybe<Scalars['Int']>
   baseline: Maybe<Scalars['Boolean']>
   cache_busting_mode: Maybe<Scalars['String']>
   color: Maybe<Scalars['String']>
   compare: Maybe<Scalars['Boolean']>
   crossOrigin: Maybe<Scalars['String']>
-  defaultQuality: Maybe<Scalars['Int']>
   defer: Maybe<Scalars['Boolean']>
   display: Maybe<Scalars['String']>
   env: Maybe<SitePluginPluginOptionsEnv>
-  failOnError: Maybe<Scalars['Boolean']>
   html: Maybe<Scalars['Boolean']>
   httpOptions: Maybe<Array<Maybe<Array<Maybe<Scalars['String']>>>>>
   icon: Maybe<Scalars['String']>
@@ -2702,7 +2689,6 @@ export type SitePluginPluginOptions = {
   path: Maybe<Scalars['String']>
   pathCheck: Maybe<Scalars['Boolean']>
   precachePages: Maybe<Array<Maybe<Scalars['String']>>>
-  preview: Maybe<Scalars['Boolean']>
   server: Maybe<Scalars['String']>
   serverOptions: Maybe<Array<Maybe<Array<Maybe<Scalars['String']>>>>>
   short_name: Maybe<Scalars['String']>
@@ -2712,7 +2698,6 @@ export type SitePluginPluginOptions = {
   src: Maybe<Scalars['String']>
   start_url: Maybe<Scalars['String']>
   stats: Maybe<SitePluginPluginOptionsStats>
-  stripMetadata: Maybe<Scalars['Boolean']>
   tenant: Maybe<Scalars['String']>
   theme_color: Maybe<Scalars['String']>
   theme_color_in_head: Maybe<Scalars['Boolean']>
@@ -2805,17 +2790,14 @@ export type SitePluginPluginOptionsFilterInput = {
   allExtensions: InputMaybe<BooleanQueryOperatorInput>
   appendScript: InputMaybe<StringQueryOperatorInput>
   background_color: InputMaybe<StringQueryOperatorInput>
-  base64Width: InputMaybe<IntQueryOperatorInput>
   baseline: InputMaybe<BooleanQueryOperatorInput>
   cache_busting_mode: InputMaybe<StringQueryOperatorInput>
   color: InputMaybe<StringQueryOperatorInput>
   compare: InputMaybe<BooleanQueryOperatorInput>
   crossOrigin: InputMaybe<StringQueryOperatorInput>
-  defaultQuality: InputMaybe<IntQueryOperatorInput>
   defer: InputMaybe<BooleanQueryOperatorInput>
   display: InputMaybe<StringQueryOperatorInput>
   env: InputMaybe<SitePluginPluginOptionsEnvFilterInput>
-  failOnError: InputMaybe<BooleanQueryOperatorInput>
   html: InputMaybe<BooleanQueryOperatorInput>
   httpOptions: InputMaybe<StringQueryOperatorInput>
   icon: InputMaybe<StringQueryOperatorInput>
@@ -2832,7 +2814,6 @@ export type SitePluginPluginOptionsFilterInput = {
   path: InputMaybe<StringQueryOperatorInput>
   pathCheck: InputMaybe<BooleanQueryOperatorInput>
   precachePages: InputMaybe<StringQueryOperatorInput>
-  preview: InputMaybe<BooleanQueryOperatorInput>
   server: InputMaybe<StringQueryOperatorInput>
   serverOptions: InputMaybe<StringQueryOperatorInput>
   short_name: InputMaybe<StringQueryOperatorInput>
@@ -2842,7 +2823,6 @@ export type SitePluginPluginOptionsFilterInput = {
   src: InputMaybe<StringQueryOperatorInput>
   start_url: InputMaybe<StringQueryOperatorInput>
   stats: InputMaybe<SitePluginPluginOptionsStatsFilterInput>
-  stripMetadata: InputMaybe<BooleanQueryOperatorInput>
   tenant: InputMaybe<StringQueryOperatorInput>
   theme_color: InputMaybe<StringQueryOperatorInput>
   theme_color_in_head: InputMaybe<BooleanQueryOperatorInput>
@@ -3790,6 +3770,7 @@ export type ProductSummary_ProductFragment = {
   offers: {
     lowPrice: number
     offers: Array<{
+      availability: string
       price: number
       listPrice: number
       quantity: number
@@ -3814,16 +3795,22 @@ export type ProductDetailsFragment_ProductFragment = {
   sku: string
   name: string
   gtin: string
+  description: string
   id: string
   isVariantOf: { productGroupID: string; name: string }
   image: Array<{ url: string; alternateName: string }>
   brand: { name: string }
   offers: {
+    lowPrice: number
     offers: Array<{
+      availability: string
       price: number
       listPrice: number
       seller: { identifier: string }
     }>
+  }
+  breadcrumbList: {
+    itemListElement: Array<{ item: string; name: string; position: number }>
   }
 }
 
@@ -3852,6 +3839,7 @@ export type ProductGalleryQueryQuery = {
           offers: {
             lowPrice: number
             offers: Array<{
+              availability: string
               price: number
               listPrice: number
               quantity: number
@@ -3891,6 +3879,28 @@ export type HomePageQueryQuery = {
       }
     | null
     | undefined
+  allStoreProduct: {
+    nodes: Array<{
+      slug: string
+      sku: string
+      name: string
+      gtin: string
+      id: string
+      brand: { name: string; brandName: string }
+      isVariantOf: { productGroupID: string; name: string }
+      image: Array<{ url: string; alternateName: string }>
+      offers: {
+        lowPrice: number
+        offers: Array<{
+          availability: string
+          price: number
+          listPrice: number
+          quantity: number
+          seller: { identifier: string }
+        }>
+      }
+    }>
+  }
   cmsHome: { sections: Array<{ data: any; name: string }> } | null | undefined
 }
 
@@ -3944,6 +3954,28 @@ export type CollectionPageQueryQuery = {
       }
     | null
     | undefined
+  allStoreProduct: {
+    nodes: Array<{
+      slug: string
+      sku: string
+      name: string
+      gtin: string
+      id: string
+      brand: { name: string; brandName: string }
+      isVariantOf: { productGroupID: string; name: string }
+      image: Array<{ url: string; alternateName: string }>
+      offers: {
+        lowPrice: number
+        offers: Array<{
+          availability: string
+          price: number
+          listPrice: number
+          quantity: number
+          seller: { identifier: string }
+        }>
+      }
+    }>
+  }
 }
 
 export type ProductPageQueryQueryVariables = Exact<{
@@ -3988,10 +4020,10 @@ export type ProductPageQueryQuery = {
           highPrice: number
           priceCurrency: string
           offers: Array<{
+            availability: string
             price: number
             priceValidUntil: string
             priceCurrency: string
-            availability: string
             itemCondition: string
             listPrice: number
             seller: { identifier: string }
@@ -4001,6 +4033,28 @@ export type ProductPageQueryQuery = {
       }
     | null
     | undefined
+  allStoreProduct: {
+    nodes: Array<{
+      slug: string
+      sku: string
+      name: string
+      gtin: string
+      id: string
+      brand: { name: string; brandName: string }
+      isVariantOf: { productGroupID: string; name: string }
+      image: Array<{ url: string; alternateName: string }>
+      offers: {
+        lowPrice: number
+        offers: Array<{
+          availability: string
+          price: number
+          listPrice: number
+          quantity: number
+          seller: { identifier: string }
+        }>
+      }
+    }>
+  }
 }
 
 export type ValidateCartMutationMutationVariables = Exact<{
@@ -4039,16 +4093,22 @@ export type BrowserProductQueryQuery = {
     sku: string
     name: string
     gtin: string
+    description: string
     id: string
     isVariantOf: { productGroupID: string; name: string }
     image: Array<{ url: string; alternateName: string }>
     brand: { name: string }
     offers: {
+      lowPrice: number
       offers: Array<{
+        availability: string
         price: number
         listPrice: number
         seller: { identifier: string }
       }>
+    }
+    breadcrumbList: {
+      itemListElement: Array<{ item: string; name: string; position: number }>
     }
   }
 }
@@ -4078,6 +4138,7 @@ export type ProductsQueryQuery = {
           offers: {
             lowPrice: number
             offers: Array<{
+              availability: string
               price: number
               listPrice: number
               quantity: number
