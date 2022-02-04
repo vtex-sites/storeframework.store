@@ -63,6 +63,7 @@
     "@vtex/lighthouse-config": "^1.4.14",
     "@vtex/prettier-config": "1.0.0",
     "@vtex/tsconfig": "0.6.0",
+    "ast-types": "^0.14.2",
     "autoprefixer": "^10.4.0",
     "axe-core": "^4.3.3",
     "cypress-axe": "^0.13.0",

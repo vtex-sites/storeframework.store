@@ -1,4 +1,83 @@
-import type { API, ArrayExpression, FileInfo, Property } from 'jscodeshift'
+import type {
+  API,
+  ArrayExpression,
+  FileInfo,
+  ObjectExpression,
+  Property,
+} from 'jscodeshift'
+
+type Codeshift = API['jscodeshift']
+type Kind = 'init' | 'get' | 'set'
+
+const createObjectPropertyWithAny = (
+  j: Codeshift,
+  {
+    kind,
+    property,
+    value,
+  }: {
+    kind: Kind
+    property: string
+    value: Property['value']
+  }
+): Property => {
+  return j.property(kind, j.identifier(property), value)
+}
+
+const createObjectPropertyWithString = (
+  j: Codeshift,
+  {
+    kind,
+    property,
+    value,
+  }: {
+    kind: Kind
+    property: string
+    value: string
+  }
+): Property => {
+  return createObjectPropertyWithAny(j, {
+    kind,
+    property,
+    value: j.stringLiteral(value),
+  })
+}
+
+const createCmsPluginEntry = (j: API['jscodeshift']): ObjectExpression => {
+  return j.objectExpression([
+    // add the resolve prop
+    createObjectPropertyWithString(j, {
+      kind: 'init',
+      property: 'resolve',
+      value: '@vtex/gatsby-source-cms',
+    }),
+
+    // add the options prop
+    createObjectPropertyWithAny(j, {
+      kind: 'init',
+      property: 'options',
+      value: j.objectExpression([
+        // creating tenant prop
+        createObjectPropertyWithAny(j, {
+          kind: 'init',
+          property: 'tenant',
+          value: j.memberExpression(
+            // creating config.api
+            j.memberExpression(j.identifier('config'), j.identifier('api')),
+            j.identifier('storeId')
+          ),
+        }),
+
+        // creating workspace prop
+        createObjectPropertyWithString(j, {
+          kind: 'init',
+          property: 'workspace',
+          value: 'master',
+        }),
+      ]),
+    }),
+  ])
+}
 
 // npx jscodeshift -t ./transform/TransformGatsbyConfig.ts --extensions=ts,js --parser=ts './gatsby-config.js' --print --dry
 export default function transform(fileInfo: FileInfo, api: API) {
@@ -22,25 +101,15 @@ export default function transform(fileInfo: FileInfo, api: API) {
         .find(j.Literal, { value: '@vtex/gatsby-source-cms' })
         .size() >= 1
 
-    j(arrayExp).forEach((p) => {
-      p.get('elements').value.push(j.template.expression`x`)
-    })
-
-    codeUpdated = true
-    // if (isCMSPluginDefined) {
-    // codeUpdated = true
-    // console.log(arrayExp, j(arrayExp))
-    // }
+    if (!isCMSPluginDefined) {
+      codeUpdated = true
+      arrayExp.elements.unshift(createCmsPluginEntry(j))
+    }
   })
 
-  // codeUpdated && root.toString()
+  if (!codeUpdated) {
+    return
+  }
 
-  // const [pluginProperties] = (
-  // (moduleExportAssignment.right as ObjectExpression)
-  // .properties as ObjectProperty[]
-  // ).filter((prop) => {
-  // return prop.key.type === 'Identifier' && prop.key.name === 'plugins'
-  // })
-  //
-  codeUpdated && root.toSource()
+  return root.toSource()
 }
