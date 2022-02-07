@@ -1,40 +1,32 @@
+import type { ExpressionKind, PatternKind } from 'ast-types/gen/kinds'
 import type {
   API,
   ArrayExpression,
   FileInfo,
   ObjectExpression,
   Property,
+  JSCodeshift,
 } from 'jscodeshift'
 
-type Codeshift = API['jscodeshift']
-type Kind = 'init' | 'get' | 'set'
+import { createMemberExpression } from './utils'
+import type { Kind } from './utils/types'
+
+interface CreateObjectPropertyParams<V = ExpressionKind | PatternKind> {
+  kind: Kind
+  property: string
+  value: V
+}
 
 const createObjectPropertyWithAny = (
-  j: Codeshift,
-  {
-    kind,
-    property,
-    value,
-  }: {
-    kind: Kind
-    property: string
-    value: Property['value']
-  }
+  j: JSCodeshift,
+  { kind, property, value }: CreateObjectPropertyParams<Property['value']>
 ): Property => {
   return j.property(kind, j.identifier(property), value)
 }
 
 const createObjectPropertyWithString = (
-  j: Codeshift,
-  {
-    kind,
-    property,
-    value,
-  }: {
-    kind: Kind
-    property: string
-    value: string
-  }
+  j: JSCodeshift,
+  { kind, property, value }: CreateObjectPropertyParams<string>
 ): Property => {
   return createObjectPropertyWithAny(j, {
     kind,
@@ -43,7 +35,7 @@ const createObjectPropertyWithString = (
   })
 }
 
-const createCmsPluginEntry = (j: API['jscodeshift']): ObjectExpression => {
+const createCmsPluginEntry = (j: JSCodeshift): ObjectExpression => {
   return j.objectExpression([
     // add the resolve prop
     createObjectPropertyWithString(j, {
@@ -61,10 +53,10 @@ const createCmsPluginEntry = (j: API['jscodeshift']): ObjectExpression => {
         createObjectPropertyWithAny(j, {
           kind: 'init',
           property: 'tenant',
-          value: j.memberExpression(
-            // creating config.api
-            j.memberExpression(j.identifier('config'), j.identifier('api')),
-            j.identifier('storeId')
+          value: createMemberExpression(
+            j,
+            createMemberExpression(j, 'config', 'api'),
+            'storeId'
           ),
         }),
 
@@ -83,9 +75,9 @@ const createCmsPluginEntry = (j: API['jscodeshift']): ObjectExpression => {
 export default function transform(fileInfo: FileInfo, api: API) {
   const j = api.jscodeshift
 
-  if (!fileInfo.source.includes('gatsby-source')) {
+  if (!fileInfo.path.includes('gatsby-source')) {
     throw new Error(
-      `File ${fileInfo.source} is not a valid file. Pass gatsby-source.js`
+      `File ${fileInfo.path} is not a valid file. Pass gatsby-source.js`
     )
   }
 
