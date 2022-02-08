@@ -1,5 +1,6 @@
 import { useSearch } from '@faststore/sdk'
 import React from 'react'
+import Select from 'src/components/ui/Select'
 
 const OptionsMap = {
   price_desc: 'Price, descending',
@@ -21,19 +22,15 @@ function Sort() {
   } = useSearch()
 
   return (
-    <select
-      className="p-2"
-      data-testid="search-sort"
+    <Select
+      id="sort-select"
+      className="sort / title-small"
+      labelText="Sort by"
+      options={OptionsMap}
       onChange={(e) => setSort(keys[e.target.selectedIndex])}
       value={sort}
-      aria-label="Product Sort"
-    >
-      {keys.map((key) => (
-        <option key={key} value={key}>
-          {OptionsMap[key]}
-        </option>
-      ))}
-    </select>
+      testId="search-sort"
+    />
   )
 }
 
