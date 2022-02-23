@@ -18,7 +18,6 @@ export type Scalars = {
   Float: number
   /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: any
-  JSONPropsCmsObject: any
 }
 
 export type BooleanQueryOperatorInput = {
@@ -36,217 +35,6 @@ export type BrowserStoreCollectionConnection = {
 export type BrowserStoreProductConnection = {
   edges: Array<StoreProductEdge>
   pageInfo: StorePageInfo
-}
-
-export type CmsBlock = {
-  data: Scalars['JSONPropsCmsObject']
-  id: Maybe<Scalars['String']>
-  name: Scalars['String']
-}
-
-export type CmsBlockFilterInput = {
-  data: InputMaybe<JsonPropsCmsObjectQueryOperatorInput>
-  id: InputMaybe<StringQueryOperatorInput>
-  name: InputMaybe<StringQueryOperatorInput>
-}
-
-export type CmsBlockFilterListInput = {
-  elemMatch: InputMaybe<CmsBlockFilterInput>
-}
-
-export type CmsHome = Node & {
-  children: Array<Node>
-  id: Scalars['ID']
-  internal: Internal
-  name: Scalars['String']
-  parent: Maybe<Node>
-  sections: Array<CmsBlock>
-  versionStatus: Maybe<Scalars['String']>
-}
-
-export type CmsHomeConnection = {
-  distinct: Array<Scalars['String']>
-  edges: Array<CmsHomeEdge>
-  group: Array<CmsHomeGroupConnection>
-  max: Maybe<Scalars['Float']>
-  min: Maybe<Scalars['Float']>
-  nodes: Array<CmsHome>
-  pageInfo: PageInfo
-  sum: Maybe<Scalars['Float']>
-  totalCount: Scalars['Int']
-}
-
-export type CmsHomeConnectionDistinctArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeConnectionGroupArgs = {
-  field: CmsHomeFieldsEnum
-  limit: InputMaybe<Scalars['Int']>
-  skip: InputMaybe<Scalars['Int']>
-}
-
-export type CmsHomeConnectionMaxArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeConnectionMinArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeConnectionSumArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeEdge = {
-  next: Maybe<CmsHome>
-  node: CmsHome
-  previous: Maybe<CmsHome>
-}
-
-export type CmsHomeFieldsEnum =
-  | 'children'
-  | 'children___children'
-  | 'children___children___children'
-  | 'children___children___children___children'
-  | 'children___children___children___id'
-  | 'children___children___id'
-  | 'children___children___internal___content'
-  | 'children___children___internal___contentDigest'
-  | 'children___children___internal___description'
-  | 'children___children___internal___fieldOwners'
-  | 'children___children___internal___ignoreType'
-  | 'children___children___internal___mediaType'
-  | 'children___children___internal___owner'
-  | 'children___children___internal___type'
-  | 'children___children___parent___children'
-  | 'children___children___parent___id'
-  | 'children___id'
-  | 'children___internal___content'
-  | 'children___internal___contentDigest'
-  | 'children___internal___description'
-  | 'children___internal___fieldOwners'
-  | 'children___internal___ignoreType'
-  | 'children___internal___mediaType'
-  | 'children___internal___owner'
-  | 'children___internal___type'
-  | 'children___parent___children'
-  | 'children___parent___children___children'
-  | 'children___parent___children___id'
-  | 'children___parent___id'
-  | 'children___parent___internal___content'
-  | 'children___parent___internal___contentDigest'
-  | 'children___parent___internal___description'
-  | 'children___parent___internal___fieldOwners'
-  | 'children___parent___internal___ignoreType'
-  | 'children___parent___internal___mediaType'
-  | 'children___parent___internal___owner'
-  | 'children___parent___internal___type'
-  | 'children___parent___parent___children'
-  | 'children___parent___parent___id'
-  | 'id'
-  | 'internal___content'
-  | 'internal___contentDigest'
-  | 'internal___description'
-  | 'internal___fieldOwners'
-  | 'internal___ignoreType'
-  | 'internal___mediaType'
-  | 'internal___owner'
-  | 'internal___type'
-  | 'name'
-  | 'parent___children'
-  | 'parent___children___children'
-  | 'parent___children___children___children'
-  | 'parent___children___children___id'
-  | 'parent___children___id'
-  | 'parent___children___internal___content'
-  | 'parent___children___internal___contentDigest'
-  | 'parent___children___internal___description'
-  | 'parent___children___internal___fieldOwners'
-  | 'parent___children___internal___ignoreType'
-  | 'parent___children___internal___mediaType'
-  | 'parent___children___internal___owner'
-  | 'parent___children___internal___type'
-  | 'parent___children___parent___children'
-  | 'parent___children___parent___id'
-  | 'parent___id'
-  | 'parent___internal___content'
-  | 'parent___internal___contentDigest'
-  | 'parent___internal___description'
-  | 'parent___internal___fieldOwners'
-  | 'parent___internal___ignoreType'
-  | 'parent___internal___mediaType'
-  | 'parent___internal___owner'
-  | 'parent___internal___type'
-  | 'parent___parent___children'
-  | 'parent___parent___children___children'
-  | 'parent___parent___children___id'
-  | 'parent___parent___id'
-  | 'parent___parent___internal___content'
-  | 'parent___parent___internal___contentDigest'
-  | 'parent___parent___internal___description'
-  | 'parent___parent___internal___fieldOwners'
-  | 'parent___parent___internal___ignoreType'
-  | 'parent___parent___internal___mediaType'
-  | 'parent___parent___internal___owner'
-  | 'parent___parent___internal___type'
-  | 'parent___parent___parent___children'
-  | 'parent___parent___parent___id'
-  | 'sections'
-  | 'sections___data'
-  | 'sections___id'
-  | 'sections___name'
-  | 'versionStatus'
-
-export type CmsHomeFilterInput = {
-  children: InputMaybe<NodeFilterListInput>
-  id: InputMaybe<StringQueryOperatorInput>
-  internal: InputMaybe<InternalFilterInput>
-  name: InputMaybe<StringQueryOperatorInput>
-  parent: InputMaybe<NodeFilterInput>
-  sections: InputMaybe<CmsBlockFilterListInput>
-  versionStatus: InputMaybe<StringQueryOperatorInput>
-}
-
-export type CmsHomeGroupConnection = {
-  distinct: Array<Scalars['String']>
-  edges: Array<CmsHomeEdge>
-  field: Scalars['String']
-  fieldValue: Maybe<Scalars['String']>
-  group: Array<CmsHomeGroupConnection>
-  max: Maybe<Scalars['Float']>
-  min: Maybe<Scalars['Float']>
-  nodes: Array<CmsHome>
-  pageInfo: PageInfo
-  sum: Maybe<Scalars['Float']>
-  totalCount: Scalars['Int']
-}
-
-export type CmsHomeGroupConnectionDistinctArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeGroupConnectionGroupArgs = {
-  field: CmsHomeFieldsEnum
-  limit: InputMaybe<Scalars['Int']>
-  skip: InputMaybe<Scalars['Int']>
-}
-
-export type CmsHomeGroupConnectionMaxArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeGroupConnectionMinArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeGroupConnectionSumArgs = {
-  field: CmsHomeFieldsEnum
-}
-
-export type CmsHomeSortInput = {
-  fields: InputMaybe<Array<InputMaybe<CmsHomeFieldsEnum>>>
-  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
 }
 
 export type DateQueryOperatorInput = {
@@ -1011,13 +799,6 @@ export type InternalFilterInput = {
   type: InputMaybe<StringQueryOperatorInput>
 }
 
-export type JsonPropsCmsObjectQueryOperatorInput = {
-  eq: InputMaybe<Scalars['JSONPropsCmsObject']>
-  in: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
-  ne: InputMaybe<Scalars['JSONPropsCmsObject']>
-  nin: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
-}
-
 export type Mutation = {
   validateCart: Maybe<StoreCart>
 }
@@ -1056,7 +837,6 @@ export type PageInfo = {
 }
 
 export type Query = {
-  allCmsHome: CmsHomeConnection
   allCollections: BrowserStoreCollectionConnection
   allDirectory: DirectoryConnection
   allFile: FileConnection
@@ -1068,7 +848,6 @@ export type Query = {
   allSitePlugin: SitePluginConnection
   allStoreCollection: StoreCollectionConnection
   allStoreProduct: StoreProductConnection
-  cmsHome: Maybe<CmsHome>
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
@@ -1081,13 +860,6 @@ export type Query = {
   sitePlugin: Maybe<SitePlugin>
   storeCollection: Maybe<StoreCollection>
   storeProduct: Maybe<StoreProduct>
-}
-
-export type QueryAllCmsHomeArgs = {
-  filter: InputMaybe<CmsHomeFilterInput>
-  limit: InputMaybe<Scalars['Int']>
-  skip: InputMaybe<Scalars['Int']>
-  sort: InputMaybe<CmsHomeSortInput>
 }
 
 export type QueryAllCollectionsArgs = {
@@ -1161,16 +933,6 @@ export type QueryAllStoreProductArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<StoreProductSortInput>
-}
-
-export type QueryCmsHomeArgs = {
-  children: InputMaybe<NodeFilterListInput>
-  id: InputMaybe<StringQueryOperatorInput>
-  internal: InputMaybe<InternalFilterInput>
-  name: InputMaybe<StringQueryOperatorInput>
-  parent: InputMaybe<NodeFilterInput>
-  sections: InputMaybe<CmsBlockFilterListInput>
-  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCollectionArgs = {
@@ -1349,6 +1111,7 @@ export type QueryStoreCollectionArgs = {
 }
 
 export type QueryStoreProductArgs = {
+  additionalProperty: InputMaybe<StorePropertyValueFilterListInput>
   aggregateRating: InputMaybe<StoreAggregateRatingFilterInput>
   brand: InputMaybe<StoreBrandFilterInput>
   breadcrumbList: InputMaybe<StoreBreadcrumbListFilterInput>
@@ -2232,18 +1995,15 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginFilepath'
   | 'pluginCreator___pluginOptions____generated'
   | 'pluginCreator___pluginOptions___allExtensions'
-  | 'pluginCreator___pluginOptions___appendScript'
+  | 'pluginCreator___pluginOptions___analyzerMode'
   | 'pluginCreator___pluginOptions___background_color'
-  | 'pluginCreator___pluginOptions___base64Width'
   | 'pluginCreator___pluginOptions___baseline'
   | 'pluginCreator___pluginOptions___cache_busting_mode'
   | 'pluginCreator___pluginOptions___color'
   | 'pluginCreator___pluginOptions___compare'
   | 'pluginCreator___pluginOptions___crossOrigin'
-  | 'pluginCreator___pluginOptions___defaultQuality'
   | 'pluginCreator___pluginOptions___defer'
   | 'pluginCreator___pluginOptions___display'
-  | 'pluginCreator___pluginOptions___failOnError'
   | 'pluginCreator___pluginOptions___html'
   | 'pluginCreator___pluginOptions___httpOptions'
   | 'pluginCreator___pluginOptions___icon'
@@ -2255,11 +2015,11 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___maxNumCollections'
   | 'pluginCreator___pluginOptions___maxNumProducts'
   | 'pluginCreator___pluginOptions___name'
+  | 'pluginCreator___pluginOptions___openAnalyzer'
   | 'pluginCreator___pluginOptions___outDir'
   | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___pathCheck'
-  | 'pluginCreator___pluginOptions___precachePages'
-  | 'pluginCreator___pluginOptions___preview'
+  | 'pluginCreator___pluginOptions___reportFilename'
   | 'pluginCreator___pluginOptions___server'
   | 'pluginCreator___pluginOptions___serverOptions'
   | 'pluginCreator___pluginOptions___short_name'
@@ -2269,12 +2029,8 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___src'
   | 'pluginCreator___pluginOptions___start_url'
   | 'pluginCreator___pluginOptions___stats___context'
-  | 'pluginCreator___pluginOptions___stripMetadata'
-  | 'pluginCreator___pluginOptions___tenant'
   | 'pluginCreator___pluginOptions___theme_color'
   | 'pluginCreator___pluginOptions___theme_color_in_head'
-  | 'pluginCreator___pluginOptions___workboxConfig___globPatterns'
-  | 'pluginCreator___pluginOptions___workspace'
   | 'pluginCreator___resolve'
   | 'pluginCreator___ssrAPIs'
   | 'pluginCreator___version'
@@ -2500,21 +2256,18 @@ export type SitePluginFieldsEnum =
   | 'pluginFilepath'
   | 'pluginOptions____generated'
   | 'pluginOptions___allExtensions'
-  | 'pluginOptions___appendScript'
+  | 'pluginOptions___analyzerMode'
   | 'pluginOptions___background_color'
-  | 'pluginOptions___base64Width'
   | 'pluginOptions___baseline'
   | 'pluginOptions___cache_busting_mode'
   | 'pluginOptions___color'
   | 'pluginOptions___compare'
   | 'pluginOptions___crossOrigin'
-  | 'pluginOptions___defaultQuality'
   | 'pluginOptions___defer'
   | 'pluginOptions___display'
   | 'pluginOptions___env___branch_deploy___policy'
   | 'pluginOptions___env___deploy_preview___policy'
   | 'pluginOptions___env___production___policy'
-  | 'pluginOptions___failOnError'
   | 'pluginOptions___html'
   | 'pluginOptions___httpOptions'
   | 'pluginOptions___icon'
@@ -2528,11 +2281,11 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___maxNumCollections'
   | 'pluginOptions___maxNumProducts'
   | 'pluginOptions___name'
+  | 'pluginOptions___openAnalyzer'
   | 'pluginOptions___outDir'
   | 'pluginOptions___path'
   | 'pluginOptions___pathCheck'
-  | 'pluginOptions___precachePages'
-  | 'pluginOptions___preview'
+  | 'pluginOptions___reportFilename'
   | 'pluginOptions___server'
   | 'pluginOptions___serverOptions'
   | 'pluginOptions___short_name'
@@ -2542,12 +2295,8 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___src'
   | 'pluginOptions___start_url'
   | 'pluginOptions___stats___context'
-  | 'pluginOptions___stripMetadata'
-  | 'pluginOptions___tenant'
   | 'pluginOptions___theme_color'
   | 'pluginOptions___theme_color_in_head'
-  | 'pluginOptions___workboxConfig___globPatterns'
-  | 'pluginOptions___workspace'
   | 'resolve'
   | 'ssrAPIs'
   | 'version'
@@ -2673,19 +2422,16 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 export type SitePluginPluginOptions = {
   _generated: Maybe<Scalars['String']>
   allExtensions: Maybe<Scalars['Boolean']>
-  appendScript: Maybe<Scalars['String']>
+  analyzerMode: Maybe<Scalars['String']>
   background_color: Maybe<Scalars['String']>
-  base64Width: Maybe<Scalars['Int']>
   baseline: Maybe<Scalars['Boolean']>
   cache_busting_mode: Maybe<Scalars['String']>
   color: Maybe<Scalars['String']>
   compare: Maybe<Scalars['Boolean']>
   crossOrigin: Maybe<Scalars['String']>
-  defaultQuality: Maybe<Scalars['Int']>
   defer: Maybe<Scalars['Boolean']>
   display: Maybe<Scalars['String']>
   env: Maybe<SitePluginPluginOptionsEnv>
-  failOnError: Maybe<Scalars['Boolean']>
   html: Maybe<Scalars['Boolean']>
   httpOptions: Maybe<Array<Maybe<Array<Maybe<Scalars['String']>>>>>
   icon: Maybe<Scalars['String']>
@@ -2698,11 +2444,11 @@ export type SitePluginPluginOptions = {
   maxNumCollections: Maybe<Scalars['Int']>
   maxNumProducts: Maybe<Scalars['Int']>
   name: Maybe<Scalars['String']>
+  openAnalyzer: Maybe<Scalars['Boolean']>
   outDir: Maybe<Scalars['String']>
   path: Maybe<Scalars['String']>
   pathCheck: Maybe<Scalars['Boolean']>
-  precachePages: Maybe<Array<Maybe<Scalars['String']>>>
-  preview: Maybe<Scalars['Boolean']>
+  reportFilename: Maybe<Scalars['String']>
   server: Maybe<Scalars['String']>
   serverOptions: Maybe<Array<Maybe<Array<Maybe<Scalars['String']>>>>>
   short_name: Maybe<Scalars['String']>
@@ -2712,12 +2458,8 @@ export type SitePluginPluginOptions = {
   src: Maybe<Scalars['String']>
   start_url: Maybe<Scalars['String']>
   stats: Maybe<SitePluginPluginOptionsStats>
-  stripMetadata: Maybe<Scalars['Boolean']>
-  tenant: Maybe<Scalars['String']>
   theme_color: Maybe<Scalars['String']>
   theme_color_in_head: Maybe<Scalars['Boolean']>
-  workboxConfig: Maybe<SitePluginPluginOptionsWorkboxConfig>
-  workspace: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsEnv = {
@@ -2803,19 +2545,16 @@ export type SitePluginPluginOptionsEnvProductionPolicyFilterListInput = {
 export type SitePluginPluginOptionsFilterInput = {
   _generated: InputMaybe<StringQueryOperatorInput>
   allExtensions: InputMaybe<BooleanQueryOperatorInput>
-  appendScript: InputMaybe<StringQueryOperatorInput>
+  analyzerMode: InputMaybe<StringQueryOperatorInput>
   background_color: InputMaybe<StringQueryOperatorInput>
-  base64Width: InputMaybe<IntQueryOperatorInput>
   baseline: InputMaybe<BooleanQueryOperatorInput>
   cache_busting_mode: InputMaybe<StringQueryOperatorInput>
   color: InputMaybe<StringQueryOperatorInput>
   compare: InputMaybe<BooleanQueryOperatorInput>
   crossOrigin: InputMaybe<StringQueryOperatorInput>
-  defaultQuality: InputMaybe<IntQueryOperatorInput>
   defer: InputMaybe<BooleanQueryOperatorInput>
   display: InputMaybe<StringQueryOperatorInput>
   env: InputMaybe<SitePluginPluginOptionsEnvFilterInput>
-  failOnError: InputMaybe<BooleanQueryOperatorInput>
   html: InputMaybe<BooleanQueryOperatorInput>
   httpOptions: InputMaybe<StringQueryOperatorInput>
   icon: InputMaybe<StringQueryOperatorInput>
@@ -2828,11 +2567,11 @@ export type SitePluginPluginOptionsFilterInput = {
   maxNumCollections: InputMaybe<IntQueryOperatorInput>
   maxNumProducts: InputMaybe<IntQueryOperatorInput>
   name: InputMaybe<StringQueryOperatorInput>
+  openAnalyzer: InputMaybe<BooleanQueryOperatorInput>
   outDir: InputMaybe<StringQueryOperatorInput>
   path: InputMaybe<StringQueryOperatorInput>
   pathCheck: InputMaybe<BooleanQueryOperatorInput>
-  precachePages: InputMaybe<StringQueryOperatorInput>
-  preview: InputMaybe<BooleanQueryOperatorInput>
+  reportFilename: InputMaybe<StringQueryOperatorInput>
   server: InputMaybe<StringQueryOperatorInput>
   serverOptions: InputMaybe<StringQueryOperatorInput>
   short_name: InputMaybe<StringQueryOperatorInput>
@@ -2842,12 +2581,8 @@ export type SitePluginPluginOptionsFilterInput = {
   src: InputMaybe<StringQueryOperatorInput>
   start_url: InputMaybe<StringQueryOperatorInput>
   stats: InputMaybe<SitePluginPluginOptionsStatsFilterInput>
-  stripMetadata: InputMaybe<BooleanQueryOperatorInput>
-  tenant: InputMaybe<StringQueryOperatorInput>
   theme_color: InputMaybe<StringQueryOperatorInput>
   theme_color_in_head: InputMaybe<BooleanQueryOperatorInput>
-  workboxConfig: InputMaybe<SitePluginPluginOptionsWorkboxConfigFilterInput>
-  workspace: InputMaybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsLocations = {
@@ -2886,14 +2621,6 @@ export type SitePluginPluginOptionsStats = {
 
 export type SitePluginPluginOptionsStatsFilterInput = {
   context: InputMaybe<StringQueryOperatorInput>
-}
-
-export type SitePluginPluginOptionsWorkboxConfig = {
-  globPatterns: Maybe<Array<Maybe<Scalars['String']>>>
-}
-
-export type SitePluginPluginOptionsWorkboxConfigFilterInput = {
-  globPatterns: InputMaybe<StringQueryOperatorInput>
 }
 
 export type SitePluginSortInput = {
@@ -3370,6 +3097,7 @@ export type StorePageInfo = {
 }
 
 export type StoreProduct = Node & {
+  additionalProperty: Array<StorePropertyValue>
   aggregateRating: StoreAggregateRating
   brand: StoreBrand
   breadcrumbList: StoreBreadcrumbList
@@ -3431,6 +3159,9 @@ export type StoreProductEdge = {
 }
 
 export type StoreProductFieldsEnum =
+  | 'additionalProperty'
+  | 'additionalProperty___name'
+  | 'additionalProperty___value'
   | 'aggregateRating___ratingValue'
   | 'aggregateRating___remoteTypeName'
   | 'aggregateRating___reviewCount'
@@ -3497,7 +3228,13 @@ export type StoreProductFieldsEnum =
   | 'internal___mediaType'
   | 'internal___owner'
   | 'internal___type'
+  | 'isVariantOf___additionalProperty'
+  | 'isVariantOf___additionalProperty___name'
+  | 'isVariantOf___additionalProperty___value'
   | 'isVariantOf___hasVariant'
+  | 'isVariantOf___hasVariant___additionalProperty'
+  | 'isVariantOf___hasVariant___additionalProperty___name'
+  | 'isVariantOf___hasVariant___additionalProperty___value'
   | 'isVariantOf___hasVariant___aggregateRating___ratingValue'
   | 'isVariantOf___hasVariant___aggregateRating___remoteTypeName'
   | 'isVariantOf___hasVariant___aggregateRating___reviewCount'
@@ -3524,6 +3261,7 @@ export type StoreProductFieldsEnum =
   | 'isVariantOf___hasVariant___internal___mediaType'
   | 'isVariantOf___hasVariant___internal___owner'
   | 'isVariantOf___hasVariant___internal___type'
+  | 'isVariantOf___hasVariant___isVariantOf___additionalProperty'
   | 'isVariantOf___hasVariant___isVariantOf___hasVariant'
   | 'isVariantOf___hasVariant___isVariantOf___name'
   | 'isVariantOf___hasVariant___isVariantOf___productGroupID'
@@ -3557,6 +3295,7 @@ export type StoreProductFieldsEnum =
   | 'offers___offers'
   | 'offers___offers___availability'
   | 'offers___offers___itemCondition'
+  | 'offers___offers___itemOffered___additionalProperty'
   | 'offers___offers___itemOffered___children'
   | 'offers___offers___itemOffered___description'
   | 'offers___offers___itemOffered___gtin'
@@ -3632,6 +3371,7 @@ export type StoreProductFieldsEnum =
   | 'slug'
 
 export type StoreProductFilterInput = {
+  additionalProperty: InputMaybe<StorePropertyValueFilterListInput>
   aggregateRating: InputMaybe<StoreAggregateRatingFilterInput>
   brand: InputMaybe<StoreBrandFilterInput>
   breadcrumbList: InputMaybe<StoreBreadcrumbListFilterInput>
@@ -3658,6 +3398,7 @@ export type StoreProductFilterListInput = {
 }
 
 export type StoreProductGroup = {
+  additionalProperty: Array<StorePropertyValue>
   hasVariant: Array<StoreProduct>
   name: Scalars['String']
   productGroupID: Scalars['String']
@@ -3701,6 +3442,7 @@ export type StoreProductGroupConnectionSumArgs = {
 }
 
 export type StoreProductGroupFilterInput = {
+  additionalProperty: InputMaybe<StorePropertyValueFilterListInput>
   hasVariant: InputMaybe<StoreProductFilterListInput>
   name: InputMaybe<StringQueryOperatorInput>
   productGroupID: InputMaybe<StringQueryOperatorInput>
@@ -3710,6 +3452,20 @@ export type StoreProductGroupFilterInput = {
 export type StoreProductSortInput = {
   fields: InputMaybe<Array<InputMaybe<StoreProductFieldsEnum>>>
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type StorePropertyValue = {
+  name: Scalars['String']
+  value: Scalars['String']
+}
+
+export type StorePropertyValueFilterInput = {
+  name: InputMaybe<StringQueryOperatorInput>
+  value: InputMaybe<StringQueryOperatorInput>
+}
+
+export type StorePropertyValueFilterListInput = {
+  elemMatch: InputMaybe<StorePropertyValueFilterInput>
 }
 
 export type StoreReview = {
@@ -3790,6 +3546,7 @@ export type ProductSummary_ProductFragment = {
   offers: {
     lowPrice: number
     offers: Array<{
+      availability: string
       price: number
       listPrice: number
       quantity: number
@@ -3798,7 +3555,7 @@ export type ProductSummary_ProductFragment = {
   }
 }
 
-export type FacetedFilter_FacetsFragment = {
+export type Filter_FacetsFragment = {
   key: string
   label: string
   type: StoreFacetType
@@ -3814,16 +3571,22 @@ export type ProductDetailsFragment_ProductFragment = {
   sku: string
   name: string
   gtin: string
+  description: string
   id: string
   isVariantOf: { productGroupID: string; name: string }
   image: Array<{ url: string; alternateName: string }>
   brand: { name: string }
   offers: {
+    lowPrice: number
     offers: Array<{
+      availability: string
       price: number
       listPrice: number
       seller: { identifier: string }
     }>
+  }
+  breadcrumbList: {
+    itemListElement: Array<{ item: string; name: string; position: number }>
   }
 }
 
@@ -3852,6 +3615,7 @@ export type ProductGalleryQueryQuery = {
           offers: {
             lowPrice: number
             offers: Array<{
+              availability: string
               price: number
               listPrice: number
               quantity: number
@@ -3875,6 +3639,14 @@ export type ProductGalleryQueryQuery = {
   }
 }
 
+export type StoreCollectionQueryVariables = Exact<{ [key: string]: never }>
+
+export type StoreCollectionQuery = {
+  allStoreCollection: {
+    edges: Array<{ node: { slug: string; seo: { title: string } } }>
+  }
+}
+
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never }>
 
 export type HomePageQueryQuery = {
@@ -3891,7 +3663,28 @@ export type HomePageQueryQuery = {
       }
     | null
     | undefined
-  cmsHome: { sections: Array<{ data: any; name: string }> } | null | undefined
+  allStoreProduct: {
+    nodes: Array<{
+      slug: string
+      sku: string
+      name: string
+      gtin: string
+      id: string
+      brand: { name: string; brandName: string }
+      isVariantOf: { productGroupID: string; name: string }
+      image: Array<{ url: string; alternateName: string }>
+      offers: {
+        lowPrice: number
+        offers: Array<{
+          availability: string
+          price: number
+          listPrice: number
+          quantity: number
+          seller: { identifier: string }
+        }>
+      }
+    }>
+  }
 }
 
 export type SearchPageQueryQueryVariables = Exact<{ [key: string]: never }>
@@ -3944,6 +3737,28 @@ export type CollectionPageQueryQuery = {
       }
     | null
     | undefined
+  allStoreProduct: {
+    nodes: Array<{
+      slug: string
+      sku: string
+      name: string
+      gtin: string
+      id: string
+      brand: { name: string; brandName: string }
+      isVariantOf: { productGroupID: string; name: string }
+      image: Array<{ url: string; alternateName: string }>
+      offers: {
+        lowPrice: number
+        offers: Array<{
+          availability: string
+          price: number
+          listPrice: number
+          quantity: number
+          seller: { identifier: string }
+        }>
+      }
+    }>
+  }
 }
 
 export type ProductPageQueryQueryVariables = Exact<{
@@ -3988,10 +3803,10 @@ export type ProductPageQueryQuery = {
           highPrice: number
           priceCurrency: string
           offers: Array<{
+            availability: string
             price: number
             priceValidUntil: string
             priceCurrency: string
-            availability: string
             itemCondition: string
             listPrice: number
             seller: { identifier: string }
@@ -4001,6 +3816,28 @@ export type ProductPageQueryQuery = {
       }
     | null
     | undefined
+  allStoreProduct: {
+    nodes: Array<{
+      slug: string
+      sku: string
+      name: string
+      gtin: string
+      id: string
+      brand: { name: string; brandName: string }
+      isVariantOf: { productGroupID: string; name: string }
+      image: Array<{ url: string; alternateName: string }>
+      offers: {
+        lowPrice: number
+        offers: Array<{
+          availability: string
+          price: number
+          listPrice: number
+          quantity: number
+          seller: { identifier: string }
+        }>
+      }
+    }>
+  }
 }
 
 export type ValidateCartMutationMutationVariables = Exact<{
@@ -4020,7 +3857,10 @@ export type ValidateCartMutationMutation = {
             itemOffered: {
               sku: string
               name: string
+              gtin: string
               image: Array<{ url: string; alternateName: string }>
+              brand: { name: string }
+              isVariantOf: { productGroupID: string; name: string }
             }
           }>
         }
@@ -4028,6 +3868,23 @@ export type ValidateCartMutationMutation = {
       }
     | null
     | undefined
+}
+
+export type CartMessageFragment = { text: string; status: StoreStatus }
+
+export type CartItemFragment = {
+  quantity: number
+  price: number
+  listPrice: number
+  seller: { identifier: string }
+  itemOffered: {
+    sku: string
+    name: string
+    gtin: string
+    image: Array<{ url: string; alternateName: string }>
+    brand: { name: string }
+    isVariantOf: { productGroupID: string; name: string }
+  }
 }
 
 export type BrowserProductQueryQueryVariables = Exact<{
@@ -4039,16 +3896,22 @@ export type BrowserProductQueryQuery = {
     sku: string
     name: string
     gtin: string
+    description: string
     id: string
     isVariantOf: { productGroupID: string; name: string }
     image: Array<{ url: string; alternateName: string }>
     brand: { name: string }
     offers: {
+      lowPrice: number
       offers: Array<{
+        availability: string
         price: number
         listPrice: number
         seller: { identifier: string }
       }>
+    }
+    breadcrumbList: {
+      itemListElement: Array<{ item: string; name: string; position: number }>
     }
   }
 }
@@ -4078,6 +3941,7 @@ export type ProductsQueryQuery = {
           offers: {
             lowPrice: number
             offers: Array<{
+              availability: string
               price: number
               listPrice: number
               quantity: number

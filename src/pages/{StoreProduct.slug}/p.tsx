@@ -12,6 +12,8 @@ import type {
   ProductPageQueryQuery,
   ProductPageQueryQueryVariables,
 } from '@generated/graphql'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import { mark } from 'src/sdk/tests/mark'
 
 export type Props = PageProps<
   ProductPageQueryQuery,
@@ -21,7 +23,11 @@ export type Props = PageProps<
 function Page(props: Props) {
   const { locale, currency } = useSession()
   const {
-    data: { product, site },
+    data: {
+      product,
+      site,
+      allStoreProduct: { nodes: youMightAlsoLikeProducts },
+    },
     location: { host },
     params: { slug },
   } = props
@@ -87,9 +93,17 @@ function Page(props: Props) {
         Sections: Components imported from '../components/sections' only.
         Do not import or render components from any other folder in here.
       */}
-      <h1 className="absolute top-[-100px]">{title}</h1>
 
       <ProductDetails product={product} />
+
+      {youMightAlsoLikeProducts?.length > 0 && (
+        <section className="page__section page__section-shelf page__section-divisor / grid-section">
+          <h2 className="title-section / grid-content">You might also like</h2>
+          <div className="page__section-content">
+            <ProductShelf products={youMightAlsoLikeProducts.slice(0, 5)} />
+          </div>
+        </section>
+      )}
     </>
   )
 }
@@ -142,10 +156,10 @@ export const querySSG = graphql`
         highPrice
         priceCurrency
         offers {
+          availability
           price
           priceValidUntil
           priceCurrency
-          availability
           itemCondition
           seller {
             identifier
@@ -155,7 +169,15 @@ export const querySSG = graphql`
 
       ...ProductDetailsFragment_product
     }
+
+    allStoreProduct(limit: 5) {
+      nodes {
+        ...ProductSummary_product
+      }
+    }
   }
 `
 
-export default Page
+Page.displayName = 'Page'
+
+export default mark(Page)

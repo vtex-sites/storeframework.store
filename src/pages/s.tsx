@@ -10,6 +10,8 @@ import type {
   SearchPageQueryQueryVariables,
 } from '@generated/graphql'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import SROnly from 'src/components/ui/SROnly'
+import { mark } from 'src/sdk/tests/mark'
 
 export type Props = PageProps<
   SearchPageQueryQuery,
@@ -26,7 +28,7 @@ function Page(props: Props) {
 
   const { locale } = useSession()
   const searchParams = useSearchParams(props.location)
-  const title = site?.siteMetadata?.title ?? ''
+  const title = 'Search Results | FastStore'
 
   if (!searchParams) {
     return null
@@ -56,7 +58,7 @@ function Page(props: Props) {
         Sections: Components imported from '../components/sections' only.
         Do not import or render components from any other folder in here.
       */}
-      <h1 className="absolute top-[-100px]">{title}</h1>
+      <SROnly as="h1" text={title} />
 
       <ProductGallery title="Search Results" />
     </SearchProvider>
@@ -75,4 +77,6 @@ export const query = graphql`
   }
 `
 
-export default Page
+Page.displayName = 'Page'
+
+export default mark(Page)
