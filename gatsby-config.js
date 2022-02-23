@@ -33,6 +33,13 @@ module.exports = {
     PRESERVE_FILE_DOWNLOAD_CACHE: false,
   },
   plugins: [
+    {
+      resolve: '@vtex/gatsby-source-cms',
+      options: {
+        tenant: config.api.storeId,
+        workspace: 'demofridayws',
+      },
+    },
     `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-sass`,
     {

@@ -32,6 +32,7 @@
     "@faststore/ui": "^1.5.17",
     "@vtex/gatsby-plugin-nginx": "^1.5.17",
     "@vtex/gatsby-plugin-thumbor": "^1.5.17",
+    "@vtex/gatsby-source-cms": "0.2.4",
     "@vtex/gatsby-source-store": "^1.5.17",
     "@vtex/graphql-utils": "^1.5.17",
     "gatsby": "^3.14.3",

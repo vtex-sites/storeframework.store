@@ -18,6 +18,7 @@ export type Scalars = {
   Float: number
   /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: any
+  JSONPropsCmsObject: any
 }
 
 export type BooleanQueryOperatorInput = {
@@ -35,6 +36,217 @@ export type BrowserStoreCollectionConnection = {
 export type BrowserStoreProductConnection = {
   edges: Array<StoreProductEdge>
   pageInfo: StorePageInfo
+}
+
+export type CmsBlock = {
+  data: Scalars['JSONPropsCmsObject']
+  id: Maybe<Scalars['String']>
+  name: Scalars['String']
+}
+
+export type CmsBlockFilterInput = {
+  data: InputMaybe<JsonPropsCmsObjectQueryOperatorInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  name: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsBlockFilterListInput = {
+  elemMatch: InputMaybe<CmsBlockFilterInput>
+}
+
+export type CmsHome = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+  versionStatus: Maybe<Scalars['String']>
+}
+
+export type CmsHomeConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsHomeEdge>
+  group: Array<CmsHomeGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsHome>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsHomeConnectionDistinctArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeConnectionGroupArgs = {
+  field: CmsHomeFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsHomeConnectionMaxArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeConnectionMinArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeConnectionSumArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeEdge = {
+  next: Maybe<CmsHome>
+  node: CmsHome
+  previous: Maybe<CmsHome>
+}
+
+export type CmsHomeFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+  | 'versionStatus'
+
+export type CmsHomeFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsHomeGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsHomeEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsHomeGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsHome>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsHomeGroupConnectionDistinctArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeGroupConnectionGroupArgs = {
+  field: CmsHomeFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsHomeGroupConnectionMaxArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeGroupConnectionMinArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeGroupConnectionSumArgs = {
+  field: CmsHomeFieldsEnum
+}
+
+export type CmsHomeSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsHomeFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
 }
 
 export type DateQueryOperatorInput = {
@@ -799,6 +1011,13 @@ export type InternalFilterInput = {
   type: InputMaybe<StringQueryOperatorInput>
 }
 
+export type JsonPropsCmsObjectQueryOperatorInput = {
+  eq: InputMaybe<Scalars['JSONPropsCmsObject']>
+  in: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
+  ne: InputMaybe<Scalars['JSONPropsCmsObject']>
+  nin: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
+}
+
 export type Mutation = {
   validateCart: Maybe<StoreCart>
 }
@@ -837,6 +1056,7 @@ export type PageInfo = {
 }
 
 export type Query = {
+  allCmsHome: CmsHomeConnection
   allCollections: BrowserStoreCollectionConnection
   allDirectory: DirectoryConnection
   allFile: FileConnection
@@ -848,6 +1068,7 @@ export type Query = {
   allSitePlugin: SitePluginConnection
   allStoreCollection: StoreCollectionConnection
   allStoreProduct: StoreProductConnection
+  cmsHome: Maybe<CmsHome>
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
@@ -860,6 +1081,13 @@ export type Query = {
   sitePlugin: Maybe<SitePlugin>
   storeCollection: Maybe<StoreCollection>
   storeProduct: Maybe<StoreProduct>
+}
+
+export type QueryAllCmsHomeArgs = {
+  filter: InputMaybe<CmsHomeFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsHomeSortInput>
 }
 
 export type QueryAllCollectionsArgs = {
@@ -933,6 +1161,16 @@ export type QueryAllStoreProductArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<StoreProductSortInput>
+}
+
+export type QueryCmsHomeArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCollectionArgs = {
@@ -2029,8 +2267,10 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___src'
   | 'pluginCreator___pluginOptions___start_url'
   | 'pluginCreator___pluginOptions___stats___context'
+  | 'pluginCreator___pluginOptions___tenant'
   | 'pluginCreator___pluginOptions___theme_color'
   | 'pluginCreator___pluginOptions___theme_color_in_head'
+  | 'pluginCreator___pluginOptions___workspace'
   | 'pluginCreator___resolve'
   | 'pluginCreator___ssrAPIs'
   | 'pluginCreator___version'
@@ -2295,8 +2535,10 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___src'
   | 'pluginOptions___start_url'
   | 'pluginOptions___stats___context'
+  | 'pluginOptions___tenant'
   | 'pluginOptions___theme_color'
   | 'pluginOptions___theme_color_in_head'
+  | 'pluginOptions___workspace'
   | 'resolve'
   | 'ssrAPIs'
   | 'version'
@@ -2458,8 +2700,10 @@ export type SitePluginPluginOptions = {
   src: Maybe<Scalars['String']>
   start_url: Maybe<Scalars['String']>
   stats: Maybe<SitePluginPluginOptionsStats>
+  tenant: Maybe<Scalars['String']>
   theme_color: Maybe<Scalars['String']>
   theme_color_in_head: Maybe<Scalars['Boolean']>
+  workspace: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsEnv = {
@@ -2581,8 +2825,10 @@ export type SitePluginPluginOptionsFilterInput = {
   src: InputMaybe<StringQueryOperatorInput>
   start_url: InputMaybe<StringQueryOperatorInput>
   stats: InputMaybe<SitePluginPluginOptionsStatsFilterInput>
+  tenant: InputMaybe<StringQueryOperatorInput>
   theme_color: InputMaybe<StringQueryOperatorInput>
   theme_color_in_head: InputMaybe<BooleanQueryOperatorInput>
+  workspace: InputMaybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsLocations = {
@@ -3555,6 +3801,18 @@ export type ProductSummary_ProductFragment = {
   }
 }
 
+export type FacetedFilter_FacetsFragment = {
+  key: string
+  label: string
+  type: StoreFacetType
+  values: Array<{
+    label: string
+    value: string
+    selected: boolean
+    quantity: number
+  }>
+}
+
 export type Filter_FacetsFragment = {
   key: string
   label: string
@@ -3663,6 +3921,7 @@ export type HomePageQueryQuery = {
       }
     | null
     | undefined
+  cmsHome: { sections: Array<{ data: any; name: string }> } | null | undefined
   allStoreProduct: {
     nodes: Array<{
       slug: string

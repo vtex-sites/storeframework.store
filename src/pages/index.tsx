@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
 import React from 'react'
 import BannerText from 'src/components/sections/BannerText'
-import Hero from 'src/components/sections/Hero'
+import RenderCMS from 'src/components/RenderCMS'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
 import ProductShelf from 'src/components/sections/ProductShelf'
 import ProductTiles from 'src/components/sections/ProductTiles'
@@ -15,7 +15,7 @@ export type Props = PageProps<HomePageQueryQuery>
 
 function Page(props: Props) {
   const {
-    data: { site, allStoreProduct },
+    data: { site, cmsHome, allStoreProduct },
     location: { pathname, host },
   } = props
 
@@ -58,14 +58,7 @@ function Page(props: Props) {
         Do not import or render components from any other folder in here.
       */}
       <section className="page__section">
-        <Hero
-          title="New Products Available"
-          subtitle="At FastStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase."
-          linkText="See all"
-          link="/"
-          imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
-          imageAlt="Quest 2 Controller on a table"
-        />
+        <RenderCMS sections={cmsHome?.sections} />
       </section>
 
       <section className="page__section">
@@ -112,6 +105,13 @@ export const query = graphql`
         title
         description
         titleTemplate
+      }
+    }
+
+    cmsHome {
+      sections {
+        data
+        name
       }
     }
 
