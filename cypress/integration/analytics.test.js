@@ -15,11 +15,15 @@ beforeEach(() => {
 })
 
 const dataLayerHasEvent = (eventName) => {
-  return cy.window().then((window) => {
-    const allEvents = window.dataLayer.map((evt) => evt.event)
+  cy.waitUntil(
+    () =>
+      cy.window({ log: false }).then((window) => {
+        const allEvents = window.dataLayer.map((evt) => evt.event)
 
-    expect(allEvents).to.include(eventName)
-  })
+        return allEvents.includes(eventName)
+      }),
+    { errorMsg: `Event ${eventName} not found` }
+  ).then((assert) => expect(assert).to.be.true)
 }
 
 const eventDataHasCurrencyProperty = () => {
@@ -70,28 +74,13 @@ describe('add_to_cart event', () => {
           testAddToCartEvent(skuId)
         })
     })
-
-    it('adds add_to_cart event in the data layer at the product listing page', () => {
-      cy.visit(pages.collection, options)
-      cy.waitForHydration()
-
-      cy.itemsInCart(0)
-
-      // Add to cart
-      cy.getById('buy-button')
-        .first()
-        .click()
-        .then(($btn) => {
-          cy.itemsInCart(1)
-          const skuId = $btn.attr('data-sku')
-
-          testAddToCartEvent(skuId)
-        })
-    })
   })
 })
 
 describe('remove_from_cart event', () => {
+  beforeEach(() => {
+    cy.clearIDB()
+  })
   const testRemoveFromCartEvent = (skuId) => {
     cy.window().then((window) => {
       const { dataLayer } = window
@@ -121,19 +110,22 @@ describe('remove_from_cart event', () => {
       cy.itemsInCart(0)
 
       // Add item to cart
-      cy.getById('buy-button').click()
-      cy.itemsInCart(1)
-      cy.getById('checkout-button').should('be.enabled')
-      cy.itemsInCart(1)
-
-      // Remove the added item
-      cy.getById('remove-from-cart-button')
+      cy.getById('buy-button')
         .click()
-        .then(($btn) => {
-          cy.itemsInCart(0)
-          const skuId = $btn.attr('data-sku')
+        .then(() => {
+          cy.itemsInCart(1)
+          cy.getById('checkout-button').should('be.enabled')
+          cy.itemsInCart(1)
 
-          testRemoveFromCartEvent(skuId)
+          // Remove the added item
+          cy.getById('remove-from-cart-button')
+            .click()
+            .then(($btn) => {
+              cy.itemsInCart(0)
+              const skuId = $btn.attr('data-sku')
+
+              testRemoveFromCartEvent(skuId)
+            })
         })
     })
   })
@@ -161,14 +153,11 @@ describe('select_item event', () => {
 
     let skuId
 
-    cy.getById('product-link')
-      .first()
-      .within(() => {
-        cy.getById('buy-button').then(($btn) => {
-          skuId = $btn.attr('data-sku')
-        })
+    cy.getById('store-card').first().click()
+    cy.getById('buy-button')
+      .then(($btn) => {
+        skuId = $btn.attr('data-sku')
       })
-      .click()
       .then(() => {
         cy.window().then((window) => {
           const event = window.dataLayer.find(
@@ -187,10 +176,12 @@ describe('view_item_list event', () => {
     cy.visit(pages.collection, options)
     cy.waitForHydration()
 
-    cy.getById('product-link').then(() => {
-      cy.scrollTo('top', { duration: 500 }).then(() => {
-        dataLayerHasEvent('view_item_list')
-        eventDataHasCurrencyProperty()
+    cy.get('.product-grid [data-testid=product-link]').then(() => {
+      cy.scrollTo('bottom', { duration: 500 }).then(() => {
+        cy.scrollTo('top', { duration: 500 }).then(() => {
+          dataLayerHasEvent('view_item_list')
+          eventDataHasCurrencyProperty()
+        })
       })
     })
   })
@@ -201,11 +192,17 @@ describe('search event', () => {
     cy.visit(pages.home, options)
     cy.waitForHydration()
 
-    cy.getById('store-input').click().type('shirt')
-    cy.getById('store-button')
+    cy.getById('store-input-mobile-button').click({ force: true })
+
+    cy.getById('store-input-mobile')
       .click()
-      .then(() => {
-        dataLayerHasEvent('search')
+      .type('shirt')
+      .within(() => {
+        cy.getById('store-button')
+          .click()
+          .then(() => {
+            dataLayerHasEvent('search')
+          })
       })
   })
 })

@@ -1,16 +1,20 @@
 import React from 'react'
-import Button from 'src/components/ui/Button'
-import { useCart } from 'src/sdk/cart/useCart'
+import IconButton from 'src/components/ui/IconButton'
 import { useCartToggleButton } from 'src/sdk/cart/useCartToggleButton'
+import IconSVG from 'src/components/common/IconSVG'
+
+import './cart-toggle.scss'
 
 function CartToggle() {
   const btnProps = useCartToggleButton()
-  const { totalUniqueItems } = useCart()
 
   return (
-    <Button {...btnProps} className="mx-3">
-      cart: {totalUniqueItems}
-    </Button>
+    <IconButton
+      {...btnProps}
+      className="cart-toggle"
+      aria-label={`Cart with ${btnProps['data-items']} items`}
+      icon={<IconSVG name="ShoppingCart" width={32} height={32} />}
+    />
   )
 }
 

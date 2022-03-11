@@ -7,6 +7,8 @@ import {
 } from 'gatsby-plugin-next-seo'
 import React from 'react'
 import ProductDetails from 'src/components/sections/ProductDetails'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type {
   ProductPageQueryQuery,
@@ -21,7 +23,11 @@ export type Props = PageProps<
 function Page(props: Props) {
   const { locale, currency } = useSession()
   const {
-    data: { product, site },
+    data: {
+      product,
+      site,
+      allStoreProduct: { nodes: youMightAlsoLikeProducts },
+    },
     location: { host },
     params: { slug },
   } = props
@@ -87,9 +93,15 @@ function Page(props: Props) {
         Sections: Components imported from '../components/sections' only.
         Do not import or render components from any other folder in here.
       */}
-      <h1 className="absolute top-[-100px]">{title}</h1>
-
       <ProductDetails product={product} />
+
+      {youMightAlsoLikeProducts?.length > 0 && (
+        <ProductShelf
+          products={youMightAlsoLikeProducts.slice(0, 5)}
+          title="You might also like"
+          withDivisor
+        />
+      )}
     </>
   )
 }
@@ -142,10 +154,10 @@ export const querySSG = graphql`
         highPrice
         priceCurrency
         offers {
+          availability
           price
           priceValidUntil
           priceCurrency
-          availability
           itemCondition
           seller {
             identifier
@@ -155,7 +167,15 @@ export const querySSG = graphql`
 
       ...ProductDetailsFragment_product
     }
+
+    allStoreProduct(limit: 5) {
+      nodes {
+        ...ProductSummary_product
+      }
+    }
   }
 `
 
-export default Page
+Page.displayName = 'Page'
+
+export default mark(Page)
