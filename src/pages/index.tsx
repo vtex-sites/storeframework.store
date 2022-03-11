@@ -9,6 +9,28 @@ import type { HomePageQueryQuery } from '@generated/graphql'
 
 export type Props = PageProps<HomePageQueryQuery>
 
+/**
+ * Do not use this approach in production:
+ *
+ * Sometimes people delete content from the CMS on our test account, breaking our CI.
+ * Since publishing new content depends on the CI, we get enter a deadlock. This prevents this deadlock
+ */
+const fallbackContent = [
+  {
+    data: {
+      title: 'New Products Available',
+      subtitle:
+        'At FastStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase.',
+      linkText: 'See all',
+      link: '/',
+      imageSrc:
+        'https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg',
+      imageAlt: 'Quest 2 Controller on a table',
+    },
+    name: 'Hero',
+  },
+]
+
 function Page(props: Props) {
   const {
     data: { site, cmsHome },
@@ -49,7 +71,7 @@ function Page(props: Props) {
         }}
       />
       {/* CMS Sections */}
-      <RenderCMS sections={cmsHome?.sections} />
+      <RenderCMS sections={cmsHome?.sections ?? fallbackContent} />
     </>
   )
 }
