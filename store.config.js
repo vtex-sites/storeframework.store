@@ -12,15 +12,18 @@ module.exports = {
   channel: '1',
 
   // Production URLs
-  storeUrl: 'https://www.vtex-base1.tk',
-  checkoutUrl: 'https://chk.vtex-base1.tk/checkout',
+  storeUrl: 'https://vtexfaststore.com',
+  secureSubdomain: 'https://secure.vtexfaststore.com',
+  checkoutUrl: 'https://secure.vtexfaststore.com/checkout',
+  loginUrl: 'https://secure.vtexfaststore.com/api/io/login',
+  accountUrl: 'https://secure.vtexfaststore.com/api/io/account',
 
   // Lighthouse CI
   lighthouse: {
     server: process.env.BASE_SITE_URL || 'http://localhost:9000',
     pages: {
       home: '/',
-      pdp: '/sleek-metal-pizza-24041857/p',
+      pdp: '/apple-magic-mouse-99988212/p',
       collection: '/office',
     },
   },
@@ -29,7 +32,7 @@ module.exports = {
   cypress: {
     pages: {
       home: '/',
-      pdp: '/sleek-metal-pizza-24041857/p',
+      pdp: '/apple-magic-mouse-99988212/p',
       collection: '/office',
       collection_filtered:
         '/office/?category-1=office&marca=acer&facets=category-1%2Cmarca',

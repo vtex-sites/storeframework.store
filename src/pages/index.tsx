@@ -3,10 +3,33 @@ import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
 import React from 'react'
 import RenderCMS from 'src/components/RenderCMS'
+import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
 
 export type Props = PageProps<HomePageQueryQuery>
+
+/**
+ * Do not use this approach in production:
+ *
+ * Sometimes people delete content from the CMS on our test account, breaking our CI.
+ * Since publishing new content depends on the CI, we get enter a deadlock. This prevents this deadlock
+ */
+const fallbackContent = [
+  {
+    data: {
+      title: 'New Products Available',
+      subtitle:
+        'At FastStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase.',
+      linkText: 'See all',
+      link: '/',
+      imageSrc:
+        'https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg',
+      imageAlt: 'Quest 2 Controller on a table',
+    },
+    name: 'Hero',
+  },
+]
 
 function Page(props: Props) {
   const {
@@ -47,13 +70,8 @@ function Page(props: Props) {
           },
         }}
       />
-
-      {/*
-        Sections: Components imported from '../components/sections' only.
-        Do not import or render components from any other folder in here.
-        Also, only CMS related components should be rendered in here
-      */}
-      <RenderCMS sections={cmsHome?.sections} />
+      {/* CMS Sections */}
+      <RenderCMS sections={cmsHome?.sections ?? fallbackContent} />
     </>
   )
 }
@@ -67,6 +85,13 @@ export const query = graphql`
         titleTemplate
       }
     }
+
+    allStoreProduct(limit: 14) {
+      nodes {
+        ...ProductSummary_product
+      }
+    }
+
     cmsHome {
       sections {
         data
@@ -76,4 +101,6 @@ export const query = graphql`
   }
 `
 
-export default Page
+Page.displayName = 'Page'
+
+export default mark(Page)

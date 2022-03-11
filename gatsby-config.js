@@ -18,9 +18,9 @@ const siteUrl = isProduction ? URL : DEPLOY_PRIME_URL
 
 module.exports = {
   siteMetadata: {
-    title: 'Fashion Store',
-    description: 'Fashion Demo Store',
-    titleTemplate: '%s | Fashion Store',
+    title: 'FastStore',
+    description: 'Fast Demo Store',
+    titleTemplate: '%s | FastStore',
     author: 'Store Framework',
     siteUrl,
   },
@@ -35,32 +35,21 @@ module.exports = {
   plugins: [
     {
       resolve: '@vtex/gatsby-source-cms',
-      options: {
-        tenant: config.api.storeId,
-        workspace: 'master',
-      },
+      options: { tenant: config.api.storeId, workspace: 'master' },
     },
+    `gatsby-plugin-remove-serviceworker`,
+    `gatsby-plugin-sass`,
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Fashion Demo Store',
-        short_name: 'Fashion Store',
+        name: 'Fast Demo Store',
+        short_name: 'FastStore',
         start_url: '/',
         icon: 'src/images/icon.png',
         background_color: '#E31C58',
-        theme_color: '#E31C58',
+        theme_color: '#ffffff',
         display: 'standalone',
         cache_busting_mode: 'none',
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-offline',
-      options: {
-        precachePages: [`/offline`],
-        appendScript: 'src/custom-sw-code.js',
-        workboxConfig: {
-          globPatterns: ['**/offline/*'],
-        },
       },
     },
     {
@@ -98,7 +87,7 @@ module.exports = {
     {
       resolve: '@vtex/gatsby-plugin-thumbor',
       options: {
-        server: 'https://thumbor-dev-server.vtex.io',
+        server: 'https://thumbor-server.vtex.io',
       },
     },
     {
@@ -126,6 +115,14 @@ module.exports = {
         stats: {
           context: join(__dirname, 'src'),
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
+      options: {
+        analyzerMode: 'static',
+        openAnalyzer: false,
+        reportFilename: 'bundle-analyser.html',
       },
     },
     {

@@ -1,49 +1,26 @@
-import { parseSearchState, SearchProvider, useSession } from '@faststore/sdk'
+import { SearchProvider, useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { BreadcrumbJsonLd, GatsbySeo } from 'gatsby-plugin-next-seo'
-import React, { useMemo } from 'react'
+import React from 'react'
+import Breadcrumb from 'src/components/sections/Breadcrumb'
+import Hero from 'src/components/sections/Hero'
 import ProductGallery from 'src/components/sections/ProductGallery'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
 import { ITEMS_PER_PAGE } from 'src/constants'
+import { useSearchParams } from 'src/hooks/useSearchParams'
 import { applySearchState } from 'src/sdk/search/state'
-import type { SearchState } from '@faststore/sdk'
-import type { PageProps } from 'gatsby'
-import type {
-  CollectionPageQueryQuery,
-  CollectionPageQueryQueryVariables,
-} from '@generated/graphql'
-
-export type Props = PageProps<
-  CollectionPageQueryQuery,
-  CollectionPageQueryQueryVariables
-> & { slug: string }
-
-const useSearchParams = (props: Props): SearchState => {
-  const {
-    location: { href, pathname },
-    data,
-  } = props
-
-  const selectedFacets = data?.collection?.meta.selectedFacets
-
-  return useMemo(() => {
-    const maybeState = href ? parseSearchState(new URL(href)) : null
-
-    return {
-      page: maybeState?.page ?? 0,
-      base: maybeState?.base ?? pathname,
-      selectedFacets:
-        maybeState && maybeState.selectedFacets.length > 0
-          ? maybeState.selectedFacets
-          : selectedFacets ?? [],
-      term: maybeState?.term ?? null,
-      sort: maybeState?.sort ?? 'score_desc',
-    }
-  }, [href, pathname, selectedFacets])
-}
+import { mark } from 'src/sdk/tests/mark'
+import type { Props } from 'src/hooks/useSearchParams'
+import IconSVG from 'src/components/common/IconSVG'
 
 function Page(props: Props) {
   const {
-    data: { site, collection },
+    data: {
+      site,
+      collection,
+      allStoreProduct: { nodes: youMightAlsoLikeProducts },
+    },
     location: { host },
     params: { slug },
   } = props
@@ -86,11 +63,33 @@ function Page(props: Props) {
         Sections: Components imported from '../components/sections' only.
         Do not import or render components from any other folder in here.
       */}
-      <h1 data-testid="collection-page" className="absolute top-[-100px]">
-        {title}
-      </h1>
+      <Breadcrumb
+        breadcrumbList={collection?.breadcrumbList.itemListElement}
+        name={title}
+      />
+
+      <Hero
+        variant="small"
+        title={title}
+        subtitle={`All the amazing ${title} from the brands we partner with.`}
+        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
+        imageAlt="Quest 2 Controller on a table"
+        icon={
+          <IconSVG name="Headphones" width={48} height={48} weight="thin" />
+        }
+      />
 
       <ProductGallery title={title} />
+
+      {youMightAlsoLikeProducts?.length > 0 && (
+        <ProductShelf
+          products={youMightAlsoLikeProducts.slice(0, 5)}
+          title="You might also like"
+          withDivisor
+        />
+      )}
+
+      <ScrollToTopButton />
     </SearchProvider>
   )
 }
@@ -127,7 +126,15 @@ export const query = graphql`
         }
       }
     }
+
+    allStoreProduct(limit: 5) {
+      nodes {
+        ...ProductSummary_product
+      }
+    }
   }
 `
 
-export default Page
+Page.displayName = 'Page'
+
+export default mark(Page)
