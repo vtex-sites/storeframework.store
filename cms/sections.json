@@ -46,5 +46,12 @@
         }
       }
     }
+  },
+  {
+    "name": "IncentivesHeader",
+    "schema": {
+      "title": "Incentives Header",
+      "description": "Add Incentives to your shopper"
+    }
   }
 ]
