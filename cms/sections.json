@@ -51,7 +51,9 @@
     "name": "IncentivesHeader",
     "schema": {
       "title": "Incentives Header",
-      "description": "Add Incentives to your shopper"
+      "description": "Add Incentives to your shopper",
+      "type": "object",
+      "properties": {}
     }
   }
 ]
