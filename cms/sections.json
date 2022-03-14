@@ -2,7 +2,8 @@
   {
     "name": "BannerText",
     "schema": {
-      "title": "BannerText",
+      "title": "Banner Text",
+      "description": "Add a quick promotion with a text/action pair",
       "type": "object",
       "properties": {
         "title": {
@@ -12,10 +13,12 @@
           "type": "string"
         },
         "actionPath": {
-          "type": "string"
+          "type": "string",
+          "title": "Action link"
         },
         "actionLabel": {
-          "type": "string"
+          "type": "string",
+          "title": "Action label"
         }
       }
     }
@@ -24,6 +27,7 @@
     "name": "Hero",
     "schema": {
       "title": "Hero",
+      "description": "Add a quick promotion with an image/action pair",
       "type": "object",
       "properties": {
         "title": {
@@ -33,16 +37,23 @@
           "type": "string"
         },
         "linkText": {
-          "type": "string"
+          "type": "string",
+          "title": "Link text"
         },
         "link": {
-          "type": "string"
+          "type": "string",
+          "title": "Link path"
         },
         "imageSrc": {
-          "type": "string"
+          "type": "string",
+          "title": "Image",
+          "widget": {
+            "ui:widget": "image-uploader"
+          }
         },
         "imageAlt": {
-          "type": "string"
+          "type": "string",
+          "title": "Alt text"
         }
       }
     }
