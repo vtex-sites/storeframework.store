@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `EmptyState` component.
 - `EmptyState` at the `ProductGallery` section.
 - `IconSVG` component to load SVG Icons.
+- `Suggestions` component.
 - `Badge` interactive variation.
 
 ### Changed
@@ -52,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - useWindowDimensions hook
 
 ### Removed
+
 - Frontend computation in favor of backend processing
 - Removing hooks folder and migrating these hooks to sdk ou inline them on components
 - gatsby-plugin-offline due to CLS on recurrent users
