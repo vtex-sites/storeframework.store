@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `EmptyState` at the `ProductGallery` section.
 - `IconSVG` component to load SVG Icons.
 - `Suggestions` component.
+- `SearchHistory` component.
 - `Badge` interactive variation.
 
 ### Changed
