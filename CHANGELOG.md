@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `IconSVG` component to load SVG Icons.
 
 ### Changed
+
+- Changed ProductGallery and EmptyGallery styles to make the search results page
 - Moved all icons to use Icon component
 - Moved common/IconsSVG to ui/Icons
 - Moved EmptyState from common to ui folder
@@ -46,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - useWindowDimensions hook
 
 ### Removed
+
 - Removing hooks folder and migrating these hooks to sdk ou inline them on components
 - gatsby-plugin-offline due to CLS on recurrent users
 - useWindowDimensions hook
