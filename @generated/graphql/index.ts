@@ -1066,6 +1066,7 @@ export type Query = {
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
+  person: StorePerson
   product: StoreProduct
   search: StoreSearchResult
   site: Maybe<Site>
@@ -3335,6 +3336,13 @@ export type StorePageInfo = {
   totalCount: Scalars['Int']
 }
 
+export type StorePerson = {
+  email: Scalars['String']
+  familyName: Scalars['String']
+  givenName: Scalars['String']
+  id: Scalars['String']
+}
+
 export type StoreProduct = Node & {
   additionalProperty: Array<StorePropertyValue>
   aggregateRating: StoreAggregateRating
@@ -4137,6 +4145,12 @@ export type CartItemFragment = {
     brand: { name: string }
     isVariantOf: { productGroupID: string; name: string }
   }
+}
+
+export type PersonQueryQueryVariables = Exact<{ [key: string]: never }>
+
+export type PersonQueryQuery = {
+  person: { id: string; email: string; givenName: string; familyName: string }
 }
 
 export type BrowserProductQueryQueryVariables = Exact<{
