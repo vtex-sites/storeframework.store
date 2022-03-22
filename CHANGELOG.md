@@ -20,8 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `EmptyState` component.
 - `EmptyState` at the `ProductGallery` section.
 - `IconSVG` component to load SVG Icons.
+- `Badge` interactive variation.
 
 ### Changed
+
 - Move inline styles to external stylesheet to improve TBT
 - Changed ProductGallery and EmptyGallery styles to make the search results page
 - Moved all icons to use Icon component
