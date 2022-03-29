@@ -82,15 +82,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-image',
-    },
-    {
-      resolve: '@vtex/gatsby-plugin-thumbor',
-      options: {
-        server: 'https://thumbor-server.vtex.io',
-      },
-    },
-    {
       resolve: 'gatsby-plugin-nprogress',
       options: {
         color: '#E31C58',
