@@ -925,22 +925,6 @@ export type FloatQueryOperatorInput = {
   nin: InputMaybe<Array<InputMaybe<Scalars['Float']>>>
 }
 
-export type GatsbyImageFormat =
-  | 'AUTO'
-  | 'AVIF'
-  | 'JPG'
-  | 'NO_CHANGE'
-  | 'PNG'
-  | 'WEBP'
-
-export type GatsbyImageLayout = 'CONSTRAINED' | 'FIXED' | 'FULL_WIDTH'
-
-export type GatsbyImagePlaceholder =
-  | 'BLURRED'
-  | 'DOMINANT_COLOR'
-  | 'NONE'
-  | 'TRACED_SVG'
-
 export type IStoreCart = {
   order: IStoreOrder
 }
@@ -2270,7 +2254,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___pluginOptions___reportFilename'
-  | 'pluginCreator___pluginOptions___server'
   | 'pluginCreator___pluginOptions___serverOptions'
   | 'pluginCreator___pluginOptions___short_name'
   | 'pluginCreator___pluginOptions___showSpinner'
@@ -2538,7 +2521,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___path'
   | 'pluginOptions___pathCheck'
   | 'pluginOptions___reportFilename'
-  | 'pluginOptions___server'
   | 'pluginOptions___serverOptions'
   | 'pluginOptions___short_name'
   | 'pluginOptions___showSpinner'
@@ -2703,7 +2685,6 @@ export type SitePluginPluginOptions = {
   path: Maybe<Scalars['String']>
   pathCheck: Maybe<Scalars['Boolean']>
   reportFilename: Maybe<Scalars['String']>
-  server: Maybe<Scalars['String']>
   serverOptions: Maybe<Array<Maybe<Array<Maybe<Scalars['String']>>>>>
   short_name: Maybe<Scalars['String']>
   showSpinner: Maybe<Scalars['Boolean']>
@@ -2828,7 +2809,6 @@ export type SitePluginPluginOptionsFilterInput = {
   path: InputMaybe<StringQueryOperatorInput>
   pathCheck: InputMaybe<BooleanQueryOperatorInput>
   reportFilename: InputMaybe<StringQueryOperatorInput>
-  server: InputMaybe<StringQueryOperatorInput>
   serverOptions: InputMaybe<StringQueryOperatorInput>
   short_name: InputMaybe<StringQueryOperatorInput>
   showSpinner: InputMaybe<BooleanQueryOperatorInput>
@@ -3953,28 +3933,6 @@ export type HomePageQueryQuery = {
       titleTemplate: string | null
     } | null
   } | null
-  allStoreProduct: {
-    nodes: Array<{
-      slug: string
-      sku: string
-      name: string
-      gtin: string
-      id: string
-      brand: { name: string; brandName: string }
-      isVariantOf: { productGroupID: string; name: string }
-      image: Array<{ url: string; alternateName: string }>
-      offers: {
-        lowPrice: number
-        offers: Array<{
-          availability: string
-          price: number
-          listPrice: number
-          quantity: number
-          seller: { identifier: string }
-        }>
-      }
-    }>
-  }
   cmsHome: { sections: Array<{ data: any; name: string }> } | null
 }
 
@@ -4009,28 +3967,6 @@ export type CollectionPageQueryQuery = {
     }
     meta: { selectedFacets: Array<{ key: string; value: string }> }
   } | null
-  allStoreProduct: {
-    nodes: Array<{
-      slug: string
-      sku: string
-      name: string
-      gtin: string
-      id: string
-      brand: { name: string; brandName: string }
-      isVariantOf: { productGroupID: string; name: string }
-      image: Array<{ url: string; alternateName: string }>
-      offers: {
-        lowPrice: number
-        offers: Array<{
-          availability: string
-          price: number
-          listPrice: number
-          quantity: number
-          seller: { identifier: string }
-        }>
-      }
-    }>
-  }
 }
 
 export type ProductPageQueryQueryVariables = Exact<{
@@ -4075,28 +4011,6 @@ export type ProductPageQueryQuery = {
     }
     isVariantOf: { productGroupID: string; name: string }
   } | null
-  allStoreProduct: {
-    nodes: Array<{
-      slug: string
-      sku: string
-      name: string
-      gtin: string
-      id: string
-      brand: { name: string; brandName: string }
-      isVariantOf: { productGroupID: string; name: string }
-      image: Array<{ url: string; alternateName: string }>
-      offers: {
-        lowPrice: number
-        offers: Array<{
-          availability: string
-          price: number
-          listPrice: number
-          quantity: number
-          seller: { identifier: string }
-        }>
-      }
-    }>
-  }
 }
 
 export type ValidateCartMutationMutationVariables = Exact<{
@@ -4185,7 +4099,7 @@ export type BrowserProductQueryQuery = {
 
 export type ProductsQueryQueryVariables = Exact<{
   first: Scalars['Int']
-  after: Scalars['String']
+  after: InputMaybe<Scalars['String']>
   sort: StoreSort
   term: Scalars['String']
   selectedFacets: Array<IStoreSelectedFacet> | IStoreSelectedFacet
