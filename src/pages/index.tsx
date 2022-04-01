@@ -86,12 +86,6 @@ export const query = graphql`
       }
     }
 
-    allStoreProduct(limit: 14) {
-      nodes {
-        ...ProductSummary_product
-      }
-    }
-
     cmsHome {
       sections {
         data
@@ -102,5 +96,4 @@ export const query = graphql`
 `
 
 Page.displayName = 'Page'
-
 export default mark(Page)
