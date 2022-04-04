@@ -18,6 +18,8 @@ For a full history of changes go to [base.store's CHANGELOG](https://github.com/
 
 ### Removed
 
+- `PostalCodeInput` from `Navbar`
+
 ### Fixed
 
 ### Security
