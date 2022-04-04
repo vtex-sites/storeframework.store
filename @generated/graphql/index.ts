@@ -40,11 +40,13 @@ export type BrowserStoreProductConnection = {
 
 export type CmsBlock = {
   data: Scalars['JSONPropsCmsObject']
+  id: Maybe<Scalars['String']>
   name: Scalars['String']
 }
 
 export type CmsBlockFilterInput = {
   data: InputMaybe<JsonPropsCmsObjectQueryOperatorInput>
+  id: InputMaybe<StringQueryOperatorInput>
   name: InputMaybe<StringQueryOperatorInput>
 }
 
@@ -59,6 +61,7 @@ export type CmsHome = Node & {
   name: Scalars['String']
   parent: Maybe<Node>
   sections: Array<CmsBlock>
+  versionStatus: Maybe<Scalars['String']>
 }
 
 export type CmsHomeConnection = {
@@ -191,7 +194,9 @@ export type CmsHomeFieldsEnum =
   | 'parent___parent___parent___id'
   | 'sections'
   | 'sections___data'
+  | 'sections___id'
   | 'sections___name'
+  | 'versionStatus'
 
 export type CmsHomeFilterInput = {
   children: InputMaybe<NodeFilterListInput>
@@ -200,6 +205,7 @@ export type CmsHomeFilterInput = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsHomeGroupConnection = {
@@ -972,6 +978,12 @@ export type IStoreSelectedFacet = {
   value: Scalars['String']
 }
 
+export type IStoreSession = {
+  channel: InputMaybe<Scalars['String']>
+  country: InputMaybe<Scalars['String']>
+  postalCode: InputMaybe<Scalars['String']>
+}
+
 export type IntQueryOperatorInput = {
   eq: InputMaybe<Scalars['Int']>
   gt: InputMaybe<Scalars['Int']>
@@ -1013,7 +1025,12 @@ export type JsonPropsCmsObjectQueryOperatorInput = {
 }
 
 export type Mutation = {
+  updateSession: StoreSession
   validateCart: Maybe<StoreCart>
+}
+
+export type MutationUpdateSessionArgs = {
+  session: IStoreSession
 }
 
 export type MutationValidateCartArgs = {
@@ -1066,6 +1083,7 @@ export type Query = {
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
+  person: Maybe<StorePerson>
   product: StoreProduct
   search: StoreSearchResult
   site: Maybe<Site>
@@ -1164,6 +1182,7 @@ export type QueryCmsHomeArgs = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCollectionArgs = {
@@ -3335,6 +3354,13 @@ export type StorePageInfo = {
   totalCount: Scalars['Int']
 }
 
+export type StorePerson = {
+  email: Scalars['String']
+  familyName: Scalars['String']
+  givenName: Scalars['String']
+  id: Scalars['String']
+}
+
 export type StoreProduct = Node & {
   additionalProperty: Array<StorePropertyValue>
   aggregateRating: StoreAggregateRating
@@ -3400,6 +3426,7 @@ export type StoreProductEdge = {
 export type StoreProductFieldsEnum =
   | 'additionalProperty'
   | 'additionalProperty___name'
+  | 'additionalProperty___remoteTypeName'
   | 'additionalProperty___value'
   | 'aggregateRating___ratingValue'
   | 'aggregateRating___remoteTypeName'
@@ -3469,10 +3496,12 @@ export type StoreProductFieldsEnum =
   | 'internal___type'
   | 'isVariantOf___additionalProperty'
   | 'isVariantOf___additionalProperty___name'
+  | 'isVariantOf___additionalProperty___remoteTypeName'
   | 'isVariantOf___additionalProperty___value'
   | 'isVariantOf___hasVariant'
   | 'isVariantOf___hasVariant___additionalProperty'
   | 'isVariantOf___hasVariant___additionalProperty___name'
+  | 'isVariantOf___hasVariant___additionalProperty___remoteTypeName'
   | 'isVariantOf___hasVariant___additionalProperty___value'
   | 'isVariantOf___hasVariant___aggregateRating___ratingValue'
   | 'isVariantOf___hasVariant___aggregateRating___remoteTypeName'
@@ -3695,11 +3724,13 @@ export type StoreProductSortInput = {
 
 export type StorePropertyValue = {
   name: Scalars['String']
+  remoteTypeName: Maybe<Scalars['String']>
   value: Scalars['String']
 }
 
 export type StorePropertyValueFilterInput = {
   name: InputMaybe<StringQueryOperatorInput>
+  remoteTypeName: InputMaybe<StringQueryOperatorInput>
   value: InputMaybe<StringQueryOperatorInput>
 }
 
@@ -3752,6 +3783,12 @@ export type StoreSeoFilterInput = {
   titleTemplate: InputMaybe<StringQueryOperatorInput>
 }
 
+export type StoreSession = {
+  channel: Maybe<Scalars['String']>
+  country: Maybe<Scalars['String']>
+  postalCode: Maybe<Scalars['String']>
+}
+
 export type StoreSort =
   | 'discount_desc'
   | 'name_asc'
@@ -3771,6 +3808,22 @@ export type StringQueryOperatorInput = {
   ne: InputMaybe<Scalars['String']>
   nin: InputMaybe<Array<InputMaybe<Scalars['String']>>>
   regex: InputMaybe<Scalars['String']>
+}
+
+export type StoreCollectionQueryVariables = Exact<{ [key: string]: never }>
+
+export type StoreCollectionQuery = {
+  allStoreCollection: {
+    edges: Array<{ node: { slug: string; seo: { title: string } } }>
+  }
+}
+
+export type UpdateSessionMutationMutationVariables = Exact<{
+  session: IStoreSession
+}>
+
+export type UpdateSessionMutationMutation = {
+  updateSession: { channel: string | null }
 }
 
 export type ProductSummary_ProductFragment = {
@@ -3890,30 +3943,16 @@ export type ProductGalleryQueryQuery = {
   }
 }
 
-export type StoreCollectionQueryVariables = Exact<{ [key: string]: never }>
-
-export type StoreCollectionQuery = {
-  allStoreCollection: {
-    edges: Array<{ node: { slug: string; seo: { title: string } } }>
-  }
-}
-
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never }>
 
 export type HomePageQueryQuery = {
-  site:
-    | {
-        siteMetadata:
-          | {
-              title: string | null | undefined
-              description: string | null | undefined
-              titleTemplate: string | null | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
+  site: {
+    siteMetadata: {
+      title: string | null
+      description: string | null
+      titleTemplate: string | null
+    } | null
+  } | null
   allStoreProduct: {
     nodes: Array<{
       slug: string
@@ -3936,25 +3975,19 @@ export type HomePageQueryQuery = {
       }
     }>
   }
-  cmsHome: { sections: Array<{ data: any; name: string }> } | null | undefined
+  cmsHome: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type SearchPageQueryQueryVariables = Exact<{ [key: string]: never }>
 
 export type SearchPageQueryQuery = {
-  site:
-    | {
-        siteMetadata:
-          | {
-              titleTemplate: string | null | undefined
-              title: string | null | undefined
-              description: string | null | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
+  site: {
+    siteMetadata: {
+      titleTemplate: string | null
+      title: string | null
+      description: string | null
+    } | null
+  } | null
 }
 
 export type CollectionPageQueryQueryVariables = Exact<{
@@ -3962,33 +3995,20 @@ export type CollectionPageQueryQueryVariables = Exact<{
 }>
 
 export type CollectionPageQueryQuery = {
-  site:
-    | {
-        siteMetadata:
-          | {
-              titleTemplate: string | null | undefined
-              title: string | null | undefined
-              description: string | null | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-  collection:
-    | {
-        seo: { title: string; description: string }
-        breadcrumbList: {
-          itemListElement: Array<{
-            item: string
-            name: string
-            position: number
-          }>
-        }
-        meta: { selectedFacets: Array<{ key: string; value: string }> }
-      }
-    | null
-    | undefined
+  site: {
+    siteMetadata: {
+      titleTemplate: string | null
+      title: string | null
+      description: string | null
+    } | null
+  } | null
+  collection: {
+    seo: { title: string; description: string }
+    breadcrumbList: {
+      itemListElement: Array<{ item: string; name: string; position: number }>
+    }
+    meta: { selectedFacets: Array<{ key: string; value: string }> }
+  } | null
   allStoreProduct: {
     nodes: Array<{
       slug: string
@@ -4018,56 +4038,43 @@ export type ProductPageQueryQueryVariables = Exact<{
 }>
 
 export type ProductPageQueryQuery = {
-  site:
-    | {
-        siteMetadata:
-          | {
-              title: string | null | undefined
-              description: string | null | undefined
-              titleTemplate: string | null | undefined
-              siteUrl: string | null | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-  product:
-    | {
-        slug: string
-        sku: string
-        gtin: string
-        name: string
-        description: string
-        id: string
-        seo: { title: string; description: string }
-        brand: { name: string }
-        breadcrumbList: {
-          itemListElement: Array<{
-            item: string
-            name: string
-            position: number
-          }>
-        }
-        image: Array<{ url: string; alternateName: string }>
-        offers: {
-          lowPrice: number
-          highPrice: number
-          priceCurrency: string
-          offers: Array<{
-            availability: string
-            price: number
-            priceValidUntil: string
-            priceCurrency: string
-            itemCondition: string
-            listPrice: number
-            seller: { identifier: string }
-          }>
-        }
-        isVariantOf: { productGroupID: string; name: string }
-      }
-    | null
-    | undefined
+  site: {
+    siteMetadata: {
+      title: string | null
+      description: string | null
+      titleTemplate: string | null
+      siteUrl: string | null
+    } | null
+  } | null
+  product: {
+    slug: string
+    sku: string
+    gtin: string
+    name: string
+    description: string
+    id: string
+    seo: { title: string; description: string }
+    brand: { name: string }
+    breadcrumbList: {
+      itemListElement: Array<{ item: string; name: string; position: number }>
+    }
+    image: Array<{ url: string; alternateName: string }>
+    offers: {
+      lowPrice: number
+      highPrice: number
+      priceCurrency: string
+      offers: Array<{
+        availability: string
+        price: number
+        priceValidUntil: string
+        priceCurrency: string
+        itemCondition: string
+        listPrice: number
+        seller: { identifier: string }
+      }>
+    }
+    isVariantOf: { productGroupID: string; name: string }
+  } | null
   allStoreProduct: {
     nodes: Array<{
       slug: string
@@ -4097,29 +4104,26 @@ export type ValidateCartMutationMutationVariables = Exact<{
 }>
 
 export type ValidateCartMutationMutation = {
-  validateCart:
-    | {
-        order: {
-          orderNumber: string
-          acceptedOffer: Array<{
-            quantity: number
-            price: number
-            listPrice: number
-            seller: { identifier: string }
-            itemOffered: {
-              sku: string
-              name: string
-              gtin: string
-              image: Array<{ url: string; alternateName: string }>
-              brand: { name: string }
-              isVariantOf: { productGroupID: string; name: string }
-            }
-          }>
+  validateCart: {
+    order: {
+      orderNumber: string
+      acceptedOffer: Array<{
+        quantity: number
+        price: number
+        listPrice: number
+        seller: { identifier: string }
+        itemOffered: {
+          sku: string
+          name: string
+          gtin: string
+          image: Array<{ url: string; alternateName: string }>
+          brand: { name: string }
+          isVariantOf: { productGroupID: string; name: string }
         }
-        messages: Array<{ text: string; status: StoreStatus }>
-      }
-    | null
-    | undefined
+      }>
+    }
+    messages: Array<{ text: string; status: StoreStatus }>
+  } | null
 }
 
 export type CartMessageFragment = { text: string; status: StoreStatus }
@@ -4137,6 +4141,17 @@ export type CartItemFragment = {
     brand: { name: string }
     isVariantOf: { productGroupID: string; name: string }
   }
+}
+
+export type PersonQueryQueryVariables = Exact<{ [key: string]: never }>
+
+export type PersonQueryQuery = {
+  person: {
+    id: string
+    email: string
+    givenName: string
+    familyName: string
+  } | null
 }
 
 export type BrowserProductQueryQueryVariables = Exact<{

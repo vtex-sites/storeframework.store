@@ -1,22 +1,54 @@
-import React, { useState } from 'react'
+import { useSession } from '@faststore/sdk'
 import { Input as UIInput, Label as UILabel } from '@faststore/ui'
-import type { ChangeEvent, KeyboardEvent } from 'react'
-import usePostalCode from 'src/hooks/usePostalCode'
+import React, { useRef } from 'react'
+import type { KeyboardEvent } from 'react'
+import { gql } from '@vtex/graphql-utils'
+import { request } from 'src/sdk/graphql/request'
+import type {
+  UpdateSessionMutationMutation,
+  UpdateSessionMutationMutationVariables,
+} from '@generated/graphql'
+
 import './postal-code-input.scss'
 
 const POSTAL_CODE_INPUT_ID = 'postal-code-input'
 
-export default function PostalCodeInput() {
-  const [localPostalCode, setLocalPostalCode] = useState<string>('')
-  const [, setPostalCode] = usePostalCode()
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLocalPostalCode(event.target.value)
-  }
-
-  const handleSubmit = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && Boolean(localPostalCode)) {
-      setPostalCode(localPostalCode)
+export const UpdateSessionMutation = gql`
+  mutation UpdateSessionMutation($session: IStoreSession!) {
+    updateSession(session: $session) {
+      channel
     }
+  }
+`
+
+export default function PostalCodeInput() {
+  const ref = useRef<HTMLInputElement>(null)
+  const { country, setSession, ...partialSession } = useSession()
+
+  const handleSubmit = async (event: KeyboardEvent<HTMLInputElement>) => {
+    const value = ref.current?.value
+
+    if (!(event.key === 'Enter' && typeof value === 'string')) {
+      return
+    }
+
+    const {
+      updateSession: { channel },
+    } = await request<
+      UpdateSessionMutationMutation,
+      UpdateSessionMutationMutationVariables
+    >(UpdateSessionMutation, {
+      session: {
+        channel: partialSession.channel,
+        postalCode: value,
+        country,
+      },
+    })
+
+    setSession({
+      postalCode: value,
+      channel: channel ?? partialSession.channel,
+    })
   }
 
   return (
@@ -24,8 +56,9 @@ export default function PostalCodeInput() {
       <UILabel htmlFor={POSTAL_CODE_INPUT_ID}>Postal Code: </UILabel>
       <UIInput
         id={POSTAL_CODE_INPUT_ID}
-        onChange={handleChange}
+        ref={ref}
         onKeyDown={handleSubmit}
+        defaultValue={partialSession.postalCode ?? ''}
       />
     </div>
   )

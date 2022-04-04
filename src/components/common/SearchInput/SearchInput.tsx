@@ -11,8 +11,8 @@ import type {
   SearchInputProps as UISearchInputProps,
   SearchInputRef,
 } from '@faststore/ui'
-import useSearchHistory from 'src/sdk/search/useSeachHistory'
-import IconSVG from 'src/components/common/IconSVG'
+import useSearchHistory from 'src/sdk/search/useSearchHistory'
+import Icon from 'src/components/ui/Icon'
 
 import './search-input.scss'
 
@@ -52,7 +52,7 @@ const SearchInput = React.forwardRef<SearchInputRef, SearchInputProps>(
       <UISearchInput
         ref={ref}
         icon={
-          <IconSVG
+          <Icon
             name="MagnifyingGlass"
             onClick={onSearchClick}
             data-testid={buttonTestId}
