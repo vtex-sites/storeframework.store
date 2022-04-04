@@ -18,11 +18,18 @@ For a full history of changes go to [base.store's CHANGELOG](https://github.com/
 
 ### Removed
 
-- `PostalCodeInput` from `Navbar`
-
 ### Fixed
 
 ### Security
+
+## [0.2.1] - 2022-04-04
+
+Version bump to match base.store's version.
+Theming related features were not included in this store
+
+### Removed
+
+- `PostalCodeInput` from `Navbar`
 
 ## [0.2.0] - 2022-04-01
 
