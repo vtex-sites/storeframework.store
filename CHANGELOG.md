@@ -27,6 +27,10 @@ For a full history of changes go to [base.store's CHANGELOG](https://github.com/
 Version bump to match base.store's version.
 Theming related features were not included in this store
 
+### Changed
+
+- Uses storeframework url for Lighthouse workflow
+
 ## [0.1.1] - 2022-02-07
 
 Version bump to match base.store's version
