@@ -1,39 +1,21 @@
 import { useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
-import React from 'react'
-import RenderCMS from 'src/components/RenderCMS'
+import BannerText from 'src/components/sections/BannerText'
+import Hero from 'src/components/sections/Hero'
+import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import ProductTiles from 'src/components/sections/ProductTiles'
 import { mark } from 'src/sdk/tests/mark'
+import { ITEMS_PER_SECTION } from 'src/constants'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
 
 export type Props = PageProps<HomePageQueryQuery>
 
-/**
- * Do not use this approach in production:
- *
- * Sometimes people delete content from the CMS on our test account, breaking our CI.
- * Since publishing new content depends on the CI, we get enter a deadlock. This prevents this deadlock
- */
-const fallbackContent = [
-  {
-    data: {
-      title: 'New Products Available',
-      subtitle:
-        'At FastStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase.',
-      linkText: 'See all',
-      link: '/',
-      imageSrc:
-        'https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg',
-      imageAlt: 'Quest 2 Controller on a table',
-    },
-    name: 'Hero',
-  },
-]
-
 function Page(props: Props) {
   const {
-    data: { site, cmsHome },
+    data: { site },
     location: { pathname, host },
   } = props
 
@@ -70,26 +52,64 @@ function Page(props: Props) {
           },
         }}
       />
-      {/* CMS Sections */}
-      <RenderCMS sections={cmsHome?.sections ?? fallbackContent} />
+
+      {/*
+        WARNING: Do not import or render components from any
+        other folder than '../components/sections' in here.
+
+        This is necessary to keep the integration with the CMS
+        easy and consistent, enabling the change and reorder
+        of elements on this page.
+
+        If needed, wrap your component in a <Section /> component
+        (not the HTML tag) before rendering it here.
+      */}
+      <Hero
+        title="New Products Available"
+        subtitle="At BaseStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase."
+        linkText="See all"
+        link="/"
+        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
+        imageAlt="Quest 2 Controller on a table"
+      />
+
+      <IncentivesHeader />
+
+      <ProductShelf
+        first={ITEMS_PER_SECTION}
+        selectedFacets={[{ key: 'productClusterIds', value: '140' }]}
+        title="Most Wanted"
+      />
+
+      <ProductTiles
+        first={3}
+        selectedFacets={[{ key: 'productClusterIds', value: '141' }]}
+        title="Just Arrived"
+      />
+
+      <BannerText
+        title="Receive our news and promotions in advance."
+        caption="Enjoy and get 10% off on your first purchase."
+        actionPath="/"
+        actionLabel="Call to action"
+      />
+
+      <ProductShelf
+        first={ITEMS_PER_SECTION}
+        selectedFacets={[{ key: 'productClusterIds', value: '142' }]}
+        title="Deals & Promotions"
+      />
     </>
   )
 }
 
-export const query = graphql`
+export const querySSG = graphql`
   query HomePageQuery {
     site {
       siteMetadata {
         title
         description
         titleTemplate
-      }
-    }
-
-    cmsHome {
-      sections {
-        data
-        name
       }
     }
   }

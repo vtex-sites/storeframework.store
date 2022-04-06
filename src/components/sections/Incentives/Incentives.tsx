@@ -1,5 +1,4 @@
 import { Incentive as UIIncentive, List as UIList } from '@faststore/ui'
-import React from 'react'
 import type { ReactNode } from 'react'
 
 interface Incentive {
@@ -16,8 +15,8 @@ interface Props {
 
 function Incentives({ incentives, classes = '' }: Props) {
   return (
-    <div className={`incentives ${classes} / grid-content-full`}>
-      <UIList variant="unordered" className="grid-content">
+    <div className={`incentives ${classes} layout__content-full`}>
+      <UIList variant="unordered" className="layout__content">
         {incentives.map((incentive, index) => (
           <li key={String(index)}>
             <UIIncentive>

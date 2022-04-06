@@ -1,5 +1,4 @@
 import { List } from '@faststore/ui'
-import React from 'react'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import type { ReactNode } from 'react'
 
@@ -31,7 +30,7 @@ function OrderSummary({
           <span>-{formattedDiscount}</span>
         </li>
       )}
-      <li className="title-subsection">
+      <li className="text__title-subsection">
         <span>Total</span>
         <span>{useFormattedPrice(total)}</span>
       </li>

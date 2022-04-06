@@ -1,5 +1,4 @@
 import { Label as UILabel, List as UIList } from '@faststore/ui'
-import React from 'react'
 import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 import { Badge } from 'src/components/ui/Badge'
 import Checkbox from 'src/components/ui/Checkbox'
@@ -25,7 +24,7 @@ function Facets({
 }: FacetsProps) {
   return (
     <div className="filter" data-store-filter data-testid={testId}>
-      <h2 className="title-small">Filters</h2>
+      <h2 className="text__title-mini-alt">Filters</h2>
       <Accordion expandedIndices={indicesExpanded} onChange={onAccordionChange}>
         {facets.map(({ label, values, key }, index) => (
           <AccordionItem
@@ -49,7 +48,7 @@ function Facets({
                       data-value={item.value}
                       data-quantity={item.quantity}
                     />
-                    <UILabel htmlFor={id} className="title-small">
+                    <UILabel htmlFor={id} className="text__title-mini-alt">
                       {item.label}{' '}
                       <Badge variant="neutral" small>
                         {item.quantity}
