@@ -21,13 +21,6 @@ const gatsbyConfig: GatsbyConfig = {
     PARALLEL_SOURCING: true,
   },
   plugins: [
-    {
-      resolve: '@vtex/gatsby-source-cms',
-      options: {
-        tenant: config.api.storeId,
-        workspace: 'master',
-      },
-    },
     `gatsby-plugin-sass`,
     {
       resolve: 'gatsby-plugin-manifest',
