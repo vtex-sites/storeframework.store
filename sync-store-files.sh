@@ -12,7 +12,7 @@ fastmod -m -d package.json '"@vtex/graphql-utils": "\^(\d*.\d*.\d*)",' '"@vtex/g
 # Update src/pages/index.tsx file
 
 ## Remove section imports
-fastmod -m -d src/pages/index.tsx "import.*/sections/.*\n" "";
+fastmod -d src/pages/index.tsx "import.*/sections/.*\n" "";
 
 ### Prepend CMS renderer import
 echo -e "import RenderCMS from 'src/components/RenderCMS'\n$(cat ./src/pages/index.tsx)" > src/pages/index.tsx
@@ -20,7 +20,7 @@ echo -e "import RenderCMS from 'src/components/RenderCMS'\n$(cat ./src/pages/ind
 ## Component
 fastmod -d src/pages/index.tsx 'data: \{ (.*)(site.*)\}' 'data: { ${1}site, cmsHome }';
 fastmod -d src/pages/index.tsx "const\s(product|haveProduct).*" "";
-fastmod -m -d src/pages/index.tsx 'WARNING:.*</>$' 'CMS Sections */}\n<RenderCMS sections={cmsHome?.sections} /></>';
+fastmod -m -d src/pages/index.tsx 'WARNING:.*</>$' 'CMS Sections */}<RenderCMS sections={cmsHome?.sections} /></>';
 
 ## Query
 fastmod -m -d src/pages/index.tsx "query\s(\w*)\s\{(.*)\}" "query \${1} {\${2}

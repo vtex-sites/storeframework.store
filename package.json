@@ -1,5 +1,5 @@
 {
-  "name": "base.store",
+  "name": "storeframework.store",
   "private": true,
   "version": "0.221.0",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "@faststore/sdk": "^1.7.6",
     "@faststore/ui": "^1.7.6",
     "@vtex/graphql-utils": "^1.7.6",
+    "@vtex/gatsby-source-cms": "^0.2.4",
     "gatsby": "^4.11.1",
     "gatsby-plugin-gatsby-cloud": "^4.11.1",
     "gatsby-plugin-manifest": "^4.11.1",
