@@ -82,13 +82,13 @@
         "first": {
           "type": "integer",
           "title": "First",
-          "default": "5",
+          "default": 5,
           "description": "Number of items to display"
         },
         "after": {
           "type": "string",
           "title": "After",
-          "default": "\"0\"",
+          "default": "0",
           "description": "Initial paginatio item"
         },
         "sort": {
@@ -161,13 +161,13 @@
         "first": {
           "type": "integer",
           "title": "First",
-          "default": "3",
+          "default": 3,
           "description": "Number of items to display"
         },
         "after": {
           "type": "string",
           "title": "After",
-          "default": "\"0\"",
+          "default": "0",
           "description": "Initial paginatio item"
         },
         "sort": {
