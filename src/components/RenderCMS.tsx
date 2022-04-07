@@ -1,5 +1,6 @@
 import BannerText from 'src/components/sections/BannerText'
 import Hero from 'src/components/sections/Hero'
+import ProductShelf from 'src/components/sections/ProductShelf'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
 import type { ComponentType } from 'react'
 
@@ -11,6 +12,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   Hero,
   BannerText,
   IncentivesHeader,
+  ProductShelf,
 }
 
 interface Props {
