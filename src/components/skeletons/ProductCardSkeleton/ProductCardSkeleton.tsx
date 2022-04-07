@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Shimmer from '../Shimmer'
 import SkeletonElement from '../SkeletonElement'
 
@@ -7,14 +5,14 @@ interface Props {
   bordered?: boolean
   sectioned?: boolean
   showActions?: boolean
-  variant?: 'vertical' | 'horizontal'
+  variant?: 'wide' | 'default'
 }
 
 function ProductCardSkeleton({
   bordered,
   sectioned = false,
   showActions = false,
-  variant = 'vertical',
+  variant = 'default',
 }: Props) {
   return (
     <div

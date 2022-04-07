@@ -1,5 +1,4 @@
 import { Card, CardContent, CardImage } from '@faststore/ui'
-import React from 'react'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
@@ -40,10 +39,7 @@ function SuggestionProductCard({
           <Image src={img.url} alt={img.alternateName} width={56} height={56} />
         </CardImage>
         <div data-suggestion-product-card-summary>
-          <p
-            className="title-sub-subsection"
-            data-suggestion-product-card-title
-          >
+          <p className="text__title-mini" data-suggestion-product-card-title>
             {name}
           </p>
           <span data-suggestion-product-card-prices>
@@ -53,7 +49,7 @@ function SuggestionProductCard({
               testId="list-price"
               data-value={listPrice}
               variant="listing"
-              classes="text-body-small"
+              classes="text__legend"
               SRText="Original price:"
             />
             <Price
@@ -62,7 +58,7 @@ function SuggestionProductCard({
               testId="price"
               data-value={price}
               variant="spot"
-              classes="title-sub-subsection"
+              classes="text__title-mini"
               SRText="Price:"
             />
           </span>

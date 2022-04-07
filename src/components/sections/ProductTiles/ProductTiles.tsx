@@ -1,4 +1,3 @@
-import React from 'react'
 import Tiles, { Tile } from 'src/components/ui/Tiles'
 import ProductCard from 'src/components/product/ProductCard'
 import ProductTilesSkeleton from 'src/components/skeletons/ProductTilesSkeleton'
@@ -36,10 +35,10 @@ const ProductTiles = ({ title, ...variables }: TilesProps) => {
   }
 
   return (
-    <Section className="grid-section grid-content">
-      <h2 className="title-section">{title}</h2>
-      <div className="page__section-content">
-        <ProductTilesSkeleton variant="horizontal" loading={!products}>
+    <Section className="layout__section layout__content">
+      <h2 className="text__title-section">{title}</h2>
+      <div>
+        <ProductTilesSkeleton variant="wide" loading={!products}>
           <Tiles>
             {products?.edges.map((product, idx) => (
               <Tile key={product.node.id}>
@@ -47,7 +46,7 @@ const ProductTiles = ({ title, ...variables }: TilesProps) => {
                   data-testid="tile-card"
                   product={product.node}
                   index={idx + 1}
-                  variant="horizontal"
+                  variant="wide"
                   aspectRatio={getRatio(products.edges.length, idx)}
                 />
               </Tile>
