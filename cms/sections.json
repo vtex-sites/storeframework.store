@@ -63,8 +63,47 @@
     "schema": {
       "title": "Incentives Header",
       "description": "Add Incentives to your shopper",
+      "required": ["title", "firstLineText", "icon"],
       "type": "object",
-      "properties": {}
+      "properties": {
+        "Incentives": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 5,
+          "items": {
+            "title": "Incentive",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Title"
+              },
+              "firstLineText": {
+                "type": "string",
+                "title": "First line text"
+              },
+              "icon": {
+                "type": "string",
+                "title": "Icon",
+                "enumNames": [
+                  "Truck",
+                  "Calendar",
+                  "Gift",
+                  "Store Front",
+                  "Shield Check"
+                ],
+                "enum": [
+                  "Truck",
+                  "Calendar",
+                  "Gift",
+                  "StoreFront",
+                  "ShieldCheck"
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   }
 ]
