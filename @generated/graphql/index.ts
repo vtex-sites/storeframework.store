@@ -2671,18 +2671,6 @@ export type ProductSummary_ProductFragment = {
   }
 }
 
-export type FacetedFilter_FacetsFragment = {
-  key: string
-  label: string
-  type: StoreFacetType
-  values: Array<{
-    label: string
-    value: string
-    selected: boolean
-    quantity: number
-  }>
-}
-
 export type Filter_FacetsFragment = {
   key: string
   label: string

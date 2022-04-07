@@ -4,28 +4,27 @@
   </a>
 </p>
 <h1 align="center">
-  A starter powered by Faststore and Gatsby
+  A starter powered by FastStore and Gatsby
 </h1>
 
-Kickoff your store with this boilerplate. This starter ships with the main Faststore configuration files you might need to get up and running blazing fast with the blazing-fast store for React.
+Kickoff your store with this boilerplate. This starter ships with the main FastStore configuration files you might need to get up and running blazing fast with the blazing-fast store for React.
 
 ## ⚠️ Before you start
 
 As of Dec, 22, 2021, this starter is still far from covering most basic cases found on VTEX. To summarize what we still do not support that is considered basic on the VTEX commerce platform, we prepared the list below. If the feature you want is listed, you can either wait for us to add support to the feature, or fork the repo and implement on your own. Note that, by forking the repo, you will miss new features and improvements we do in this repo and you will need a developer to backport the feature to your store. Finally, this list is a work in progress, so some features may be missing from both base.store starter and this list.
 
-1. Support up to 2.5K SKUs. If you have more than 2.5K SKUs, you have two options. Either reduce the number of skus on your catalog to fall below 2.5K SKUs or use Client Side Rendering (CSR) for all SKUs. (Note that CSR makes your SKUs not indexable by Search Engines and harms performance considerably)
-2. Multiple CMS Previews. Only one user is allowed to preview content from the CMS at a time. If two users preview any content from any page at the CMS, the previews are not consistent and one user may see data from the other.
-3. Price Table
-4. Regionalization
-5. Internationalization
-6. Shared Cart (Carrinho compartilhado)
-7. Clear products that are our of stock from cart
-8. GDPR (LGDP)
-9. Shipping simulation
-10. Sitemap
-11. Sku selector on PDP
-12. Promotions via utm
-13. Product specifications
+1. Multiple CMS Previews. Only one user is allowed to preview content from the CMS at a time. If two users preview any content from any page at the CMS, the previews are not consistent and one user may see data from the other.
+2. Price Table
+3. Regionalization
+4. Internationalization
+5. Shared Cart (Carrinho compartilhado)
+6. Clear products that are our of stock from cart
+7. GDPR (LGDP)
+8. Shipping simulation
+9. Sitemap
+10. Sku selector on PDP
+11. Promotions via utm
+12. Product specifications
 
 ## 🚀 Quick start
 
@@ -118,6 +117,7 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
     ├── tsconfig.json
     ├── store.config.js
     ├── README.md
+    ├── CHANGELOG.md
     ├── __generated__
     ├── babel.config.js
     ├── cypress
@@ -155,26 +155,29 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 13. **`README.md`**: A text file containing useful reference information about your project.
 
-14. **`__generated__`**: Where TypeScript typings are generated for your GraphQL queries. You can use these files for strongly typing your App
+14. **`CHANGELOG.md`**: A text file containing all notable changes to the project.
 
-15. **`babel.config.js`**: [Babel configurations](https://babeljs.io/docs/en/configuration#babelrcjson) for you app. This is where you can change the targeted browsers.
+15. **`__generated__`**: Where TypeScript typings are generated for your GraphQL queries. You can use these files for strongly typing your App
 
-16. **`cypress`**: End to End(e2e) tests using Cypress. Most of the scenarios are covered here. Add your custom flows to avoid regressions
+16. **`babel.config.js`**: [Babel configurations](https://babeljs.io/docs/en/configuration#babelrcjson) for you app. This is where you can change the targeted browsers.
 
-17. **`cypress.json`**: [Cypress configuration file](https://docs.cypress.io/guides/references/configuration)
+17. **`cypress`**: End to End(e2e) tests using Cypress. Most of the scenarios are covered here. Add your custom flows to avoid regressions
 
-18. **`gatsby-browser.js`**: Lets you respond to Gatsby-specific events within the browser, and wrap your page components in additional global components. The Gatsby Browser API gives you many options for interacting with the client-side of Gatsby. More info at: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/
+18. **`cypress.json`**: [Cypress configuration file](https://docs.cypress.io/guides/references/configuration)
 
-19. **`gatsby-ssr.js`**: Lets you respond to Gatsby-specific events during SSG and SSR, and wrap your page components in additional global components. More info at: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/
+19. **`gatsby-browser.js`**: Lets you respond to Gatsby-specific events within the browser, and wrap your page components in additional global components. The Gatsby Browser API gives you many options for interacting with the client-side of Gatsby. More info at: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/
 
-20. **`lighthouserc.js`**: Configures [Google Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci). This is where you can turn on/off lighthouse assertions to be used by Lighthouse CI Bot/hook
+20. **`gatsby-ssr.js`**: Lets you respond to Gatsby-specific events during SSG and SSR, and wrap your page components in additional global components. More info at: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/
 
-21. **`pull_request_template.md`**: Template used when creating your Pull Requests
-22. **`renovate.json`**: Renovate configuration file to keep your store always fresh with Faststore's latest versions
+21. **`lighthouserc.js`**: Configures [Google Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci). This is where you can turn on/off lighthouse assertions to be used by Lighthouse CI Bot/hook
 
-23. **`.prettierignore`**: Ignore listed files when applying prettier rules
+22. **`pull_request_template.md`**: Template used when creating your Pull Requests
 
-24. **`.eslintignore`**: Ignore listed files when applying eslint rules
+23. **`renovate.json`**: Renovate configuration file to keep your store always fresh with FastStore's latest versions
+
+24. **`.prettierignore`**: Ignore listed files when applying prettier rules
+
+25. **`.eslintignore`**: Ignore listed files when applying eslint rules
 
 ## 💻 Code Structure
 
@@ -214,8 +217,6 @@ export { default } from './Button'
 The real thing happens on `Button.tsx`. On this file let's define the component like:
 
 ```tsx
-import React from 'react'
-
 interface Props {}
 
 function Button(props: Props) {
@@ -225,10 +226,9 @@ function Button(props: Props) {
 export default Button
 ```
 
-And, that's it! Now you have a working button that you can use anywhere on your project. Faststore, however, brings a handy library called `@faststore/ui` with built-in components to help you speed up your development. To use it, just change `Button.tsx` to:
+And, that's it! Now you have a working button that you can use anywhere on your project. FastStore, however, brings a handy library called `@faststore/ui` with built-in components to help you speed up your development. To use it, just change `Button.tsx` to:
 
 ```tsx
-import React from 'react'
 import { Button as UIButton } from '@faststore/ui'
 import type { ButtonProps } from '@faststore/ui'
 
@@ -244,89 +244,187 @@ export default Button
 Now, your Button component is powered by Store UI. However, if you try to use this on your app you will see that the button is lacking styles. To add styles, we will use CSS modules because they allow us to target data attributes. On your terminal, type:
 
 ```sh
-touch src/components/ui/Button/Button.module.css
+touch src/components/ui/Button/button.scss
 ```
 
-Now, on `Button.module.css`:
+Now, on `button.scss`:
 
 ```css
 [data-store-button] {
-  @apply p-0 bg-primary-100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 ```
 
-The `@apply` directive exists because we are using [Tailwind CSS](https://tailwindcss.com/). To learn more about tailwind, [see their docs](https://tailwindcss.com/docs). To know more about our best practices on using tailwind, see the [Styling Components](#%EF%B8%8F-styling-components) section.
 This `data-store-button` is a CSS data attribute selector. To know which selectors are available, check [FastStore UI docs](https://faststoreui.netlify.app/).
 
 Now, include the component's CSS into the Store's CSS. Open `src/styles/global/components.scss` and import this CSS with:
 
 ```scss
 // ...
-@import 'src/components/ui/Button/button.scss';
+@import "src/components/ui/Button/button.scss";
 // ...
 ```
 
-For most components, you would stop here. However, buttons can have different variants. For instance, suppose you want to have a button component with primary and muted variants. To add variants to the component, update `Button.tsx`:
+For most components, you would stop here. However, buttons can have different variants. For instance, suppose you want to have a button component with primary and secondary variants. To add variants to the component, update `Button.tsx`:
 
 ```tsx
-import React from 'react'
 import { Button as UIButton } from '@faststore/ui'
 import type { ButtonProps } from '@faststore/ui'
 
 interface Props extends ButtonProps {
-  variant: 'muted' | 'primary'
+  variant: 'secondary' | 'primary'
 }
 
 function Button({ variant, ...props }: Props) {
-  return <UIButton className={variant} {...props} />
+  return <UIButton data-button-variant={variant} {...props} />
 }
 
 export default Button
 ```
 
-and then, on `Button.module.css`:
+and then, on `button.scss`:
 
 ```css
-.primary [data-store-button] {
-  @apply p-0 bg-primary-100;
+[data-store-button][data-button-variant='primary'] {
+  background: blue;
 }
 
-.muted [data-store-button] {
-  @apply p-0 bg-muted-100;
+[data-store-button][data-button-variant='secondary'] {
+  background: pink;
+}
+```
+
+You can also use classes, if you wanted to:
+
+```tsx
+function Button({ variant, ...props }: Props) {
+  return <UIButton className={variant} {...props} />
+}
+```
+
+```css
+.primary[data-store-button] {
+  background: blue;
+}
+
+.secondary[data-store-button] {
+  background: pink;
 }
 ```
 
 Now we have a styled Button component that accepts different variants!! 🎉
-
-The aforementioned guide works well for UI components. However, sections are more complex and usually don't have variants, since they usually serve a single responsibility on the page. For sections, you can use tailwind natively like:
+The aforementioned guide works well for UI components. However, components like `Navbar` and `Footer` are more complex and usually don't have variants, since they usually serve a single responsibility on the page. For these cases, you can use [BEM-Style CSS Syntax in SCSS](https://en.bem.info/methodology/) like:
 
 ```tsx
-// components/sections/MySection/MySection.tsx
-...
-function MySection {
+ // components/common/Navbar/Navbar.tsx
+ ...
+ function Navbar {
+   return (
+      <header className="navbar">
+        <div className="navbar__header">
+         <section className="navbar__row">
+           <Button
+               className="navbar__menu"
+               aria-label="Open Menu"
+           >
+             <ListIcon size={32} />
+           </Button>
+         </section>
+        </div>
+      </header>
+   )
+```
+
+### Managing SVG Icons
+Icons help build web pages by illustrating concepts and improving website navigation. However, using icons can decrease the page's performance. One option to avoid the decrease of the page's performance is to use SVGs from a single SVG file, located in `/static/icons.svg`, and load them with the `ui/Icon` component.
+
+In the following steps, learn how to add and use a new SVG icon and avoid decreasing page performance while using an icon.
+
+> ⚠️ Warning
+>
+> This is a recommendation while using icons on a web page. Evaluate if this fits in your project.
+
+#### Adding an SVG icon
+1. In the SVG file, change the `svg` tag to `symbol`.
+2. Add an `id` to the symbol. Remember to use an unique `id` and do not replicate it.
+3. Remove unnecessary HTML/SVG properties to allow you to style and decrease the final file size, such as `fill`, `stroke-width`, `width`, `height`, and `color`.
+
+An example adding Bell icon:
+
+```svg
+<svg style="display:none">
+<symbol id="Bell" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M56.2,104a71.9,71.9,0,0,1,72.3-72c39.6.3,71.3,33.2,71.3,72.9V112c0,35.8,7.5,56.6,14.1,68a8,8,0,0,1-6.9,12H49a8,8,0,0,1-6.9-12c6.6-11.4,14.1-32.2,14.1-68Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M96,192v8a32,32,0,0,0,64,0v-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+</svg>
+```
+
+#### Using an SVG icon
+
+1. Get the icon's `id` that you created in the SVG icon file.
+2. Add the `id` in the React component that you desire to use the SVG icon. For example
+
+```tsx
+// src/components/ui/MyIconButton/MyIconButton.tsx
+import Icon from 'src/components/ui/Icon' // this path can be outdated.
+
+function ButtonIcon() {
   return (
-    <>
-      <div className="p-2 flex items-center">
-        <p className="h-4 p-5 mx-2">Hello World</p>
-        <Button variant="muted">
-      </div>
-    </>
+    <button>
+      <Icon name="<<symbol_id>>" weight="thin" />
+    </button>
   )
 }
-...
+
+export default ButtonIcon
 ```
+
+This project uses SVGs from [Phosphor icons](https://phosphoricons.com/).
 
 ## 🖊️ Styling Components
 
-This starter uses [Tailwind CSS](https://tailwindcss.com/) for styling. If you want, you can remove it and use other solutions. Both Gatsby and Store UI support many different CSS frameworks, like [emotion](https://emotion.sh/docs/introduction), [stitches](https://stitches.dev/docs/introduction) or even no CSS framework at all. Check the supported frameworks at [the Gatsby website](https://www.gatsbyjs.com/docs/how-to/styling/built-in-css/#other-css-options)
-This guide covers best practices and patterns to use when styling with Tailwind.
+Our customized themes are based on [Design Tokens](https://css-tricks.com/what-are-design-tokens/) using [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) or a CSS class for each token. Today, we have the following files in the `src/styles` folder:
 
-Tailwind is a utility-first CSS framework. The goal of this starter is to make it possible for developers to use Tailwind themes to change the look of the store. To accomplish this, a few things need to be respected:
+### `tokens.scss`
 
-1. Do never use hard coded colors/padings/spacings etc, e.g., `px-[10px]`, `bg-[#fff]`.
-2. Do never use named colors, but use alias colors instead, e.g., `bg-primary` instead of `bg-blue`.
+Here you'll find the basic structure to build your theme (font base, color palette, spacing, color-text, body background color...), feel free to update it with your brand guidelines.
 
-> :warning: CSS modules generate extra classes in your final CSS sheet. Use them with caution.
+#### <b>Colors</b>
+
+We suggest using a color palette of 3 colors and its gradation: `primary`, `secondary` and `neutral`.
+
+We also listed a couple of customizable tokens so you can easily change your body background, for example.
+
+If you feel the need to edit some of the color decisions, you can enter `tokens.scss` and update the semantical tokens. E.g.:
+
+```scss
+--fs-border-color-default: var(--fs-color-neutral-4); // Current
+--fs-border-color-default: var(--fs-color-neutral-5); // Updated
+```
+
+#### <b>Typography</b>
+
+We use the [Modular Scale](https://www.modularscale.com/) setting to create our text-sizes. If you want to change it, just set the `--fs-text-size-base` and the `scale` ratio.
+
+#### <b>Spacing</b>
+
+The spacing scale is based on `rem` sizes, so it will remain consistent if you change the `--fs-text-size-base`.
+
+### `layout.scss`
+
+List of classes used to create default page grid.
+
+```scss
+.layout__content-full // Should be used for sections that are side to side, generally with a colored background.
+.layout__content // Should be used for sections that fit centered on the grid.
+.layout__section // This class only adds default vertical margins for page sections.
+```
+
+![grid-example-image](https://user-images.githubusercontent.com/3356699/150801221-4027dc6a-1cc4-40a7-a323-8be7a148458d.png)
+
+### `typography.scss`
+
+For the typography-related styles, we decided to use classes to add extra stylings like `font-weight` and `line-height`. In this file, you'll see all the classes for titles, paragraphs, and default settings on the body. You can create new ones here if needed.
 
 ## 🍒 Adding queries
 
@@ -349,11 +447,21 @@ That's it! you have just regenerated all graphql queries/fragments for your appl
 
 ## 🎓 Learning the Frameworks
 
-Looking for more guidance? Full documentation for Faststore lives [on this GitHub repository](https://github.com/vtex/faststore). Also, for learning Gatsby, take a look at the [Gatsby Website](https://www.gatsbyjs.com/), they have plenty of tutorials and examples in there.
+Looking for more guidance? Full documentation for FastStore lives [on this GitHub repository](https://github.com/vtex/faststore). Also, for learning Gatsby, take a look at the [Gatsby Website](https://www.gatsbyjs.com/), they have plenty of tutorials and examples in there.
 
 ## ⚡ Performance & QA
 
 This project has strict performance budgets. Right out of the box, this project performs around 95 on Google's Page Speed Insights website, which usually is way more strict than your laptop's chrome lighthouse. Every time you commit to the repository, our QA bots will run and evaluate your code quality. We recommend you NEVER put in production a code that breaks any of the bots. If a bot breaks and still you need to put the code into production, change the bot config (`lighthouserc.js`, `cypress.json`) to make it pass and merge. This way you ensure your website will keep performing well during the years to come.
+
+### Lazy loading components
+
+[According to Gatsby](https://www.gatsbyjs.com/docs/how-to/performance/improving-site-performance/#step-5-on-critical-paths-lazy-load-below-the-fold-components):
+
+> `loadable-components` is the recommended lazy-loading solution for all server-side-rendered React applications, including Gatsby websites.
+
+So First, try to use the native `lazy`/`Suspense` alternative. But if there is some Server Side Rendered dependency, switch to using the `loadable-components`.
+
+Finally, for that pages that can use both `lazy` and `loadable`, keep the preference to use only `loadable` for the sake of avoiding loading two different things for the same purpose.
 
 ## Adding third party scripts
 
@@ -366,7 +474,7 @@ Some third-party scripts execute expensive computations that may require some ti
 export const onRenderBody = ({ setHeadComponents }) => {
   // ...
   setHeadComponents([
-    <script>
+    <script type="text/partytown">
       window.expensiveFunction = function() {/* expensive computation used by custom-script */}
     </script>
     <script key="custom-script" src="*://domain/path" type="text/partytown" />,
