@@ -1,13 +1,12 @@
 #!/bin/bash
 # Update gatsby-config.js file
 
-fastmod -m -d gatsby-config.js 'plugins: \[' 'plugins: [  { resolve: "@vtex/gatsby-source-cms", options: { tenant: config.api.storeId, workspace: "master", }, },';
+fastmod -m -d gatsby-config.ts 'plugins: \[' 'plugins: [  { resolve: "@vtex/gatsby-source-cms", options: { tenant: config.api.storeId, workspace: "master", }, },';
 
 # Update package.json file
 
 fastmod -m -d package.json '"name": "base.store"' '"name": "storeframework.store"';
-fastmod -m -d package.json '"@vtex/gatsby-plugin-thumbor": "\^(\d*.\d*.\d*)",' '"@vtex/gatsby-plugin-thumbor": "^${1}",
-    "@vtex/gatsby-source-cms": "^0.2.4",';
+yarn add @vtex/gatsby-source-cms
 
 # Update src/pages/index.tsx file
 
