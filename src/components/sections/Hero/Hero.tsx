@@ -35,6 +35,17 @@ const Hero = ({
   return (
     <Section>
       <UIHero data-hero-variant={variant}>
+        <HeroImage>
+          <Image
+            preload
+            loading="eager"
+            src={imageSrc}
+            alt={imageAlt}
+            width={360}
+            height={240}
+            sizes="(max-width: 768px) 70vw, 50vw"
+          />
+        </HeroImage>
         <HeroContent aria-labelledby="hero-heading">
           <div data-hero-wrapper className="layout__content">
             <div data-hero-info>
@@ -52,17 +63,6 @@ const Hero = ({
             {!!icon && <div data-hero-icon>{icon}</div>}
           </div>
         </HeroContent>
-        <HeroImage>
-          <Image
-            preload
-            loading="eager"
-            src={imageSrc}
-            alt={imageAlt}
-            width={360}
-            height={240}
-            sizes="(max-width: 768px) 70vw, 50vw"
-          />
-        </HeroImage>
       </UIHero>
     </Section>
   )
