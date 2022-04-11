@@ -12,6 +12,7 @@ For a full history of changes go to [base.store's CHANGELOG](https://github.com/
 
 ### Added
 - IncentivesHeader is now integrated with CMS
+
 ### Changed
 
 ### Deprecated
