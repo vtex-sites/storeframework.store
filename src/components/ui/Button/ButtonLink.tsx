@@ -1,6 +1,6 @@
 import { Icon as UIIcon, Link as UILink } from '@faststore/ui'
 import { Link as GatsbyLink } from 'gatsby'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import type { LinkProps } from '@faststore/ui'
 import type { FocusEvent } from 'react'
 
@@ -11,7 +11,7 @@ type Props = {
 } & UIButtonProps &
   LinkProps<typeof GatsbyLink>
 
-function LinkButton({
+function ButtonLink({
   variant = 'primary',
   inverse,
   icon,
@@ -27,11 +27,11 @@ function LinkButton({
     <UILink
       as={GatsbyLink}
       innerRef={linkRef}
-      data-store-button
-      className={`link-button ${className}`}
-      data-button-variant={variant}
-      data-button-inverse={inverse}
-      data-button-disabled={disabled}
+      data-fs-button
+      data-fs-button-link
+      data-fs-button-variant={variant}
+      data-fs-button-inverse={inverse}
+      data-fs-button-disabled={disabled}
       onFocus={(e: FocusEvent) => {
         e.preventDefault()
 
@@ -48,4 +48,4 @@ function LinkButton({
   )
 }
 
-export default LinkButton
+export default ButtonLink

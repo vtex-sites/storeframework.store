@@ -1,9 +1,9 @@
 import { sendAnalyticsEvent, useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
-import BuyButton from 'src/components/ui/BuyButton'
+import { ButtonBuy } from 'src/components/ui/Button'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
 import ProductTitle from 'src/components/ui/ProductTitle'
@@ -14,6 +14,7 @@ import { useProduct } from 'src/sdk/product/useProduct'
 import type { ProductDetailsFragment_ProductFragment } from '@generated/graphql'
 import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
+import OutOfStock from 'src/components/product/OutOfStock'
 
 import Section from '../Section'
 
@@ -105,13 +106,13 @@ function ProductDetails({ product: staleProduct }: Props) {
   ])
 
   return (
-    <Section className="product-details / grid-content grid-section">
+    <Section className="product-details layout__content layout__section">
       <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
 
       <section className="product-details__body">
         <header className="product-details__title">
           <ProductTitle
-            title={<h1 className="title-product">{name}</h1>}
+            title={<h1 className="text__title-product">{name}</h1>}
             label={<DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />}
             refNumber={productId}
           />
@@ -138,7 +139,7 @@ function ProductDetails({ product: staleProduct }: Props) {
                 testId="list-price"
                 data-value={listPrice}
                 variant="listing"
-                classes="text-body-small"
+                classes="text__legend"
                 SRText="Original price:"
               />
               <Price
@@ -147,12 +148,12 @@ function ProductDetails({ product: staleProduct }: Props) {
                 testId="price"
                 data-value={lowPrice}
                 variant="spot"
-                classes="title-display"
+                classes="text__lead"
                 SRText="Sale Price:"
               />
             </div>
             {/* <div className="prices">
-              <p className="price__old text-body-small">{formattedListPrice}</p>
+              <p className="price__old text__legend">{formattedListPrice}</p>
               <p className="price__new">{isValidating ? '' : formattedPrice}</p>
             </div> */}
             <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
@@ -164,16 +165,23 @@ function ProductDetails({ product: staleProduct }: Props) {
           {isValidating ? (
             <AddToCartLoadingSkeleton />
           ) : (
-            <BuyButton disabled={buyDisabled} {...buyProps}>
+            <ButtonBuy disabled={buyDisabled} {...buyProps}>
               Add to Cart
-            </BuyButton>
+            </ButtonBuy>
+          )}
+          {!availability && (
+            <OutOfStock
+              onSubmit={(email) => {
+                console.info(email)
+              }}
+            />
           )}
         </section>
 
         <section className="product-details__content">
           <article className="product-details__description">
-            <h2 className="title-subsection">Description</h2>
-            <p className="text-body">{description}</p>
+            <h2 className="text__title-subsection">Description</h2>
+            <p className="text__body">{description}</p>
           </article>
         </section>
       </section>

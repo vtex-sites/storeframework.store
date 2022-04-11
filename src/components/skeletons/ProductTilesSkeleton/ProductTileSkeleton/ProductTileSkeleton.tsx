@@ -1,17 +1,16 @@
-import React from 'react'
 import Shimmer from 'src/components/skeletons/Shimmer'
 import SkeletonElement from 'src/components/skeletons/SkeletonElement'
 
 interface Props {
   tileIndex: number
   bordered?: boolean
-  variant?: 'vertical' | 'horizontal'
+  variant?: 'wide' | 'default'
 }
 
 function ProductTileSkeleton({
   tileIndex,
   bordered,
-  variant = 'vertical',
+  variant = 'default',
 }: Props) {
   return (
     <div

@@ -1,11 +1,10 @@
-import React from 'react'
 import UIHero, {
   HeroContent,
   HeroImage,
   HeroLink,
 } from 'src/components/ui/Hero'
 import Image from 'src/components/ui/Image/Image'
-import { LinkButton } from 'src/components/ui/Button'
+import { ButtonLink } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 
 import Section from '../Section'
@@ -36,30 +35,6 @@ const Hero = ({
   return (
     <Section>
       <UIHero data-hero-variant={variant}>
-        <HeroContent aria-labelledby="hero-heading">
-          <div className="hero-content-wrapper / grid-content">
-            <div className="hero-content-info">
-              <h1
-                id="hero-heading"
-                className={
-                  variant === 'default' ? 'title-hero' : 'title-hero-small'
-                }
-              >
-                {title}
-              </h1>
-
-              <p className="text-body-big">{subtitle}</p>
-              {!!link && (
-                <HeroLink>
-                  <LinkButton to={link} inverse>
-                    {linkText} <Icon name="ArrowRight" width={24} height={24} />
-                  </LinkButton>
-                </HeroLink>
-              )}
-            </div>
-            {!!icon && <div className="hero-content-icon">{icon}</div>}
-          </div>
-        </HeroContent>
         <HeroImage>
           <Image
             preload
@@ -71,6 +46,23 @@ const Hero = ({
             sizes="(max-width: 768px) 70vw, 50vw"
           />
         </HeroImage>
+        <HeroContent aria-labelledby="hero-heading">
+          <div data-hero-wrapper className="layout__content">
+            <div data-hero-info>
+              <h1 id="hero-heading">{title}</h1>
+
+              <p data-hero-text-body>{subtitle}</p>
+              {!!link && (
+                <HeroLink>
+                  <ButtonLink to={link} inverse>
+                    {linkText} <Icon name="ArrowRight" width={24} height={24} />
+                  </ButtonLink>
+                </HeroLink>
+              )}
+            </div>
+            {!!icon && <div data-hero-icon>{icon}</div>}
+          </div>
+        </HeroContent>
       </UIHero>
     </Section>
   )

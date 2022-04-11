@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Incentives from './Incentives'
 import Section from '../Section'
 

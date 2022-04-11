@@ -1,4 +1,3 @@
-import React from 'react'
 import type { PropsWithChildren } from 'react'
 import Tiles, { Tile } from 'src/components/ui/Tiles'
 
@@ -9,13 +8,13 @@ const DEFAULT_ITEMS_NUMBER = 3
 
 interface Props {
   loading?: boolean
-  variant?: 'vertical' | 'horizontal'
+  variant?: 'wide' | 'default'
 }
 
 function ProductTilesSkeleton({
   children,
   loading = true,
-  variant = 'vertical',
+  variant = 'default',
 }: PropsWithChildren<Props>) {
   return loading ? (
     <Tiles>
