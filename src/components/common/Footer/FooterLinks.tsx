@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { List as UIList } from '@faststore/ui'
 import Link from 'src/components/ui/Link'
 import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
@@ -139,7 +139,7 @@ function FooterLinks() {
         <div className="footer__links-columns">
           {links.map((section) => (
             <nav key={section.title}>
-              <p className="title-sub-subsection">{section.title}</p>
+              <p className="text__title-mini">{section.title}</p>
               <LinksList items={section.items} />
             </nav>
           ))}

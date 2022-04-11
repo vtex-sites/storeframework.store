@@ -1,43 +1,30 @@
-require('dotenv').config({ path: 'vtex.env' })
+import { join, resolve } from 'path'
 
-const { join, resolve } = require('path')
+import dotenv from 'dotenv'
+import type { GatsbyConfig } from 'gatsby'
 
-const { getSchema, getContextFactory } = require('./src/server')
-const config = require('./store.config')
+import config from './store.config'
 
-const {
-  NODE_ENV,
-  URL = config.storeUrl,
-  DEPLOY_PRIME_URL = URL,
-  CONTEXT: ENV = NODE_ENV,
-  VTEX_WEBOPS: isWebOps,
-} = process.env
+dotenv.config({ path: 'vtex.env' })
 
-const isProduction = ENV === 'production'
-const siteUrl = isProduction ? URL : DEPLOY_PRIME_URL
-
-module.exports = {
+const gatsbyConfig: GatsbyConfig = {
+  jsxRuntime: 'automatic',
   siteMetadata: {
     title: 'BaseStore',
     description: 'Fast Demo Store',
     titleTemplate: '%s | FastStore',
     author: 'Store Framework',
-    siteUrl,
+    siteUrl: config.storeUrl,
   },
   flags: {
-    DEV_SSR: true,
     FAST_DEV: true,
-    LMDB_STORE: false,
     PARALLEL_SOURCING: true,
-    PARALLEL_QUERY_RUNNING: false,
-    PRESERVE_FILE_DOWNLOAD_CACHE: false,
   },
   plugins: [
     {
       resolve: '@vtex/gatsby-source-cms',
       options: { tenant: config.api.storeId, workspace: 'master' },
     },
-    `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-sass`,
     {
       resolve: 'gatsby-plugin-manifest',
@@ -55,7 +42,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        resolveEnv: () => ENV,
+        resolveEnv: () => process.env.NODE_ENV || 'development',
         env: {
           production: {
             policy: [
@@ -66,10 +53,7 @@ module.exports = {
               },
             ],
           },
-          'branch-deploy': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
-          },
-          'deploy-preview': {
+          development: {
             policy: [{ userAgent: '*', disallow: ['/'] }],
           },
         },
@@ -117,55 +101,6 @@ module.exports = {
       },
     },
     {
-      resolve: `@vtex/gatsby-source-store`,
-      options: {
-        sourceProducts: true,
-        sourceCollections: true,
-        getSchema,
-        getContextFactory,
-        // Source less products is development for better DX
-        maxNumProducts: isProduction ? 2500 : 100,
-        maxNumCollections: isProduction ? 2500 : 100,
-      },
-    },
-    {
-      resolve: '@vtex/gatsby-plugin-nginx',
-      options: {
-        httpOptions: [
-          ['merge_slashes', 'off'],
-          ['proxy_http_version', '1.1'],
-          ['absolute_redirect', 'off'],
-        ],
-        serverOptions: isWebOps
-          ? [['resolver', '169.254.169.253']]
-          : [['resolver', '8.8.8.8']],
-        locations: {
-          append: {
-            cmd: ['location', '/'],
-            children: [
-              {
-                cmd: [
-                  'add_header',
-                  'Cache-Control',
-                  '"public, max-age=0, must-revalidate"',
-                ],
-              },
-              {
-                cmd: [
-                  'try_files',
-                  '$uri',
-                  '$uri/',
-                  '$uri/index.html',
-                  '$uri.html',
-                  '=404',
-                ],
-              },
-            ],
-          },
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-gatsby-cloud',
     },
     {
@@ -176,3 +111,5 @@ module.exports = {
     },
   ],
 }
+
+export default gatsbyConfig

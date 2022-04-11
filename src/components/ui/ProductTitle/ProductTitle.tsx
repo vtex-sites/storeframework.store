@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import type { ReactNode } from 'react'
 
 interface ProductTitleProp {
@@ -25,7 +25,7 @@ function ProductTitle({ title, label, refNumber }: ProductTitleProp) {
       </div>
 
       {refNumber && (
-        <div className="product-title__addendum / text-body-small">
+        <div className="product-title__addendum / text__legend">
           Ref.: {refNumber}
         </div>
       )}

@@ -5,7 +5,7 @@ import {
   CardImage as UICardImage,
 } from '@faststore/ui'
 import { graphql, Link } from 'gatsby'
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
@@ -14,7 +14,7 @@ import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ReactNode } from 'react'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
 
-type Variant = 'horizontal' | 'vertical'
+type Variant = 'wide' | 'default'
 
 interface Props {
   product: ProductSummary_ProductFragment
@@ -22,19 +22,20 @@ interface Props {
   bordered?: boolean
   variant?: Variant
   aspectRatio?: number
-  buyButton?: ReactNode
+  ButtonBuy?: ReactNode
 }
 
 function ProductCard({
   product,
   index,
-  variant = 'vertical',
+  variant = 'default',
   bordered = false,
   aspectRatio = 1,
-  buyButton,
+  ButtonBuy,
   ...otherProps
 }: Props) {
   const {
+    sku,
     isVariantOf: { name },
     image: [img],
     offers: {
@@ -48,10 +49,10 @@ function ProductCard({
 
   return (
     <UICard
-      className="product-card"
-      data-card-variant={variant}
-      data-card-bordered={bordered}
-      data-card-out-of-stock={outOfStock}
+      data-fs-product-card
+      data-fs-product-card-variant={variant}
+      data-fs-product-card-bordered={bordered}
+      data-fs-product-card-sku={sku}
       {...otherProps}
     >
       <UICardImage>
@@ -64,21 +65,22 @@ function ProductCard({
           loading="lazy"
         />
       </UICardImage>
-      <UICardContent>
-        <div className="product-card__heading">
-          <h3 className="product-card__title / title-small">
+
+      <UICardContent data-fs-product-card-content>
+        <div data-fs-product-card-heading>
+          <h3 data-fs-product-card-title>
             <Link {...linkProps} title={name}>
               {name}
             </Link>
           </h3>
-          <div className="product-card__prices">
+          <div data-fs-product-card-prices>
             <Price
               value={listPrice}
               formatter={useFormattedPrice}
               testId="list-price"
               data-value={listPrice}
               variant="listing"
-              classes="text-body-small"
+              classes="text__legend"
               SRText="Original price:"
             />
             <Price
@@ -87,7 +89,7 @@ function ProductCard({
               testId="price"
               data-value={spotPrice}
               variant="spot"
-              classes="text-body"
+              classes="text__body"
               SRText="Sale Price:"
             />
           </div>
@@ -101,7 +103,7 @@ function ProductCard({
           <DiscountBadge small listPrice={listPrice} spotPrice={spotPrice} />
         )}
       </UICardContent>
-      {!!buyButton && <UICardActions>{buyButton}</UICardActions>}
+      {!!ButtonBuy && <UICardActions>{ButtonBuy}</UICardActions>}
     </UICard>
   )
 }

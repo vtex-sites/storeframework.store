@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import UIBreadcrumb from 'src/components/ui/Breadcrumb'
 import type { BreadcrumbProps } from 'src/components/ui/Breadcrumb'
 
@@ -14,7 +14,7 @@ function Breadcrumb({ breadcrumbList, name }: BreadcrumbWrapperProps) {
   const list = breadcrumbList ?? fallback
 
   return (
-    <Section className="breadcrumb / grid-content">
+    <Section className="breadcrumb layout__content">
       <UIBreadcrumb breadcrumbList={list} />
     </Section>
   )

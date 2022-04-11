@@ -1,4 +1,3 @@
-import React from 'react'
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
@@ -24,14 +23,12 @@ function ProductShelf({
 
   return (
     <Section
-      className={`page__section-shelf / grid-section ${
-        withDivisor ? 'page__section-divisor' : ''
-      }`}
+      className={`layout__section ${withDivisor ? 'shelf__divisor' : ''}`}
     >
-      <h2 className="title-section / grid-content">{title}</h2>
-      <div className="page__section-content">
+      <h2 className="text__title-section layout__content">{title}</h2>
+      <div data-product-shelf-content>
         <ProductShelfSkeleton loading={products === undefined}>
-          <ul data-product-shelf className="grid-content">
+          <ul data-product-shelf-items className="layout__content">
             {products?.edges.map((product, idx) => (
               <li key={`${product.node.id}`}>
                 <ProductCard product={product.node} index={idx + 1} />
