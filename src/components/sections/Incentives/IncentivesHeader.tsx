@@ -3,8 +3,9 @@ import Section from '../Section'
 
 interface Incentive {
   icon: string
-  title: string
+  title?: string
   firstLineText: string
+  secondLineText?: string
 }
 
 interface Props {
