@@ -63,7 +63,7 @@
     "schema": {
       "title": "Incentives Header",
       "description": "Add Incentives to your shopper",
-      "required": ["title", "firstLineText", "icon"],
+      "required": ["firstLineText", "icon"],
       "type": "object",
       "properties": {
         "incentives": {
@@ -82,6 +82,10 @@
                 "type": "string",
                 "title": "First line text"
               },
+              "secondLineText": {
+                "type": "string",
+                "title": "Second line text"
+              },
               "icon": {
                 "type": "string",
                 "title": "Icon",
@@ -96,7 +100,7 @@
                   "Truck",
                   "Calendar",
                   "Gift",
-                  "StoreFront",
+                  "Storefront",
                   "ShieldCheck"
                 ]
               }
