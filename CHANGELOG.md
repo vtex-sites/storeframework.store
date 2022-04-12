@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- IncentivesHeader is now integrated with CMS
+- Add secondLineText to IncentivesHeader (#48)
+- IncentivesHeader is now integrated with CMS (#47)
 
 ### Changed
 
