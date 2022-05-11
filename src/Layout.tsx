@@ -1,7 +1,5 @@
 import { lazy, Suspense } from 'react'
-import Alert from 'src/components/common/Alert'
 import Footer from 'src/components/common/Footer'
-import Navbar from 'src/components/common/Navbar'
 import Toast from 'src/components/common/Toast'
 import { useUI } from 'src/sdk/ui'
 import type { PropsWithChildren } from 'react'
@@ -13,13 +11,11 @@ function Layout({ children }: PropsWithChildren<unknown>) {
 
   return (
     <div id="layout">
-      <Alert>
-        Get 10% off today:&nbsp;<span>NEW10</span>
-      </Alert>
+      {/* Navbar had to be removed from this Layout file (and added to each page file). 
+      Sometimes, the Alert component (from CMS) needs to be displayed above Navbar, 
+      but this couldn't be handled in here */}
 
-      <Navbar />
-
-      <main>{children}</main>
+      {children}
 
       <Footer />
 
