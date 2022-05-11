@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import Navbar from 'src/components/common/Navbar'
 import type { PageProps } from 'gatsby'
 
 type Props = PageProps
@@ -19,6 +20,7 @@ function Page({ location }: Props) {
 
   return (
     <>
+      <Navbar />
       <GatsbySeo noindex nofollow />
 
       <h1>Not Found: 404</h1>

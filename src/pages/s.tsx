@@ -14,6 +14,7 @@ import type {
   SearchPageQueryQuery,
   SearchPageQueryQueryVariables,
 } from '@generated/graphql'
+import Navbar from 'src/components/common/Navbar'
 
 export type Props = PageProps<
   SearchPageQueryQuery,
@@ -46,28 +47,30 @@ function Page(props: Props) {
   }
 
   return (
-    <SearchProvider
-      onChange={applySearchState}
-      itemsPerPage={ITEMS_PER_PAGE}
-      {...searchParams}
-    >
-      {/* SEO */}
-      <GatsbySeo
-        noindex
-        language={locale}
-        title={title}
-        description={site?.siteMetadata?.description ?? ''}
-        titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
-        openGraph={{
-          type: 'website',
-          title,
-          description: site?.siteMetadata?.description ?? '',
-        }}
-      />
+    <>
+      <Navbar />
+      <SearchProvider
+        onChange={applySearchState}
+        itemsPerPage={ITEMS_PER_PAGE}
+        {...searchParams}
+      >
+        {/* SEO */}
+        <GatsbySeo
+          noindex
+          language={locale}
+          title={title}
+          description={site?.siteMetadata?.description ?? ''}
+          titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
+          openGraph={{
+            type: 'website',
+            title,
+            description: site?.siteMetadata?.description ?? '',
+          }}
+        />
 
-      <SROnly as="h1" text={title} />
+        <SROnly as="h1" text={title} />
 
-      {/*
+        {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
 
@@ -78,13 +81,14 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <Breadcrumb name="All Products" />
+        <Breadcrumb name="All Products" />
 
-      <ProductGallery
-        title="Search Results"
-        searchTerm={searchParams.term ?? undefined}
-      />
-    </SearchProvider>
+        <ProductGallery
+          title="Search Results"
+          searchTerm={searchParams.term ?? undefined}
+        />
+      </SearchProvider>
+    </>
   )
 }
 

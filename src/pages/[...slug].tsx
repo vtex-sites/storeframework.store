@@ -19,6 +19,7 @@ import type {
 } from '@generated/graphql'
 import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
+import Navbar from 'src/components/common/Navbar'
 
 type Props = PageProps<
   CollectionPageQueryQuery,
@@ -71,64 +72,67 @@ function Page(props: Props) {
       : `/${slug}/${pageQuery}`
 
   return (
-    <SearchProvider
-      onChange={applySearchState}
-      itemsPerPage={ITEMS_PER_PAGE}
-      {...searchParams}
-    >
-      {/* SEO */}
-      <GatsbySeo
-        title={title}
-        titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
-        description={site?.siteMetadata?.description ?? ''}
-        canonical={canonical}
-        language={locale}
-        openGraph={{
-          type: 'website',
-          title,
-          description: site?.siteMetadata?.description ?? '',
-        }}
-      />
-      <BreadcrumbJsonLd
-        itemListElements={collection?.breadcrumbList.itemListElement ?? []}
-      />
+    <>
+      <Navbar />
+      <SearchProvider
+        onChange={applySearchState}
+        itemsPerPage={ITEMS_PER_PAGE}
+        {...searchParams}
+      >
+        {/* SEO */}
+        <GatsbySeo
+          title={title}
+          titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
+          description={site?.siteMetadata?.description ?? ''}
+          canonical={canonical}
+          language={locale}
+          openGraph={{
+            type: 'website',
+            title,
+            description: site?.siteMetadata?.description ?? '',
+          }}
+        />
+        <BreadcrumbJsonLd
+          itemListElements={collection?.breadcrumbList.itemListElement ?? []}
+        />
 
-      {/*
-        WARNING: Do not import or render components from any
-        other folder than '../components/sections' in here.
+        {/*
+          WARNING: Do not import or render components from any
+          other folder than '../components/sections' in here.
 
-        This is necessary to keep the integration with the CMS
-        easy and consistent, enabling the change and reorder
-        of elements on this page.
+          This is necessary to keep the integration with the CMS
+          easy and consistent, enabling the change and reorder
+          of elements on this page.
 
-        If needed, wrap your component in a <Section /> component
-        (not the HTML tag) before rendering it here.
-      */}
-      <Breadcrumb
-        breadcrumbList={collection?.breadcrumbList.itemListElement}
-        name={title}
-      />
+          If needed, wrap your component in a <Section /> component
+          (not the HTML tag) before rendering it here.
+        */}
+        <Breadcrumb
+          breadcrumbList={collection?.breadcrumbList.itemListElement}
+          name={title}
+        />
 
-      <Hero
-        variant="small"
-        title={title}
-        subtitle={`All the amazing ${title} from the brands we partner with.`}
-        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
-        imageAlt="Quest 2 Controller on a table"
-        icon={<Icon name="Headphones" width={48} height={48} weight="thin" />}
-      />
+        <Hero
+          variant="small"
+          title={title}
+          subtitle={`All the amazing ${title} from the brands we partner with.`}
+          imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
+          imageAlt="Quest 2 Controller on a table"
+          icon={<Icon name="Headphones" width={48} height={48} weight="thin" />}
+        />
 
-      <ProductGallery title={title} />
+        <ProductGallery title={title} />
 
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        sort="score_desc"
-        title="You might also like"
-        withDivisor
-      />
+        <ProductShelf
+          first={ITEMS_PER_SECTION}
+          sort="score_desc"
+          title="You might also like"
+          withDivisor
+        />
 
-      <ScrollToTopButton />
-    </SearchProvider>
+        <ScrollToTopButton />
+      </SearchProvider>
+    </>
   )
 }
 
