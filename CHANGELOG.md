@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- `Alert` is now integrated with CMS (#49)[https://github.com/vtex-sites/storeframework.store/pull/49]
+- `Alert` is now integrated with CMS ((#49)[https://github.com/vtex-sites/storeframework.store/pull/49])
 - Add `secondLineText` property to `IncentivesHeader` (#48)
 - `IncentivesHeader` is now integrated with CMS (#47)
 
