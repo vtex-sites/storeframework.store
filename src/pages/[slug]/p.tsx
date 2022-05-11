@@ -16,6 +16,7 @@ import type {
   ProductPageQueryQueryVariables,
 } from '@generated/graphql'
 import { ITEMS_PER_SECTION } from 'src/constants'
+import Navbar from 'src/components/common/Navbar'
 
 export type Props = PageProps<
   ProductPageQueryQuery,
@@ -42,6 +43,7 @@ function Page(props: Props) {
 
   return (
     <>
+      <Navbar />
       {/* SEO */}
       <GatsbySeo
         title={title}
