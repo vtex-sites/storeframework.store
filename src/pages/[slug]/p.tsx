@@ -44,70 +44,72 @@ function Page(props: Props) {
   return (
     <>
       <Navbar />
-      {/* SEO */}
-      <GatsbySeo
-        title={title}
-        description={description}
-        canonical={canonical}
-        language={locale}
-        openGraph={{
-          type: 'og:product',
-          url: `${site?.siteMetadata?.siteUrl}${slug}`,
-          title,
-          description,
-          images: product.image.map((img) => ({
-            url: img.url,
-            alt: img.alternateName,
-          })),
-        }}
-        metaTags={[
-          {
-            property: 'product:price:amount',
-            content: product.offers.lowPrice?.toString() ?? undefined,
-          },
-          {
-            property: 'product:price:currency',
-            content: currency.code,
-          },
-        ]}
-      />
-      <BreadcrumbJsonLd
-        itemListElements={product.breadcrumbList.itemListElement ?? []}
-      />
-      <ProductJsonLd
-        name={product.name}
-        description={product.description}
-        brand={product.brand.name}
-        sku={product.sku}
-        gtin={product.gtin}
-        images={product.image.map((img) => img.url)} // Somehow, Google does not understand this valid Schema.org schema, so we need to do conversions
-        offersType="AggregateOffer"
-        offers={{
-          ...product.offers,
-          price: product.offers.offers[0].price.toString(),
-        }}
-      />
+      <main>
+        {/* SEO */}
+        <GatsbySeo
+          title={title}
+          description={description}
+          canonical={canonical}
+          language={locale}
+          openGraph={{
+            type: 'og:product',
+            url: `${site?.siteMetadata?.siteUrl}${slug}`,
+            title,
+            description,
+            images: product.image.map((img) => ({
+              url: img.url,
+              alt: img.alternateName,
+            })),
+          }}
+          metaTags={[
+            {
+              property: 'product:price:amount',
+              content: product.offers.lowPrice?.toString() ?? undefined,
+            },
+            {
+              property: 'product:price:currency',
+              content: currency.code,
+            },
+          ]}
+        />
+        <BreadcrumbJsonLd
+          itemListElements={product.breadcrumbList.itemListElement ?? []}
+        />
+        <ProductJsonLd
+          name={product.name}
+          description={product.description}
+          brand={product.brand.name}
+          sku={product.sku}
+          gtin={product.gtin}
+          images={product.image.map((img) => img.url)} // Somehow, Google does not understand this valid Schema.org schema, so we need to do conversions
+          offersType="AggregateOffer"
+          offers={{
+            ...product.offers,
+            price: product.offers.offers[0].price.toString(),
+          }}
+        />
 
-      {/*
-        WARNING: Do not import or render components from any
-        other folder than '../components/sections' in here.
+        {/*
+          WARNING: Do not import or render components from any
+          other folder than '../components/sections' in here.
 
-        This is necessary to keep the integration with the CMS
-        easy and consistent, enabling the change and reorder
-        of elements on this page.
+          This is necessary to keep the integration with the CMS
+          easy and consistent, enabling the change and reorder
+          of elements on this page.
 
-        If needed, wrap your component in a <Section /> component
-        (not the HTML tag) before rendering it here.
-      */}
+          If needed, wrap your component in a <Section /> component
+          (not the HTML tag) before rendering it here.
+        */}
 
-      <ProductDetails product={product} />
+        <ProductDetails product={product} />
 
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        term={product.brand.name}
-        title="You might also like"
-        withDivisor
-      />
+        <ProductShelf
+          first={ITEMS_PER_SECTION}
+          term={product.brand.name}
+          title="You might also like"
+          withDivisor
+        />
+      </main>
     </>
   )
 }
