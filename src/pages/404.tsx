@@ -21,10 +21,12 @@ function Page({ location }: Props) {
   return (
     <>
       <Navbar />
-      <GatsbySeo noindex nofollow />
+      <main>
+        <GatsbySeo noindex nofollow />
 
-      <h1>Not Found: 404</h1>
-      <div>This app could not find url {fromUrl}</div>
+        <h1>Not Found: 404</h1>
+        <div>This app could not find url {fromUrl}</div>
+      </main>
     </>
   )
 }

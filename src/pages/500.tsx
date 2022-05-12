@@ -23,14 +23,16 @@ function Page({ location }: Props) {
   return (
     <>
       <Navbar />
-      <GatsbySeo noindex nofollow />
+      <main>
+        <GatsbySeo noindex nofollow />
 
-      <h1>500</h1>
-      <h2>Internal Server Error</h2>
+        <h1>500</h1>
+        <h2>Internal Server Error</h2>
 
-      <div>
-        The server errored with id {errorId} when visiting page {fromUrl}
-      </div>
+        <div>
+          The server errored with id {errorId} when visiting page {fromUrl}
+        </div>
+      </main>
     </>
   )
 }

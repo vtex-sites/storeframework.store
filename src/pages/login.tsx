@@ -12,9 +12,11 @@ function Page() {
   return (
     <>
       <Navbar />
-      <GatsbySeo noindex nofollow />
+      <main>
+        <GatsbySeo noindex nofollow />
 
-      <div>loading...</div>
+        <div>loading...</div>
+      </main>
     </>
   )
 }

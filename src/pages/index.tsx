@@ -38,35 +38,37 @@ function Page(props: Props) {
       )}
 
       <Navbar />
-      {/* SEO */}
-      <GatsbySeo
-        title={title}
-        description={site?.siteMetadata?.description ?? ''}
-        titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
-        language={locale}
-        canonical={siteUrl}
-        openGraph={{
-          type: 'website',
-          url: siteUrl,
-          title: title ?? '',
-          description: site?.siteMetadata?.description ?? '',
-        }}
-      />
-      <JsonLd
-        json={{
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          url: siteUrl,
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: `${siteUrl}/s/?q={search_term_string}`,
-            'query-input': 'required name=search_term_string',
-          },
-        }}
-      />
+      <main>
+        {/* SEO */}
+        <GatsbySeo
+          title={title}
+          description={site?.siteMetadata?.description ?? ''}
+          titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
+          language={locale}
+          canonical={siteUrl}
+          openGraph={{
+            type: 'website',
+            url: siteUrl,
+            title: title ?? '',
+            description: site?.siteMetadata?.description ?? '',
+          }}
+        />
+        <JsonLd
+          json={{
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            url: siteUrl,
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: `${siteUrl}/s/?q={search_term_string}`,
+              'query-input': 'required name=search_term_string',
+            },
+          }}
+        />
 
-      {/* CMS Sections */}
-      <RenderCMS sections={cmsHome?.sections} />
+        {/* CMS Sections */}
+        <RenderCMS sections={cmsHome?.sections} />
+      </main>
     </>
   )
 }
