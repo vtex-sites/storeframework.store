@@ -11,9 +11,7 @@ function Layout({ children }: PropsWithChildren<unknown>) {
 
   return (
     <div id="layout">
-      {/* Navbar had to be removed from this Layout file (and added to each page file). 
-      Sometimes, the Alert component (from CMS) needs to be displayed above Navbar, 
-      but this couldn't be handled in here */}
+      {/* Navbar had to be removed from this Layout file (and added to each page file). Sometimes, the Alert component (from CMS) needs to be displayed above Navbar, but this couldn't be handled in here */}
 
       {children}
 
