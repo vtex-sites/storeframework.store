@@ -22,9 +22,9 @@ function Page(props: Props) {
   const siteUrl = `https://${host}${pathname}`
 
   // TODO A future PR will be handling CMS data with a Provider and specific hooks
-  const alertData = cmsHome?.sections.filter((section) => {
+  const alertData = cmsHome?.sections.find((section) => {
     return section.name === 'Alert'
-  })[0]?.data
+  })?.data
 
   return (
     <>
