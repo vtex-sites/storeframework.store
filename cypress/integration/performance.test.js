@@ -46,14 +46,12 @@ describe('React rendering performance', () => {
     }
   })
 
-  // Commenting this test since Alert is now showing only in home
-  // it('Renders Alert component once', () => {
-  //   const mark = 'Alert'
+  it('Renders Alert component once', () => {
+    const mark = 'Alert'
 
-  //   for (const path of paths) {
-  //     testMark(path, mark)
-  //   }
-  // })
+    // Alert is only in Home page for now
+    testMark(pages.home, mark)
+  })
 
   it('Renders Page component once', () => {
     const mark = 'Page'
