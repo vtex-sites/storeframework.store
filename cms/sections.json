@@ -22,8 +22,7 @@
         },
         "content": {
           "type": "string",
-          "title": "Content",
-          "description": "You can write a simple text or use markdown here."
+          "title": "Content"
         },
         "link": {
           "title": "Link",
