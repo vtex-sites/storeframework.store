@@ -15,6 +15,7 @@ import type {
   SearchPageQueryQueryVariables,
 } from '@generated/graphql'
 import Navbar from 'src/components/common/Navbar'
+import Alert from 'src/components/common/Alert'
 
 export type Props = PageProps<
   SearchPageQueryQuery,
@@ -35,7 +36,7 @@ const useSearchParams = ({ href }: Location) => {
 
 function Page(props: Props) {
   const {
-    data: { site },
+    data: { site, cmsGlobalAlert },
   } = props
 
   const { locale } = useSession()
@@ -46,8 +47,22 @@ function Page(props: Props) {
     return null
   }
 
+  // TODO A future PR will be handling CMS data with a Provider and specific hooks
+  const alertData = cmsGlobalAlert?.sections.find((section) => {
+    return section.name === 'Alert'
+  })?.data
+
   return (
     <>
+      {alertData && (
+        <Alert
+          content={alertData.content}
+          icon={alertData.icon}
+          dismissible={alertData.dismissible}
+          link={alertData.link}
+        />
+      )}
+
       <Navbar />
       <main>
         <SearchProvider
@@ -101,6 +116,13 @@ export const querySSG = graphql`
         titleTemplate
         title
         description
+      }
+    }
+
+    cmsGlobalAlert {
+      sections {
+        data
+        name
       }
     }
   }

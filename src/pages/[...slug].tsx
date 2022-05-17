@@ -20,6 +20,7 @@ import type {
 import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
 import Navbar from 'src/components/common/Navbar'
+import Alert from 'src/components/common/Alert'
 
 type Props = PageProps<
   CollectionPageQueryQuery,
@@ -54,7 +55,7 @@ const useSearchParams = (props: Props): SearchState => {
 
 function Page(props: Props) {
   const {
-    data: { site },
+    data: { site, cmsGlobalAlert },
     serverData: { collection },
     location: { host },
     slug,
@@ -71,8 +72,22 @@ function Page(props: Props) {
       ? `https://${host}/${slug}/${pageQuery}`
       : `/${slug}/${pageQuery}`
 
+  // TODO A future PR will be handling CMS data with a Provider and specific hooks
+  const alertData = cmsGlobalAlert?.sections.find((section) => {
+    return section.name === 'Alert'
+  })?.data
+
   return (
     <>
+      {alertData && (
+        <Alert
+          content={alertData.content}
+          icon={alertData.icon}
+          dismissible={alertData.dismissible}
+          link={alertData.link}
+        />
+      )}
+
       <Navbar />
       <main>
         <SearchProvider
@@ -147,6 +162,13 @@ export const querySSG = graphql`
         titleTemplate
         title
         description
+      }
+    }
+
+    cmsGlobalAlert {
+      sections {
+        data
+        name
       }
     }
   }

@@ -12,7 +12,7 @@ export type Props = PageProps<HomePageQueryQuery>
 
 function Page(props: Props) {
   const {
-    data: { site, cmsHome },
+    data: { site, cmsHome, cmsGlobalAlert },
     location: { pathname, host },
   } = props
 
@@ -22,7 +22,7 @@ function Page(props: Props) {
   const siteUrl = `https://${host}${pathname}`
 
   // TODO A future PR will be handling CMS data with a Provider and specific hooks
-  const alertData = cmsHome?.sections.find((section) => {
+  const alertData = cmsGlobalAlert?.sections.find((section) => {
     return section.name === 'Alert'
   })?.data
 
@@ -84,6 +84,13 @@ export const querySSG = graphql`
     }
 
     cmsHome {
+      sections {
+        data
+        name
+      }
+    }
+
+    cmsGlobalAlert {
       sections {
         data
         name
