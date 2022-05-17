@@ -46,6 +46,201 @@ export type CmsBlockFilterListInput = {
   elemMatch: InputMaybe<CmsBlockFilterInput>
 }
 
+export type CmsGlobalAlert = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+  versionStatus: Maybe<Scalars['String']>
+}
+
+export type CmsGlobalAlertConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsGlobalAlertEdge>
+  group: Array<CmsGlobalAlertGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsGlobalAlert>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsGlobalAlertConnectionDistinctArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertConnectionGroupArgs = {
+  field: CmsGlobalAlertFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsGlobalAlertConnectionMaxArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertConnectionMinArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertConnectionSumArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertEdge = {
+  next: Maybe<CmsGlobalAlert>
+  node: CmsGlobalAlert
+  previous: Maybe<CmsGlobalAlert>
+}
+
+export type CmsGlobalAlertFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+  | 'versionStatus'
+
+export type CmsGlobalAlertFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsGlobalAlertGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsGlobalAlertEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsGlobalAlertGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsGlobalAlert>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsGlobalAlertGroupConnectionDistinctArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertGroupConnectionGroupArgs = {
+  field: CmsGlobalAlertFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsGlobalAlertGroupConnectionMaxArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertGroupConnectionMinArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertGroupConnectionSumArgs = {
+  field: CmsGlobalAlertFieldsEnum
+}
+
+export type CmsGlobalAlertSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsGlobalAlertFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
 export type CmsHome = Node & {
   children: Array<Node>
   id: Scalars['ID']
@@ -1052,6 +1247,7 @@ export type PageInfo = {
 }
 
 export type Query = {
+  allCmsGlobalAlert: CmsGlobalAlertConnection
   allCmsHome: CmsHomeConnection
   allCollections: StoreCollectionConnection
   allDirectory: DirectoryConnection
@@ -1062,6 +1258,7 @@ export type Query = {
   allSiteFunction: SiteFunctionConnection
   allSitePage: SitePageConnection
   allSitePlugin: SitePluginConnection
+  cmsGlobalAlert: Maybe<CmsGlobalAlert>
   cmsHome: Maybe<CmsHome>
   collection: StoreCollection
   directory: Maybe<Directory>
@@ -1074,6 +1271,13 @@ export type Query = {
   siteFunction: Maybe<SiteFunction>
   sitePage: Maybe<SitePage>
   sitePlugin: Maybe<SitePlugin>
+}
+
+export type QueryAllCmsGlobalAlertArgs = {
+  filter: InputMaybe<CmsGlobalAlertFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsGlobalAlertSortInput>
 }
 
 export type QueryAllCmsHomeArgs = {
@@ -1140,6 +1344,16 @@ export type QueryAllSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<SitePluginSortInput>
+}
+
+export type QueryCmsGlobalAlertArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCmsHomeArgs = {
@@ -2642,14 +2856,6 @@ export type StringQueryOperatorInput = {
   regex: InputMaybe<Scalars['String']>
 }
 
-export type UpdateSessionMutationMutationVariables = Exact<{
-  session: IStoreSession
-}>
-
-export type UpdateSessionMutationMutation = {
-  updateSession: { channel: string | null }
-}
-
 export type ProductSummary_ProductFragment = {
   slug: string
   sku: string
@@ -2765,6 +2971,7 @@ export type CollectionPageQueryQuery = {
       description: string | null
     } | null
   } | null
+  cmsGlobalAlert: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type ServerCollectionPageQueryQueryVariables = Exact<{
@@ -2792,6 +2999,7 @@ export type ProductPageQueryQuery = {
       siteUrl: string | null
     } | null
   } | null
+  cmsGlobalAlert: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type ServerProductPageQueryQueryVariables = Exact<{
@@ -2841,6 +3049,7 @@ export type HomePageQueryQuery = {
     } | null
   } | null
   cmsHome: { sections: Array<{ data: any; name: string }> } | null
+  cmsGlobalAlert: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type SearchPageQueryQueryVariables = Exact<{ [key: string]: never }>
@@ -2853,6 +3062,7 @@ export type SearchPageQueryQuery = {
       description: string | null
     } | null
   } | null
+  cmsGlobalAlert: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type ValidateCartMutationMutationVariables = Exact<{
