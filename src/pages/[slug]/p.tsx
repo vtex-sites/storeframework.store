@@ -17,6 +17,7 @@ import type {
 } from '@generated/graphql'
 import { ITEMS_PER_SECTION } from 'src/constants'
 import Navbar from 'src/components/common/Navbar'
+import Alert from 'src/components/common/Alert'
 
 export type Props = PageProps<
   ProductPageQueryQuery,
@@ -28,7 +29,7 @@ export type Props = PageProps<
 function Page(props: Props) {
   const { locale, currency } = useSession()
   const {
-    data: { site },
+    data: { site, cmsGlobalAlert },
     serverData: { product },
     location: { host },
     slug,
@@ -41,8 +42,24 @@ function Page(props: Props) {
   const canonical =
     host !== undefined ? `https://${host}/${slug}/p` : `/${slug}/p`
 
+  // TODO A future PR will be handling CMS data with a Provider and specific hooks
+  const alertData = cmsGlobalAlert?.sections.find((section) => {
+    return section.name === 'Alert'
+  })?.data
+
+  console.info(alertData)
+
   return (
     <>
+      {alertData && (
+        <Alert
+          content={alertData.content}
+          icon={alertData.icon}
+          dismissible={alertData.dismissible}
+          link={alertData.link}
+        />
+      )}
+
       <Navbar />
       <main>
         {/* SEO */}
@@ -122,6 +139,13 @@ export const querySSG = graphql`
         description
         titleTemplate
         siteUrl
+      }
+    }
+
+    cmsGlobalAlert {
+      sections {
+        data
+        name
       }
     }
   }
