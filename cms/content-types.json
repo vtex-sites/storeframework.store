@@ -1,5 +1,10 @@
 [
   {
+    "id": "globalAlert",
+    "name": "Global Alert Page",
+    "configurationSchemaSets": []
+  },
+  {
     "id": "home",
     "name": "Home Page",
     "configurationSchemaSets": []
