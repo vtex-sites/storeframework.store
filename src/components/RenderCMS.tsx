@@ -33,7 +33,7 @@ function RenderCMS({ sections }: Props) {
             `Could not find component for block ${name}. Add a new component for this block or remove it from the CMS`
           )
 
-          return
+          return <></>
         }
 
         return <Component key={`cms-section-${index}`} {...data} />
