@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import Alert from 'src/components/common/Alert'
+import { AlertCMS } from 'src/components/common/Alert'
 import Footer from 'src/components/common/Footer'
 import Navbar from 'src/components/common/Navbar'
 import Toast from 'src/components/common/Toast'
@@ -13,16 +13,7 @@ function Layout({ children }: PropsWithChildren<unknown>) {
 
   return (
     <div id="layout">
-      <Alert
-        icon="Bell"
-        content={
-          <>
-            Get 10% off today:&nbsp;<span>NEW10</span>
-          </>
-        }
-        link={{ text: 'Buy now', to: '/office' }}
-        dismissible
-      />
+      <AlertCMS />
 
       <Navbar />
 
