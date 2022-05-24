@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `InputText` component (#440)
+- `Alert` is now integrated with CMS ([#50](https://github.com/vtex-sites/storeframework.store/pull/50))
 
 ### Changed
 
