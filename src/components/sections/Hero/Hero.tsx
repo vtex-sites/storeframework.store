@@ -1,20 +1,22 @@
-import UIHero, {
-  HeroContent,
-  HeroImage,
-  HeroLink,
-} from 'src/components/ui/Hero'
-import Image from 'src/components/ui/Image/Image'
 import { ButtonLink } from 'src/components/ui/Button'
+import {
+  Hero as UIHero,
+  HeroHeading as UIHeroHeading,
+  HeroImage as UIHeroImage,
+} from '@faststore/ui'
 import Icon from 'src/components/ui/Icon'
+import Image from 'src/components/ui/Image/Image'
 
 import Section from '../Section'
 
-type Variant = 'default' | 'small'
+type Variant = 'primary' | 'secondary'
+type ColorVariant = 'main' | 'light' | 'accent'
 
-interface HeroProps {
+export interface HeroProps {
   title: string
   subtitle: string
   variant?: Variant
+  colorVariant?: ColorVariant
   linkText?: string
   link?: string
   icon?: JSX.Element
@@ -25,7 +27,8 @@ interface HeroProps {
 const Hero = ({
   title,
   subtitle,
-  variant = 'default',
+  variant = 'primary',
+  colorVariant = 'main',
   linkText,
   link,
   icon,
@@ -34,35 +37,40 @@ const Hero = ({
 }: HeroProps) => {
   return (
     <Section>
-      <UIHero data-hero-variant={variant}>
-        <HeroImage>
+      <UIHero
+        data-fs-hero
+        data-fs-hero-variant={variant}
+        data-fs-hero-color-variant={colorVariant}
+      >
+        <UIHeroImage data-fs-hero-image>
           <Image
             preload
             loading="eager"
+            fetchPriority="high"
             src={imageSrc}
             alt={imageAlt}
             width={360}
             height={240}
             sizes="(max-width: 768px) 70vw, 50vw"
           />
-        </HeroImage>
-        <HeroContent aria-labelledby="hero-heading">
-          <div data-hero-wrapper className="layout__content">
-            <div data-hero-info>
+        </UIHeroImage>
+        <UIHeroHeading data-fs-hero-heading aria-labelledby="hero-heading">
+          <div data-fs-hero-wrapper className="layout__content">
+            <div data-fs-hero-info>
               <h1 id="hero-heading">{title}</h1>
 
-              <p data-hero-text-body>{subtitle}</p>
+              <p data-fs-hero-text-body>{subtitle}</p>
               {!!link && (
-                <HeroLink>
-                  <ButtonLink to={link} inverse>
-                    {linkText} <Icon name="ArrowRight" width={24} height={24} />
-                  </ButtonLink>
-                </HeroLink>
+                <ButtonLink to={link} inverse={colorVariant === 'main'}>
+                  {linkText} <Icon name="ArrowRight" width={24} height={24} />
+                </ButtonLink>
               )}
             </div>
-            {!!icon && <div data-hero-icon>{icon}</div>}
+            {variant === 'secondary' && icon && (
+              <div data-fs-hero-icon>{icon}</div>
+            )}
           </div>
-        </HeroContent>
+        </UIHeroHeading>
       </UIHero>
     </Section>
   )

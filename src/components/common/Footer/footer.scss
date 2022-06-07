@@ -1,12 +1,8 @@
 @import "src/styles/scaffold";
 
 .footer {
+  padding-top: 0;
   background-color: var(--fs-color-neutral-bkg);
-
-  .incentives {
-    padding-top: 0;
-  }
-
   content-visibility: auto;
   contain-intrinsic-size: rem(860px);
 
@@ -27,7 +23,7 @@
   @include media(">=notebook") {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--fs-grid-gap-1);
+    column-gap: var(--fs-grid-gap-3);
   }
 
   &::before {
@@ -63,7 +59,7 @@
   }
 
   @include media(">=notebook") {
-    row-gap: var(--fs-grid-gap-2);
+    row-gap: var(--fs-grid-gap-4);
     padding-top: 0;
   }
 
@@ -94,7 +90,7 @@
     }
 
     svg {
-      border: var(--fs-border-width-default) solid var(--fs-color-neutral-3);
+      border: var(--fs-border-width) solid var(--fs-color-neutral-3);
       border-radius: var(--fs-border-radius-small);
     }
 
@@ -105,7 +101,7 @@
       justify-content: space-between;
 
       @include media("<notebook") {
-        column-gap: var(--fs-grid-gap-0);
+        column-gap: var(--fs-grid-gap-2);
       }
     }
   }
@@ -196,7 +192,7 @@
 .footer__links-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: var(--fs-grid-gap-1);
+  grid-gap: var(--fs-grid-gap-3);
 
   .text__title-mini {
     margin-bottom: var(--fs-spacing-1);

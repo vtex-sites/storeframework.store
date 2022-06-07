@@ -17,6 +17,8 @@ import type {
 } from '@generated/graphql'
 import { ITEMS_PER_SECTION } from 'src/constants'
 
+import 'src/styles/pages/pdp.scss'
+
 export type Props = PageProps<
   ProductPageQueryQuery,
   ProductPageQueryQueryVariables,
@@ -97,7 +99,6 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-
       <ProductDetails product={product} />
 
       <ProductShelf
@@ -183,45 +184,41 @@ export const getServerData = async ({
 }: {
   params: Record<string, string>
 }) => {
-  try {
-    const id = slug.split('-').pop()
+  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
 
-    const { execute } = await import('src/server/index')
-    const { data } = await execute({
-      operationName: querySSR,
-      variables: { id },
+  const id = slug.split('-').pop()
+
+  const { execute } = await import('src/server/index')
+  const { data, errors } = await execute({
+    operationName: querySSR,
+    variables: { id },
+  })
+
+  if (errors && errors?.length > 0) {
+    throw new Error(`${errors[0]}`)
+  }
+
+  if (data === null) {
+    const params = new URLSearchParams({
+      from: encodeURIComponent(`/${slug}/p`),
     })
 
-    if (data === null) {
-      const originalUrl = `/${slug}/p`
-
-      return {
-        status: 301,
-        props: {},
-        headers: {
-          'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
-          location: `/404/?from=${encodeURIComponent(originalUrl)}`,
-        },
-      }
-    }
-
     return {
-      status: 200,
-      props: data ?? {},
-      headers: {
-        'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
-      },
-    }
-  } catch (err) {
-    console.error(err)
-
-    return {
-      status: 500,
+      status: 301,
       props: {},
       headers: {
-        'cache-control': 'public, max-age=0, must-revalidate',
+        'cache-control': ONE_YEAR_CACHE,
+        location: `/404/?${params.toString()}}`,
       },
     }
+  }
+
+  return {
+    status: 200,
+    props: data ?? {},
+    headers: {
+      'cache-control': ONE_YEAR_CACHE,
+    },
   }
 }
 

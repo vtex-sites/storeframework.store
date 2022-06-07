@@ -1,8 +1,8 @@
-import { Button } from '@faststore/ui'
 import { useState } from 'react'
 import { Image } from 'src/components/ui/Image'
 
 import { ImageGallerySelector, ImageZoom } from '.'
+import styles from './image-gallery.module.scss'
 
 export interface ImageElementData {
   url: string
@@ -16,44 +16,32 @@ interface ImageGalleryProps {
 function ImageGallery({ images }: ImageGalleryProps) {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0)
   const currentImage = images[selectedImageIdx]
+  const hasSelector = images.length > 1
 
   return (
-    <div>
+    <section
+      data-fs-image-gallery={!hasSelector ? 'without-selector' : ''}
+      className={styles.fsImageGallery}
+    >
       <ImageZoom>
         <Image
           src={currentImage.url}
           alt={currentImage.alternateName}
-          width={250}
-          height={250}
+          sizes="(max-width: 804px) 25vw, 30vw"
+          width={804}
+          height={804 * (3 / 4)}
+          loading="eager"
+          fetchPriority="high"
         />
       </ImageZoom>
-      <ImageGallerySelector itemsPerPage={4}>
-        {images.map((image, idx) => {
-          return (
-            <Button
-              key={idx}
-              data-thumbnail-button={
-                idx === selectedImageIdx ? 'selected' : 'true'
-              }
-              aria-label={`Load ${image.alternateName} - Image ${idx + 1} of ${
-                images.length
-              }`}
-              onClick={() => {
-                setSelectedImageIdx(idx)
-              }}
-            >
-              <Image
-                src={image.url}
-                alt={image.alternateName}
-                loading={idx === 0 ? 'eager' : 'lazy'}
-                width={250}
-                height={250}
-              />
-            </Button>
-          )
-        })}
-      </ImageGallerySelector>
-    </div>
+      {hasSelector && (
+        <ImageGallerySelector
+          images={images}
+          currentImageIdx={selectedImageIdx}
+          onSelect={setSelectedImageIdx}
+        />
+      )}
+    </section>
   )
 }
 

@@ -1,44 +1,124 @@
 @import "src/styles/scaffold";
 
-[data-store-banner] {
-  padding-top: var(--fs-spacing-6);
-  padding-bottom: var(--fs-spacing-6);
+[data-fs-banner-text] {
+  // --------------------------------------------------------
+  // Design Tokens for Banner Text
+  // --------------------------------------------------------
+
+  // Default properties
+  --fs-banner-padding-mobile                : var(--fs-spacing-6) 5%;
+  --fs-banner-padding-desktop               : var(--fs-spacing-9) 15%;
+
+  // Link
+  --fs-banner-link-min-width                : 11.25rem;
+  --fs-banner-link-margin-top               : var(--fs-spacing-6);
+
+  // Title
+  --fs-banner-title-size                    : var(--fs-text-size-lead);
+  --fs-banner-title-weight                  : var(--fs-text-weight-bold);
+  --fs-banner-title-line-height             : 1.2;
+
+  // Primary
+  --fs-banner-primary-title-size            : var(--fs-text-size-title-page);
+
+  // Secondary
+  --fs-banner-secondary-title-size          : var(--fs-text-size-4);
+  --fs-banner-secondary-caption-size        : var(--fs-text-size-base);
+  --fs-banner-secondary-caption-weight      : var(--fs-text-weight-regular);
+  --fs-banner-secondary-caption-line-height : 1.5;
+
+  // Main
+  --fs-banner-main-bkg-color                : var(--fs-color-primary-bkg);
+  --fs-banner-main-text-color               : var(--fs-color-primary-text);
+
+  // Light
+  --fs-banner-light-bkg-color               : var(--fs-color-secondary-bkg-light);
+  --fs-banner-light-text-color              : var(--fs-color-secondary-text);
+
+  // Accent
+  --fs-banner-accent-bkg-color              : var(--fs-color-highlighted-bkg);
+  --fs-banner-accent-text-color             : var(--fs-banner-light-text-color);
+
+  // --------------------------------------------------------
+  // Structural Styles
+  // --------------------------------------------------------
+
+  padding: var(--fs-banner-padding-mobile);
   text-align: center;
-  background-color: var(--fs-color-main-4);
 
-  h2, p {
-    display: inline;
-    color: var(--fs-color-text-inverse);
-
-    @include media(">=notebook") { display: block; }
+  @include media(">=notebook") {
+    padding: var(--fs-banner-padding-desktop);
   }
 
-  [data-banner-content] {
+  [data-fs-banner-text-content] {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  [data-banner-text] {
-    font-size: var(--fs-text-size-3);
-    font-weight: var(--fs-text-weight-bold);
-    line-height: 1.25;
-
-    @include media(">=notebook") { font-size: var(--fs-text-size-6); }
+  [data-fs-banner-text-link] a {
+    min-width: var(--fs-banner-link-min-width);
+    margin-top: var(--fs-banner-link-margin-top);
   }
+}
 
-  [data-banner-link] a {
-    width: 11.25rem;
-    margin-top: var(--fs-spacing-5);
+// --------------------------------------------------------
+// Variants Styles
+// --------------------------------------------------------
+
+[data-fs-banner-text-variant="primary"] {
+  h2 {
+    font-size: var(--fs-banner-title-size);
+    font-weight: var(--fs-banner-title-weight);
+    line-height: var(--fs-banner-title-line-height);
 
     @include media(">=notebook") {
-      padding: var(--fs-spacing-2) var(--fs-spacing-4);
-      margin-top: var(--fs-spacing-7);
+      display: block;
+      font-size: var(--fs-banner-primary-title-size);
+    }
+  }
+}
+
+[data-fs-banner-text-variant="secondary"] {
+  h2 {
+    margin-bottom: var(--fs-spacing-2);
+    font-size: var(--fs-banner-title-size);
+    font-weight: var(--fs-banner-title-weight);
+    line-height: var(--fs-banner-title-line-height);
+
+    @include media(">=notebook") {
+      display: block;
+      font-size: var(--fs-banner-secondary-title-size);
     }
   }
 
-  @include media(">=notebook") {
-    padding-top: var(--fs-spacing-9);
-    padding-bottom: var(--fs-spacing-9);
+  p {
+    font-size: var(--fs-banner-secondary-caption-size);
+    font-weight: var(--fs-banner-secondary-caption-weight);
+    line-height: var(--fs-banner-secondary-caption-line-height);
+  }
+}
+
+[data-fs-banner-text-color-variant="main"] {
+  background-color: var(--fs-banner-main-bkg-color);
+
+  [data-fs-banner-text-heading] {
+    color: var(--fs-banner-main-text-color);
+  }
+}
+
+[data-fs-banner-text-color-variant="light"] {
+  background-color: var(--fs-banner-light-bkg-color);
+
+  [data-fs-banner-text-heading] {
+    color: var(--fs-banner-light-text-color);
+  }
+}
+
+[data-fs-banner-text-color-variant="accent"] {
+  background-color: var(--fs-banner-accent-bkg-color);
+
+  [data-fs-banner-text-heading] {
+    color: var(--fs-banner-accent-text-color);
   }
 }

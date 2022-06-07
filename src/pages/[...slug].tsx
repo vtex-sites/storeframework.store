@@ -20,6 +20,8 @@ import type {
 import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
 
+import 'src/styles/pages/plp.scss'
+
 type Props = PageProps<
   CollectionPageQueryQuery,
   CollectionPageQueryQueryVariables,
@@ -110,7 +112,7 @@ function Page(props: Props) {
       />
 
       <Hero
-        variant="small"
+        variant="secondary"
         title={title}
         subtitle={`All the amazing ${title} from the brands we partner with.`}
         imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
@@ -173,43 +175,39 @@ export const getServerData = async ({
 }: {
   params: Record<string, string>
 }) => {
-  try {
-    const { execute } = await import('src/server/index')
-    const { data } = await execute({
-      operationName: querySSR,
-      variables: { slug },
+  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
+
+  const { execute } = await import('src/server/index')
+  const { data, errors } = await execute({
+    operationName: querySSR,
+    variables: { slug },
+  })
+
+  if (errors && errors?.length > 0) {
+    throw new Error(`${errors[0]}`)
+  }
+
+  if (data === null) {
+    const params = new URLSearchParams({
+      from: encodeURIComponent(`/${slug}`),
     })
 
-    if (data === null) {
-      const originalUrl = `/${slug}`
-
-      return {
-        status: 301,
-        props: {},
-        headers: {
-          'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
-          location: `/404/?from=${encodeURIComponent(originalUrl)}`,
-        },
-      }
-    }
-
     return {
-      status: 200,
-      props: data ?? {},
-      headers: {
-        'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
-      },
-    }
-  } catch (err) {
-    console.error(err)
-
-    return {
-      status: 500,
+      status: 301,
       props: {},
       headers: {
-        'cache-control': 'public, max-age=0, must-revalidate',
+        'cache-control': ONE_YEAR_CACHE,
+        location: `/404/?${params.toString()}}`,
       },
     }
+  }
+
+  return {
+    status: 200,
+    props: data ?? {},
+    headers: {
+      'cache-control': ONE_YEAR_CACHE,
+    },
   }
 }
 

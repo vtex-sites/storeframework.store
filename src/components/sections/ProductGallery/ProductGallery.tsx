@@ -1,4 +1,4 @@
-import { usePagination, useSearch } from '@faststore/sdk'
+import { useSearch } from '@faststore/sdk'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { lazy, Suspense, useState } from 'react'
 import Filter from 'src/components/search/Filter'
@@ -13,8 +13,10 @@ import { mark } from 'src/sdk/tests/mark'
 import Section from '../Section'
 import EmptyGallery from './EmptyGallery'
 import { useDelayedFacets } from './useDelayedFacets'
+import { useDelayedPagination } from './useDelayedPagination'
 import { useGalleryQuery } from './useGalleryQuery'
 import { useProductsPrefetch } from './usePageProducts'
+import styles from './product-gallery.module.scss'
 
 const GalleryPage = lazy(() => import('./ProductGalleryPage'))
 const GalleryPageSkeleton = <ProductGridSkeleton loading />
@@ -31,7 +33,7 @@ function ProductGallery({ title, searchTerm }: Props) {
   const { data } = useGalleryQuery()
   const facets = useDelayedFacets(data)
   const totalCount = data?.search.products.pageInfo.totalCount ?? 0
-  const { next, prev } = usePagination(totalCount)
+  const { next, prev } = useDelayedPagination(totalCount)
 
   useProductsPrefetch(prev ? prev.cursor : null)
   useProductsPrefetch(next ? next.cursor : null)
@@ -40,7 +42,8 @@ function ProductGallery({ title, searchTerm }: Props) {
     return (
       <Section
         data-testid="product-gallery"
-        className="product-listing layout__content"
+        className={`${styles.fsProductListing} layout__content`}
+        data-fs-product-listing
       >
         <EmptyGallery />
       </Section>
@@ -50,17 +53,18 @@ function ProductGallery({ title, searchTerm }: Props) {
   return (
     <Section
       data-testid="product-gallery"
-      className="product-listing layout__content-full"
+      className={`${styles.fsProductListing} layout__content-full`}
+      data-fs-product-listing
     >
       {searchTerm && (
-        <header className="product-listing__search-term layout__content">
+        <header data-fs-product-listing-search-term className="layout__content">
           <h1>
             Showing results for: <span>{searchTerm}</span>
           </h1>
         </header>
       )}
-      <div className="product-listing__content-grid layout__content">
-        <div className="product-listing__filters">
+      <div data-fs-product-listing-content-grid className="layout__content">
+        <div data-fs-product-listing-filters>
           <FilterSkeleton loading={facets?.length === 0}>
             <Filter
               isOpen={isFilterOpen}
@@ -70,13 +74,13 @@ function ProductGallery({ title, searchTerm }: Props) {
           </FilterSkeleton>
         </div>
 
-        <div className="product-listing__results-count" data-count={totalCount}>
+        <div data-fs-product-listing-results-count data-count={totalCount}>
           <SkeletonElement shimmer type="text" loading={!data}>
             <h2 data-testid="total-product-count">{totalCount} Results</h2>
           </SkeletonElement>
         </div>
 
-        <div className="product-listing__sort">
+        <div data-fs-product-listing-sort>
           <SkeletonElement shimmer type="text" loading={facets?.length === 0}>
             <Sort />
           </SkeletonElement>
@@ -95,10 +99,10 @@ function ProductGallery({ title, searchTerm }: Props) {
           </SkeletonElement>
         </div>
 
-        <div className="product-listing__results">
+        <div data-fs-product-listing-results>
           {/* Add link to previous page. This helps on SEO */}
           {prev !== false && (
-            <div className="product-listing__pagination product-listing__pagination--top">
+            <div data-fs-product-listing-pagination="top">
               <GatsbySeo defer linkTags={[{ rel: 'prev', href: prev.link }]} />
               <ButtonLink
                 onClick={(e) => {
@@ -138,7 +142,7 @@ function ProductGallery({ title, searchTerm }: Props) {
 
           {/* Add link to next page. This helps on SEO */}
           {next !== false && (
-            <div className="product-listing__pagination product-listing__pagination--bottom">
+            <div data-fs-product-listing-pagination="bottom">
               <GatsbySeo defer linkTags={[{ rel: 'next', href: next.link }]} />
               <ButtonLink
                 data-testid="show-more"

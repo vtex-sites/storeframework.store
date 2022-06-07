@@ -19,11 +19,11 @@ body {
   --fs-color-main-3                    : #002c71;
   --fs-color-main-4                    : #001947;
 
-  --fs-color-accent-0                  : #ebdcff; // Lightest
+  --fs-color-accent-0                  : #ebdcff;
   --fs-color-accent-1                  : #8d50fd;
   --fs-color-accent-2                  : #732fe2;
   --fs-color-accent-3                  : #5900c8;
-  --fs-color-accent-4                  : darken(#5900c8, 5%); // Darkest
+  --fs-color-accent-4                  : #4700a0;
 
   --fs-color-neutral-0                 : #ffffff;
   --fs-color-neutral-1                 : #f1f2f3;
@@ -79,7 +79,7 @@ body {
 
   --fs-color-focus-ring                : #8db6fa;
   --fs-color-focus-ring-outline        : #8db6fa80;
-  --fs-color-focus-ring-danger         : #fee1e1;
+  --fs-color-focus-ring-danger         : #e1adad;
 
   // SITUATIONS
   --fs-color-success-text              : #368369;
@@ -97,14 +97,11 @@ body {
   --fs-color-info-text                 : var(--fs-color-text);
   --fs-color-info-bkg                  : var(--fs-color-main-1);
 
-  --fs-color-highlight-text            : var(--fs-color-text);
-  --fs-color-highlight-bkg             : var(--fs-color-accent-0);
+  --fs-color-highlighted-text          : var(--fs-color-text);
+  --fs-color-highlighted-bkg           : var(--fs-color-accent-0);
 
   --fs-color-neutral-text              : var(--fs-color-text);
   --fs-color-neutral-bkg               : var(--fs-color-neutral-1);
-
-  --fs-color-promo-text                : #f2636a;
-  --fs-color-promo-bkg                 : #fff68a;
 
   --fs-color-disabled-text             : var(--fs-color-neutral-6);
   --fs-color-disabled-bkg              : var(--fs-color-neutral-2);
@@ -123,12 +120,15 @@ body {
   --fs-text-weight-bold                : 700;
   --fs-text-weight-black               : 900;
 
+  // MAX LINES
+  --fs-text-max-lines                  : 2;
+
   // TYPOGRAPHY SCALE
   // Use a type scale to add rhythm to your typography and
   // ensure consistency throughout the project.
   // Access https://type-scale.com and pick a scale that
   // suits the store's branding.
-  --fs-text-scale-mobile               : 1.25;
+  --fs-text-scale-mobile               : 1.13;
   --fs-text-scale-desk                 : 1.25;
 
   --fs-scale                           : var(--fs-text-scale-mobile);
@@ -143,20 +143,21 @@ body {
   --fs-text-size-0                     : 12px; // Smallest
   --fs-text-size-1                     : 14px; // Smaller                               // Mob    Desk
   --fs-text-size-2                     : var(--fs-text-size-base);                      // 16px   16px
-  --fs-text-size-3                     : calc(var(--fs-text-size-2) * var(--fs-scale)); // 20px   20px
-  --fs-text-size-4                     : calc(var(--fs-text-size-3) * var(--fs-scale)); // 25px   25px
-  --fs-text-size-5                     : calc(var(--fs-text-size-4) * var(--fs-scale)); // 31px   31px
-  --fs-text-size-6                     : calc(var(--fs-text-size-5) * var(--fs-scale)); // 39px   39px
-  --fs-text-size-7                     : calc(var(--fs-text-size-6) * var(--fs-scale)); // 48px   48px
-  --fs-text-size-8                     : calc(var(--fs-text-size-7) * var(--fs-scale)); // 61px   61px
+  --fs-text-size-3                     : calc(var(--fs-text-size-2) * var(--fs-scale)); // 18px   20px
+  --fs-text-size-4                     : calc(var(--fs-text-size-3) * var(--fs-scale)); // 20px   25px
+  --fs-text-size-5                     : calc(var(--fs-text-size-4) * var(--fs-scale)); // 23px   31px
+  --fs-text-size-6                     : calc(var(--fs-text-size-5) * var(--fs-scale)); // 26px   39px
+  --fs-text-size-7                     : calc(var(--fs-text-size-6) * var(--fs-scale)); // 29px   48px
+  --fs-text-size-8                     : calc(var(--fs-text-size-7) * var(--fs-scale)); // 33px   61px
 
   // HIERARCHY SCALE
+  --fs-text-size-title-huge            : var(--fs-text-size-7);
   --fs-text-size-title-page            : var(--fs-text-size-6);
   --fs-text-size-title-product         : var(--fs-text-size-4);
   --fs-text-size-title-section         : var(--fs-text-size-4);
   --fs-text-size-title-subsection      : var(--fs-text-size-4);
   --fs-text-size-title-mini            : var(--fs-text-size-4);
-  --fs-text-size-lead                  : var(--fs-text-size-4);
+  --fs-text-size-lead                  : var(--fs-text-size-3);
   --fs-text-size-menu                  : var(--fs-text-size-base);
   --fs-text-size-body                  : var(--fs-text-size-base);
   --fs-text-size-legend                : var(--fs-text-size-1);
@@ -201,9 +202,11 @@ body {
   --fs-grid-max-width                  : var(--fs-grid-breakpoint-notebook);
 
   // GAPS
-  --fs-grid-gap-0                      : var(--fs-spacing-3);
-  --fs-grid-gap-1                      : var(--fs-spacing-4);
-  --fs-grid-gap-2                      : var(--fs-spacing-5);
+  --fs-grid-gap-0                      : var(--fs-spacing-1);
+  --fs-grid-gap-1                      : var(--fs-spacing-2);
+  --fs-grid-gap-2                      : var(--fs-spacing-3);
+  --fs-grid-gap-3                      : var(--fs-spacing-4);
+  --fs-grid-gap-4                      : var(--fs-spacing-5);
 
   // BREAKPOINTS
   --fs-grid-breakpoint-phone           : #{map-get($breakpoints, "phone")};
@@ -225,7 +228,7 @@ body {
   }
 
   // STATES
-  --fs-control-bkg-default             : var(--fs-color-neutral-0);
+  --fs-control-bkg                     : var(--fs-color-neutral-0);
   --fs-control-bkg-hover               : var(--fs-control-tap-size);
   --fs-control-bkg-active              : var(--fs-control-tap-size);
   --fs-control-bkg-disabled            : var(--fs-color-disabled-bkg);
@@ -243,26 +246,28 @@ body {
   --fs-transition-function             : ease-in-out;
 
   // BORDERS
-  --fs-border-radius-circle            : 100%;
-  --fs-border-radius-pill              : 100px;
   --fs-border-radius-small             : .125rem;
-  --fs-border-radius-default           : .25rem;
+  --fs-border-radius                   : .25rem;
+  --fs-border-radius-medium            : .5rem;
+  --fs-border-radius-pill              : 100px;
+  --fs-border-radius-circle            : 100%;
 
-  --fs-border-color-default            : var(--fs-color-neutral-4);
-  --fs-border-color-default-hover      : var(--fs-color-main-2);
-  --fs-border-color-default-active     : var(--fs-color-main-2);
-  --fs-border-color-default-disabled   : var(--fs-color-neutral-6);
+  --fs-border-color                    : var(--fs-color-neutral-4);
+  --fs-border-color-hover              : var(--fs-color-main-3);
+  --fs-border-color-active             : var(--fs-color-main-2);
+  --fs-border-color-disabled           : var(--fs-color-neutral-6);
 
-  --fs-border-color-light              : var(--fs-color-neutral-3);
+  --fs-border-color-light              : var(--fs-color-neutral-2);
   --fs-border-color-light-hover        : var(--fs-color-neutral-3);
   --fs-border-color-light-active       : var(--fs-color-neutral-3);
+  --fs-border-color-light-disabled     : var(--fs-color-neutral-5);
 
-  --fs-border-width-default            : 1px;
+  --fs-border-width                    : 1px;
   --fs-border-width-thick              : 2px;
   --fs-border-width-thickest           : 3px;
 
   // SHADOW
-  --fs-shadow                          : 0 1px 4px rgb(0 0 0 / 10%), 0 6px 8px rgb(0 0 0 / 10%);
+  --fs-shadow                          : none;
   --fs-shadow-darker                   : 0 0 10px rgb(0 0 0 / 20%);
-  --fs-shadow-hover                    : var(--fs-shadow);
+  --fs-shadow-hover                    : 0 1px 4px rgb(0 0 0 / 10%), 0 6px 8px rgb(0 0 0 / 10%);
 }

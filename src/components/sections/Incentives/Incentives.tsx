@@ -1,31 +1,57 @@
 import { Incentive as UIIncentive, List as UIList } from '@faststore/ui'
-import type { ReactNode } from 'react'
+import Icon from 'src/components/ui/Icon'
 
 interface Incentive {
-  icon: ReactNode
+  icon: string
   title?: string
   firstLineText: string
   secondLineText?: string
 }
 
-interface Props {
+export interface IncentivesProps {
   incentives: Incentive[]
-  classes?: string
+  /**
+   * Controls whether the component will be colored or not.
+   */
+  colored?: boolean
+  /**
+   * Controls the component's direction.
+   */
+  variant?: 'horizontal' | 'vertical'
 }
 
-function Incentives({ incentives, classes = '' }: Props) {
+function Incentives({
+  incentives,
+  variant = 'horizontal',
+  colored = false,
+}: IncentivesProps) {
   return (
-    <div className={`incentives ${classes} layout__content-full`}>
+    <div
+      data-fs-incentives
+      data-fs-incentives-colored={colored}
+      data-fs-incentives-variant={variant}
+    >
       <UIList variant="unordered" className="layout__content">
         {incentives.map((incentive, index) => (
           <li key={String(index)}>
             <UIIncentive>
-              {incentive.icon}
-              <div data-incentive-content>
-                {incentive.title && <p>{incentive.title}</p>}
-                <span>{incentive.firstLineText}</span>
+              <Icon
+                data-fs-incentive-icon
+                name={incentive.icon}
+                width={32}
+                height={32}
+              />
+              <div data-fs-incentive-content>
+                {incentive.title && (
+                  <p data-fs-incentive-title>{incentive.title}</p>
+                )}
+                <span data-fs-incentive-description>
+                  {incentive.firstLineText}
+                </span>
                 {incentive.secondLineText && (
-                  <span>{incentive.secondLineText}</span>
+                  <span data-fs-incentive-description>
+                    {incentive.secondLineText}
+                  </span>
                 )}
               </div>
             </UIIncentive>
