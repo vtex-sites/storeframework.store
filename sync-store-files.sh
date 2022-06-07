@@ -5,7 +5,7 @@ fastmod -m -d gatsby-config.ts 'plugins: \[' 'plugins: [  { resolve: "@vtex/gats
 
 # Update package.json file
 
-fastmod -m -d package.json '"name": "base.store"' '"name": "storeframework.store"';
+fastmod -m -d package.json '"name": "gatsby.store"' '"name": "storeframework.store"';
 yarn add @vtex/gatsby-source-cms
 
 # Update src/pages/index.tsx file
