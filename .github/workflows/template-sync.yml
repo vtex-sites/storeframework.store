@@ -16,5 +16,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_repo_path: vtex-sites/gatsby.store
-          upstream_branch: main # defaults to main
+          upstream_branch: master # defaults to main
           pr_labels: template-sync # defaults to chore,template-sync
